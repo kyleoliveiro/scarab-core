@@ -1,0 +1,11 @@
+// rem
+// ---
+// Returns an rem-based value from a pixel-based value.
+//
+// $value - { number } - The value to convert to rem`s
+
+@function rem( $value ) {
+
+	@return ( $value / 16 ) * 1rem;
+
+}

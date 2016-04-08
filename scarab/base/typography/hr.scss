@@ -1,0 +1,79 @@
+// Horizontal Rule
+.hr {
+	$height: bl(2);
+	$border-color: palette(grey);
+	$border-width: 1px;
+
+	@include responsive(( height ), (
+		base: $height,
+		huge: ($height * 2)
+	));
+
+	display: block;
+	border: none;
+	margin: 0;
+
+	&:after {
+		@include responsive(( top ), (
+			base: $height * 0.5, // Always half of hr's height
+			huge: ($height * 0.5) * 2
+		));
+
+		content: '';
+		display: block;
+		position: relative;
+		width: 100%;
+		height: $border-width;
+		background: $border-color;
+	}
+
+
+	&--small {
+		$height: bl(1);
+
+		@include responsive(( height ), (
+			base: $height,
+			huge: ($height * 2)
+		));
+
+		&:after {
+			@include responsive(( top ), (
+				base: $height * 0.5, // Always half of hr's height
+				huge: ($height * 0.5) * 2
+			));
+		}
+	}
+
+	&--large {
+		$height: bl(4);
+
+		@include responsive(( height ), (
+			base: $height,
+			huge: ($height * 2)
+		));
+
+		&:after {
+			@include responsive(( top ), (
+				base: $height * 0.5, // Always half of hr's height
+				huge: ($height * 0.5) * 2
+			));
+		}
+	}
+}
+
+hr {
+	@extend .hr;
+}
+
+
+
+// Clear Horizontal Rule
+// ---------------------
+// A Horizontal Rule without the line. Used as a vertical spacer.
+
+.hr--clear {
+	&:after {
+		content: none;
+		display: none;
+	}
+}

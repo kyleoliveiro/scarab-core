@@ -1,0 +1,9 @@
+// Focusable
+// ---------
+// Make an element focusable. 
+
+%focusable {
+	&:focus {
+		outline: none;
+	}
+}

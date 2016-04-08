@@ -1,0 +1,46 @@
+// Form
+form {
+	@extend .block;
+	@extend .container;
+}
+
+
+
+// Fieldset
+fieldset {
+	@extend .block;
+	@extend .container;
+	
+	@include responsive(( padding ), (
+		base: bl(1),
+		small: bl(2),
+		huge: bl(4)
+	));
+
+	border: 1px solid palette(grey);
+
+	legend + * {
+		margin-top: 0 !important;
+	}
+}
+
+
+
+// Legend
+legend {
+	@include type-scale( accent );
+	
+	@include responsive(( padding-left, padding-right ), (
+		base: bl(1),
+		small: bl(2),
+		huge: bl(4)
+	));
+
+	@include responsive(( margin-left ), (
+		base: bl(-1),
+		small: bl(-2),
+		huge: bl(-4)
+	));
+
+	font-weight: bold;
+}

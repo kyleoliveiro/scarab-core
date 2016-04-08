@@ -1,0 +1,37 @@
+// Definition List
+dl {
+	@extend .list;
+
+	& > * {
+		@extend .list__item;
+	}
+
+	& > dt {
+		font-weight: bold;
+	}
+}
+
+
+
+// Unordered List
+ul {
+	@extend .list;
+	@extend .list--bulleted;
+
+	& > li {
+		@extend .list__item;
+	}
+}
+
+
+// Ordered list
+ol {
+	@extend .list;
+	@extend .list--numbered;
+
+	& > li {
+		@extend .list__item;
+	}
+}
+
+

@@ -1,0 +1,94 @@
+// Label
+label {
+	@extend %clickable;
+	@include type-scale( body );
+	display: inline-block;
+	font-weight: bold;
+	vertical-align: top;
+}
+
+
+
+// Input
+.input {
+	@extend %focusable;
+	@include type-scale( body );
+
+	@include responsive(( padding-left, padding-right ), (
+		base: 0.5em
+	));
+
+	appearance: none;
+	resize: none;
+	border: 1px solid palette(grey);
+	border-radius: 2px;
+	background: none;
+	max-width: 100%;
+	margin: 0;
+	padding-top: bl(0.5);
+	padding-bottom: bl(0.5);
+
+	font-family: typeface(primary);
+}
+
+input,
+select,
+textarea {
+	@extend .input;
+}
+
+
+
+// Textarea
+.textarea {
+	@include responsive(( height, min-height ), (
+		base: bl(7),
+		small: bl(9),
+		huge: bl(13)
+	));
+
+	height: bl(6);
+	min-height: bl(6);
+	vertical-align: top; // fix bottom spacing/margin bug
+}
+
+textarea {
+	@extend .textarea;
+}
+
+
+
+// File Input
+input[type=file] {
+	@extend %clickable;
+	@include responsive(( width ), (
+		base: 100%,
+		tiny: auto
+	));
+}
+
+
+
+// Radio Input
+input[type=radio] {
+	@extend %clickable;
+	@include responsive(( height, width ), (
+		base: bl(1.5)
+	));
+
+	padding: 0;
+	border-radius: 100%;
+	vertical-align: middle;
+}
+
+
+// Checkbox Input
+input[type=checkbox] {
+	@extend %clickable;
+	@include responsive(( height, width ), (
+		base: bl(1.5)
+	));
+
+	padding: 0;
+	vertical-align: middle;
+}

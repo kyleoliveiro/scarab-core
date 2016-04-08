@@ -1,0 +1,29 @@
+// Responsive
+// ----------
+// Generate CSS declarations for each specified breakpoint
+//
+// $properties		-	{ list } - List of properties to apply values to
+// $breakpoint-map	- 	{ map } - Map of breakpoints (key) to values (value)
+
+@mixin responsive( $properties, $breakpoint-map ) {
+
+	@mixin _declarations( $value ) {
+		@each $property in $properties {
+			#{$property}: $value;
+		}
+	}
+
+	@for $i from 1 through length( $breakpoint-map ) {
+		$_breakpoint:	nth( nth( $breakpoint-map, $i ), 1 );
+		$_value:		nth( nth( $breakpoint-map, $i ), 2 );
+
+		@if $_breakpoint == 'base' {
+			@include _declarations( $_value );
+		} @else {
+			@include query( #{$_breakpoint} ) {
+				@include _declarations( $_value );
+			}
+		}
+	}
+	
+}

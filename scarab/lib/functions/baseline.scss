@@ -1,0 +1,23 @@
+// Baseline
+// --------
+// Returns a multiple of the global $BASELINE value.
+//
+// $multiple - { number } - The factor of which to multiply the $BASELINE value
+
+@function baseline( $multiple ) {
+	
+	@return $BASELINE * $multiple;
+
+}
+
+
+
+// bl
+// --
+// Alias function for `@function baseline()`.
+
+@function bl( $multiple ) {
+
+	@return baseline( $multiple );
+	
+}

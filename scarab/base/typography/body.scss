@@ -1,0 +1,47 @@
+// Body
+body {
+	@include type-scale(body);
+	font-family: typeface(primary);
+}
+
+
+
+// Link
+a {
+	text-decoration: underline;
+
+	&:hover {
+		color: palette(grey);
+	}
+}
+
+
+
+// Paragraph
+p {
+	@extend .block;
+	@include type-scale(body);
+}
+
+
+
+// Preformatted Text
+pre {
+	font-family: monospace;
+}
+
+
+
+// Superscript
+sup,
+.sup {
+	vertical-align: super;
+}
+
+
+
+// Subscript
+sub,
+.sub {
+	vertical-align: sub;
+}

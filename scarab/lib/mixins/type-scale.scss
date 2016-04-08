@@ -1,0 +1,40 @@
+// Type Scale
+// ----------
+// Returns CSS rules for responsive font sizes.
+//
+// $size - { key } - A valid key from `$TYPE-SCALE`
+
+@mixin type-scale( $size ) {
+
+	@if not map-has-key( $TYPE-SCALE, $size ) {
+		@warn 'Invalid ( $size ) passed to @mixin type-scale(): #{ $size }';
+		@error 'INVALID ARGUMENT';
+	}
+
+	@mixin _declarations( $properties, $values ) {
+		$i: 1;
+		@each $property in $properties {
+			#{$property}: nth( $values, $i );
+			$i: $i + 1;
+		}
+	}
+
+	$_breakpoint-map: map-get( $TYPE-SCALE, $size );
+
+	@for $i from 1 through length( $_breakpoint-map ) {
+		$_breakpoint:	nth( nth( $_breakpoint-map, $i ), 1 );
+		$_property-map:	nth( nth( $_breakpoint-map, $i ), 2 );
+
+		$_properties: 	map-keys( $_property-map );
+		$_values: 		map-values( $_property-map );
+
+		@if $_breakpoint == 'base' {
+			@include _declarations( $_properties, $_values );
+		} @else {
+			@include query( #{ $_breakpoint } ) {
+				@include _declarations( $_properties, $_values );
+			}
+		}
+	}
+
+}

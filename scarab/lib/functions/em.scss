@@ -1,0 +1,11 @@
+// em
+// --
+// Returns an em-based value from a pixel-based value.
+//
+// $value - { number } - The value to convert to em`s
+
+@function em( $value ) {
+
+	@return ( $value / 16 ) * 1em;
+	
+}

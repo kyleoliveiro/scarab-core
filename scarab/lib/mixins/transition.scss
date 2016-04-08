@@ -1,0 +1,13 @@
+// Transition
+// ----------
+// Apply a transition property declaration.
+//
+// $property 	- { string } - The CSS propertie(s) to transition
+// $duration 	- { number } - The duration of the transition
+// $easing 		- { string } - The transition timing function
+
+@mixin transition( $property: all, $duration: duration(), $easing: easing() ) {
+
+	transition: $property $duration $easing;
+
+}

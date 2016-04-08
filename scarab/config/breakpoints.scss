@@ -1,0 +1,13 @@
+// Breakpoints
+// -----------
+// Register global breakpoints.
+
+$BREAKPOINTS: (
+
+	tiny: em(480),
+	small: em(600),
+	medium: em(1000),
+	large: em(1400),
+	huge: em(1900)
+	
+);

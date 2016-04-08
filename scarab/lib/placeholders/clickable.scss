@@ -1,0 +1,13 @@
+// Clickable
+// ---------
+// Make an element clickable.
+
+%clickable {
+	cursor: pointer;
+	pointer-events: auto;
+	user-select: none;
+
+	&:active {
+		transform: translateY(1px);
+	}
+}

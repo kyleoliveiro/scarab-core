@@ -1,0 +1,56 @@
+// Palette
+// -------
+// Returns a color from the global $PALETTES map.
+//
+// $color - { string }
+
+@function palette( $color... ) {
+	$_color: '';
+
+	@if length($color) == 1 {
+		$color: nth($color, 1);
+
+		@if map-has-key($PALETTES, $color) {
+			$_palette: map-get($PALETTES, $color);
+
+			@if type-of($_palette) == 'map' {
+				@if map-has-key($_palette, 'base') {
+					$_color: map-get($_palette, 'base');
+				} @else {
+					$_color: nth($_palette, 1);
+				}
+			} @else {
+				$_color: $_palette;
+			}
+		} @else {
+			@error "Invalid key passed to palette(): '#{$color}'.";
+		}
+	} @else {
+		$_p: nth($color, 1);
+		$_s: nth($color, 2);
+
+		@if map-has-key($PALETTES, $_p) {
+			$_palette: map-get($PALETTES, $_p);
+
+			@if map-has-key($_palette, $_s) {
+				$_color: map-get($_palette, $_s);
+			} @else {
+				@if map-has-key($_palette, base) {
+					$_color: map-get($_palette, base);
+					@warn "No such shade '#{$_s}' for '#{$_p}'. Using 'base' shade instead.";
+				} @else {
+					$_color: nth($_palette, 1);
+					@warn "No such shade '#{$_s}' for '#{$_p}'. Using first available shade instead.";
+				}
+			}
+		} @else {
+			@error "Invalid key passed to palette(): '#{$_p}'.";
+		}
+	}
+
+	@if type-of($_color) != 'color' {
+		@warn "#{$_color} isn't a valid color.";
+	}
+
+	@return $_color;
+}

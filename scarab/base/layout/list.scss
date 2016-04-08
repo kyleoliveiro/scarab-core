@@ -1,0 +1,81 @@
+// List
+// ----
+// Stack children into a list.
+
+@at-root {
+$child: '& > *';
+
+.list {
+	@extend .block;
+	@extend .container;
+
+	#{ $child } {
+		@extend .block;
+		@extend .container;
+	}
+
+	&--small {
+		@extend .block--small;
+
+		#{ $child } {
+			@extend .block--small;
+		}
+	}
+
+	&--large {
+		@extend .block--large;
+		#{ $child } {
+			@extend .block--large;
+		}
+	}
+}
+
+
+
+// Bulleted List
+// -------------
+// List with bulleted items.
+
+.list--bulleted {
+	#{ $child } {
+		$bullet-size: 1em;
+
+		padding-left: $bullet-size;
+
+		&:before {
+			@include type-scale(tiny);
+
+			content: '•';
+			margin-left: -$bullet-size;
+			margin-right: $bullet-size;
+			line-height: 1;
+		}
+	}
+}
+
+
+
+// Numbered List
+// -------------
+// List with numbered items.
+
+.list--numbered {
+	counter-reset: list-counter;
+
+	#{ $child } {
+		$bullet-size: 1em;
+
+		padding-left: $bullet-size;
+
+		&:before {
+			@include type-scale(tiny);
+
+			content: counter(list-counter);
+			counter-increment: list-counter;
+			margin-left: -$bullet-size;
+			margin-right: $bullet-size;
+			line-height: 1;
+		}
+	}
+}
+}

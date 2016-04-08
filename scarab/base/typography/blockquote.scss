@@ -1,0 +1,31 @@
+// Blockquote
+blockquote,
+.blockquote {
+
+	$border-color: palette(black);
+	$border-style: solid;
+	$border-width: (
+		base: 2px,
+		large: 3px
+	);
+
+	@extend .block;
+	@include type-scale(accent);
+
+	@include responsive(( margin-left, margin-right ), (
+		base: bl(0),
+		small: bl(2),
+		huge: bl(4)
+	));
+
+	@include responsive(( padding-left, padding-right ), (
+		base: bl(1.5),
+		small: bl(2),
+		huge: bl(3)
+	));
+
+	@include responsive(( border-left-width ), $border-width);
+
+	border-left-color: $border-color;
+	border-left-style: $border-style;
+}

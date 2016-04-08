@@ -1,0 +1,11 @@
+// Duration
+// --------
+// Returns a value from the global $DURATIONS map.
+//
+// $name - { key } - A valid key from `$DURATIONS`
+
+@function duration( $name: short ) {
+
+	@return map-get( $DURATIONS, $name )
+
+}
