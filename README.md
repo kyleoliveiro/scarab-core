@@ -12,16 +12,17 @@ SCSS boilerplate for rapid stylesheet development.
 
 1. Clone this repository into your project
 2. Install dependencies with `npm install`
-3. Set your `src` and `dest` paths in Gulpfile.js
-4. `npm run build` to build your stylesheet
+3. Set your `src` and `dest` paths in [`gulpfile.babel.js`](/gulpfile.babel.js)
+4. `gulp` or `gulp styles` to build your stylesheet
 
 ### Dependencies
 
 * [**node-sass**](https://github.com/sass/node-sass)
 * [**postcss**](https://github.com/postcss/postcss)
-	* [node-css-mqpacker](https://github.com/hail2u/node-css-mqpacker)
-	* [autoprefixer](https://github.com/postcss/autoprefixer) (optional)
-* [**sass-globbing**](https://github.com/chriseppstein/sass-globbing) (optional)
+	* [node-css-mqpacker](https://github.com/hail2u/node-css-mqpacker) — Consolidates media queries to reduce file size
+	* [autoprefixer](https://github.com/postcss/autoprefixer) — Applies necessary vendor prefixes (optional)
+	* [cssnano](https://github.com/ben-eb/cssnano) — For build minification (optional)
+* [**sass-globbing**](https://github.com/chriseppstein/sass-globbing) — Allows glob paths in SCSS (optional)
 
 
 
@@ -31,16 +32,48 @@ SCSS boilerplate for rapid stylesheet development.
 
 ### Development utilities
 
+****Warning****
+Do not include Scarab's Development Utilities in production. Doing so will generate extraneous CSS declarations and bloat your stylesheets.
+
 **Baseline Grid Overlay**
+
+Including the `baseline-grid()` mixin within any element will overlay horizontal lines on top of the viewport. This is useful for maintaining a consistent vertical rythmn throughout the page. The size of the baseline grid is determined by the global [`$BASELINE`](/scarab/conifg/scale.scss) variable.
+	
+	// Activate Scarab's baseline grid overlay
+	html {
+		@include baseline-grid( true );
+	}
+
+	// Including the mixin within any other element will work as well.
+	// This is useful for activating the overlay quickly from within any file.
+	.button {
+		@include baseline-grid( true );
+	}
 
 **Element Overlay**
 
+The `element-overlay()` mixin causes every element in the document to become highlighted with a translucent background. The deeper element resides in the DOM tree, the more opaque its background will be.
+
+While the element overlay is active, **hovering** over any element displays a border around it, while **clicking or tapping** on an element for an extended period of time will display information about itself and its parents. 
+	
+	// Activate Scarab's element overlay
+	html {
+		@include element-overlay( true );
+	}
+
+	// Including the mixin within any other element will work as well.
+	// This is useful for activating the overlay quickly from within any file.
+	article {
+		@include element-overlay( true );
+	}
 
 
 ### Responsive, mobile-first approach
 Scarab is designed with a "mobile-first" approach to stylesheet development in mind.
 
-Store named breakpoints in the global [`$BREAKPOINTS`](config/breakpoints.scss) variable for usage with Scarab's helper functions and mixins.
+Store named breakpoints in the global [`$BREAKPOINTS`](/scarab/config/breakpoints.scss) variable for usage with Scarab's helper functions and mixins.
+
+**Config**
 
 	$BREAKPOINTS: (
 		small: 640px,
@@ -49,7 +82,7 @@ Store named breakpoints in the global [`$BREAKPOINTS`](config/breakpoints.scss) 
 	);
 
 #### Responsive properties
-The [`responsive()`](lib/mixins/responsive.scss) mixin provides a convenient way to write declarations for single or multiple CSS properties at different breakpoints.
+The [`responsive()`](/scarab/lib/mixins/responsive.scss) mixin provides a convenient way to write declarations for single or multiple CSS properties at different breakpoints.
 
 **SCSS**
 
@@ -85,7 +118,7 @@ The [`responsive()`](lib/mixins/responsive.scss) mixin provides a convenient way
 	}
 
 #### Breakpoint queries
-Media query blocks can be created from existing breakpoints using the [`query()`](lib/mixins/query.scss) mixin.
+Media query blocks can be created from existing breakpoints using the [`query()`](/scarab/lib/mixins/query.scss) mixin.
 
 **SCSS**
 
@@ -130,10 +163,11 @@ Media query blocks can be created from existing breakpoints using the [`query()`
 
 
 ### Responsive Type Scale
-Font sizes and line-heights can be conveniently managed with the [`$TYPE-SCALE`](/config/scale.scss) global variable.
+Font sizes and line-heights can be conveniently managed with the [`$TYPE-SCALE`](/scarab/config/scale.scss) global variable.
 
 The `keys` in `$TYPE-SCALE` accept a Sass map as their values. Pass in a map of *breakpoints to properties* to allow font sizes and line heights to scale at each breakpoint.
 
+**Config**
 	
 	$TYPE-SCALE: (
 		heading: (
@@ -184,9 +218,9 @@ The `keys` in `$TYPE-SCALE` accept a Sass map as their values. Pass in a map of 
 
 
 ### Color palettes
-Manage colors and shades with the [`$PALETTES`](/config/palettes.scss) global variable.
+Manage colors and shades with the [`$PALETTES`](/scarab/config/palettes.scss) global variable.
 
-**CONFIG**
+**Config**
 
 	$PALETTES: (
 		white:	(
@@ -216,9 +250,9 @@ Manage colors and shades with the [`$PALETTES`](/config/palettes.scss) global va
 
 
 ### Animations & transitions
-The [`$DURATIONS` and `$EASINGS`](/config/animation.scss) global variables can be used in conjunction with `duration()` and `easing()` to return named values.
+The [`$DURATIONS` and `$EASINGS`](/scarab/config/animation.scss) global variables can be used in conjunction with `duration()` and `easing()` to return named values.
 
-**CONFIG**
+**Config**
 
 	$DURATIONS: (
 		short: 0.2s,
