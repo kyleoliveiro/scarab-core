@@ -1,0 +1,11 @@
+language: node_js
+
+node_js:
+  - '5.10.1'
+  - '4.4.2'
+
+install:
+  - npm install
+
+script:
+  - 'npm test'
