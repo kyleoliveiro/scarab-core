@@ -2,6 +2,9 @@
 
 SCSS boilerplate for rapid stylesheet development.
 
+[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab)
+[![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss)
+
 
 
 
