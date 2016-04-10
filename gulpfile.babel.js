@@ -9,7 +9,7 @@ import cssnano from 'cssnano';
 const $ = gulpLoadPlugins();
 
 const dirs = {
-	src: './scarab/',
+	src: './scss/',
 	dest: './build/'
 };
 
