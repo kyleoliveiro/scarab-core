@@ -1,6 +1,6 @@
 {
   "name": "scarab-scss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "SCSS boilerplate for rapid stylesheet development.",
   "main": "scarab/style.scss",
   "scripts": {
