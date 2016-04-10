@@ -2,55 +2,28 @@
 // -------
 // Returns a color from the global $PALETTES map.
 //
-// $color - { string }
+// $palette - { list } - A descriptor for the color, matching the pattern ( [shade] color ).
 
-@function palette( $color... ) {
-	$_color: '';
+@function palette( $palette ) {	
 
-	@if length($color) == 1 {
-		$color: nth($color, 1);
+	@if length( $palette ) == 1 {
 
-		@if map-has-key($PALETTES, $color) {
-			$_palette: map-get($PALETTES, $color);
+		$_colors: map-get( $PALETTES, $palette );
 
-			@if type-of($_palette) == 'map' {
-				@if map-has-key($_palette, 'base') {
-					$_color: map-get($_palette, 'base');
-				} @else {
-					$_color: nth($_palette, 1);
-				}
-			} @else {
-				$_color: $_palette;
-			}
-		} @else {
-			@error "Invalid key passed to palette(): '#{$color}'.";
-		}
+		@return map-get( $_colors, base );
+
 	} @else {
-		$_p: nth($color, 1);
-		$_s: nth($color, 2);
+		
+		$_palette: nth( $palette, 2 );
+		$_colors: map-get( $PALETTES, $_palette );
+		$_shade: nth( $palette, 1 );
 
-		@if map-has-key($PALETTES, $_p) {
-			$_palette: map-get($PALETTES, $_p);
-
-			@if map-has-key($_palette, $_s) {
-				$_color: map-get($_palette, $_s);
-			} @else {
-				@if map-has-key($_palette, base) {
-					$_color: map-get($_palette, base);
-					@warn "No such shade '#{$_s}' for '#{$_p}'. Using 'base' shade instead.";
-				} @else {
-					$_color: nth($_palette, 1);
-					@warn "No such shade '#{$_s}' for '#{$_p}'. Using first available shade instead.";
-				}
-			}
-		} @else {
-			@error "Invalid key passed to palette(): '#{$_p}'.";
+		@if not map-has-key( $_colors, $_shade ) {
+			$_shade: base;
 		}
+
+		@return map-get( $_colors, $_shade );
+
 	}
 
-	@if type-of($_color) != 'color' {
-		@warn "#{$_color} isn't a valid color.";
-	}
-
-	@return $_color;
 }
