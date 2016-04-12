@@ -23,6 +23,9 @@ const paths = {
 };
 
 const config = {
+	sass: {
+		outputStyle: 'expanded'
+	},
 	autoprefixer: {
 		browsers: ['last 2 versions']
 	},
