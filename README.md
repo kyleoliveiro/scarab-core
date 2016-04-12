@@ -15,15 +15,19 @@ SCSS boilerplate for rapid stylesheet development.
 
 1. Clone this repository into your project
 	
-	`git clone -o https://github.com/watchtowerdigital/scarab`
+	`git clone https://github.com/watchtowerdigital/scarab.git`
 
-2. Install dependencies
+2. Remove git origin remote
+
+	`cd scarab && git remote rm origin`
+
+3. Install dependencies
 	
 	`npm install`
+	
+4. Set your `src` and `dest` paths in [`gulpfile.babel.js`](/gulpfile.babel.js)
 
-3. Set your `src` and `dest` paths in [`gulpfile.babel.js`](/gulpfile.babel.js)
-
-4. Build your stylesheet
+5. Build your stylesheet
 
 	`gulp`
 
