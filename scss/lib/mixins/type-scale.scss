@@ -11,14 +11,6 @@
 		@error 'INVALID ARGUMENT';
 	}
 
-	@mixin _declarations( $properties, $values ) {
-		$i: 1;
-		@each $property in $properties {
-			#{$property}: nth( $values, $i );
-			$i: $i + 1;
-		}
-	}
-
 	$_breakpoint-map: map-get( $TYPE-SCALE, $size );
 
 	@for $i from 1 through length( $_breakpoint-map ) {
@@ -29,10 +21,18 @@
 		$_values: 		map-values( $_property-map );
 
 		@if $_breakpoint == 'base' {
-			@include _declarations( $_properties, $_values );
+			$_j: 1;
+			@each $property in $_properties {
+				#{$property}: nth( $_values, $_j );
+				$_j: $_j + 1;
+			}
 		} @else {
 			@include query( #{ $_breakpoint } ) {
-				@include _declarations( $_properties, $_values );
+				$_j: 1;
+				@each $property in $_properties {
+					#{$property}: nth( $_values, $_j );
+					$_j: $_j + 1;
+				}
 			}
 		}
 	}
