@@ -8,14 +8,26 @@
 		huge: bl(4)
 	));
 
-	&--small {
+
+
+	// Small Block
+	// -----------
+	// Block with smaller margins
+
+	&.block--small {
 		@include responsive(( margin-top, margin-bottom ), (
 			base: bl(1),
 			huge: bl(2)
 		));
 	}
 
-	&--large {
+
+
+	// Large Block
+	// -----------
+	// Block with larger margins
+
+	&.block--large {
 		@include responsive(( margin-top, margin-bottom ), (
 			base: bl(3),
 			huge: bl(6)

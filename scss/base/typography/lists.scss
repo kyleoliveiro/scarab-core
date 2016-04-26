@@ -2,10 +2,6 @@
 dl {
 	@extend .list;
 
-	& > * {
-		@extend .list__item;
-	}
-
 	& > dt {
 		font-weight: bold;
 	}
@@ -17,10 +13,6 @@ dl {
 ul {
 	@extend .list;
 	@extend .list--bulleted;
-
-	& > li {
-		@extend .list__item;
-	}
 }
 
 
@@ -28,10 +20,6 @@ ul {
 ol {
 	@extend .list;
 	@extend .list--numbered;
-
-	& > li {
-		@extend .list__item;
-	}
 }
 
 
