@@ -5,6 +5,7 @@
   "main": "scss/style.scss",
   "scripts": {
     "test": "gulp styles",
+    "build": "gulp",
     "start": "gulp watch"
   },
   "author": "Kyle Oliveiro <kyle@watchtower.digital>",
