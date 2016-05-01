@@ -38,7 +38,7 @@ SCSS boilerplate for rapid stylesheet development.
 	* [node-css-mqpacker](https://github.com/hail2u/node-css-mqpacker) — Consolidates media queries to reduce file size
 	* [autoprefixer](https://github.com/postcss/autoprefixer) — Applies necessary vendor prefixes (optional)
 	* [cssnano](https://github.com/ben-eb/cssnano) — For build minification (optional)
-* [**sass-globbing**](https://github.com/chriseppstein/sass-globbing) — Allows glob paths in SCSS (optional)
+* [**sass-globbing**](https://github.com/kyleoliveiro/sass-globbing) — Allows glob paths in SCSS (optional)
 
 
 

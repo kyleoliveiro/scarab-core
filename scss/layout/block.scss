@@ -1,0 +1,44 @@
+// Block
+// -----
+// Apply vertical margins to self.
+
+%block, .block {
+
+	@include responsive(( margin-top, margin-bottom ), (
+		base: 	bl(2),
+		medium: bl(4)
+	));
+
+	display: block;
+
+
+
+	// Block -- Small
+	// --------------
+	// Reduce margins on a block.
+
+	&--small {
+
+		@include responsive(( margin-top, margin-bottom ), (
+			base: 	bl(1),
+			medium: bl(2)
+		));
+
+	}
+
+
+
+	// Block -- Large
+	// --------------
+	// Increase margins on a block.
+
+	&--large {
+
+		@include responsive(( margin-top, margin-bottom ), (
+			base: 	bl(3),
+			medium: bl(6)
+		));
+
+	}
+
+}

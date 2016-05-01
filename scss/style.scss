@@ -1,31 +1,27 @@
 // Import external dependencies
-@import 'lib/imports/**/*';
-
-
+@import "imports/**/*";
 
 // Register functions and mixins
-@import 'lib/functions/**/*';
-@import 'lib/mixins/**/*';
-
-
+@import "_lib/functions/**/*";
+@import "_lib/mixins/**/*";
 
 // Load configuration
-@import 'config/**/*';
+@import "_config/**/*";
+
+// Generate styles
+@import "base/**/*";
+@import "layout/**/*";
+@import "typography/**/*";
+@import "components/**/*";
 
 
 
-// Load placeholder classes
-@import 'lib/placeholders/**/*';
+// Scarab Development Utilities
+// ----------------------------
+// Visual guides to aid in development.
+// DO NOT include these in production!
 
-
-
-// Generate base styles
-@import 'base/*';
-@import 'base/layout/**/*';
-@import 'base/typography/**/*';
-@import 'base/forms/**/*';
-
-
-
-// Generate component styles
-@import 'components/**/*';
+html {
+	// @include baseline-grid( true );
+	// @include element-overlay( true );
+}

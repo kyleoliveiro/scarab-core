@@ -1,0 +1,47 @@
+// List
+// ----
+// Stack children into a list.
+
+%list, .list {
+
+	@extend %block;
+	@extend %container;
+
+	& > * {
+		@extend %block;
+		@extend %container;
+	}
+
+	
+
+	// List -- Small
+	// -------------
+	// Reduce margins on a list.
+
+	&--small {
+
+		@extend %block--small;
+
+		& > * {
+			@extend %block--small;
+		}
+
+	}
+
+
+
+	// List -- Large
+	// -------------
+	// Increase margins on a list.
+
+	&--large {
+
+		@extend %block--large;
+
+		& > * {
+			@extend %block--large;
+		}
+
+	}
+
+}

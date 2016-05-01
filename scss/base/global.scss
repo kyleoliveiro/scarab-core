@@ -1,15 +1,17 @@
-// Global elemnt styles
+// Global Element Styles
+// ---------------------
+
 *, *:before, *:after {
 	box-sizing: border-box;
 }
 
-html {
 
-	// DO NOT include Scarab Development Utilities in production
-	// @include baseline-grid(true);
-	// @include element-overlay(true);
 
+html, body {
 	position: relative;
 	overflow-x: hidden;
+}
+
+body {
 	overflow-y: scroll;
 }

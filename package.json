@@ -24,7 +24,7 @@
     "gulp-postcss": "^6.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.1",
-    "gulp-sass-glob": "^1.0.5",
+    "gulp-sass-glob": "kyleoliveiro/gulp-sass-glob",
     "gulp-watch": "^4.3.5"
   },
   "devDependencies": {}
