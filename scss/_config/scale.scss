@@ -2,7 +2,7 @@
 // --------
 // Register global baseline value.
 
-$BASELINE: rem(12);
+$BASELINE: rem(12) !default;
 
 
 
@@ -65,5 +65,5 @@ $TYPE-SCALE: (
 		base: 	( font-size: rem(12), 	line-height: 1 )
 	)
 
-);
+) !default;
 

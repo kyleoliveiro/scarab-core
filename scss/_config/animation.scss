@@ -8,7 +8,7 @@ $DURATIONS: (
 	medium: 0.35s,
 	long: 	0.75s
 
-);
+) !default;
 
 
 
@@ -46,5 +46,5 @@ $EASINGS: (
 	ease-in-out-expo: cubic-bezier(1, 0, 0, 1),
 	ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55)
 	
-);
+) !default;
 
