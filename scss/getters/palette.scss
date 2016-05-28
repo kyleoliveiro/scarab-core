@@ -1,0 +1,30 @@
+// Return a color value from the `PALETTES` configuration map
+//
+// @param { arglist } $color - Description of color to return
+// @return { string:color }
+
+@function palette(
+	$color...
+) {
+	// single arg for $color defaults to base color
+	@if length( $color ) == 1 {
+		$colors: map-get( global(palettes), $color );
+		$value: map-get( $colors, base );
+	}
+
+	// two args for $color uses second arg as key name
+	@else {
+		$palette: nth( $color, 2 );
+		$colors: map-get( global(palettes), $palette );
+		$shade: nth( $color, 1 );
+
+		// default to base color on invalid key name
+		@if not map-has-key( $colors, $shade ) {
+			$shade: base;
+		}
+
+		$value: map-get( $colors, $shade );
+	}
+
+	@return $value;
+}

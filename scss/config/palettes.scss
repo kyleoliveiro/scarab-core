@@ -1,0 +1,13 @@
+@include define( palettes, (
+	white:	(
+		base:	#ffffff,
+	),	
+	black:	(
+		base:	#000000,
+	),
+	grey:	(
+		light:	#e0e0e0,
+		base:	#888888,
+		dark: 	#212121,
+	),
+));

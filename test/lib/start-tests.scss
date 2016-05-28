@@ -1,0 +1,69 @@
+// Start Function Tests
+// --------------------
+
+@mixin start-tests (
+	$function-blocks	// { Map }
+) {	
+	$functions-total: 0;
+	$functions-passed: 0; 
+
+	@if length( $function-blocks ) < 1 {
+		@error 'No tests defined.';
+	}
+
+	@each $block in $function-blocks {
+		$tests-total: 0;
+		$tests-passed: 0; 
+
+		$function:	nth( map-keys($block), 1 );
+		$tests:		nth( map-values($block), 1 );
+
+		@debug 'Starting test for: #{$function}( )';
+
+		@each $test in $tests {			
+			$asserts-total: 0;
+			$asserts-passed: 0; 
+
+			$title:		map-get( $test, 'title' );
+			$args: 		map-get( $test, 'args' );
+			$asserts:	map-get( $test, 'asserts' );
+			$result:	call( $function, $args );
+
+			@debug '';
+			@debug '	#{$title}';
+
+			@each $assert in $asserts {
+				$operator:	nth( $assert, 1 );
+				$value:		nth( $assert, 2);
+
+				@if assert( $result, $operator, $value ) {
+					$asserts-passed: $asserts-passed + 1;
+					@debug '	✅  #{$result} #{$operator} #{$value}';
+				} @else {
+					@debug '	❌  #{$result} #{$operator} #{$value}';
+				}
+
+				$asserts-total: $asserts-total + 1;
+			}
+
+			$tests-passed: if( $asserts-passed == $asserts-total, $tests-passed + 1, $tests-passed );
+			$tests-total:	$tests-total + 1;
+		}
+
+		$coverage: ($tests-passed / $tests-total) * 100%;
+		$functions-total:	$functions-total + 1;
+		$functions-passed:	if( $tests-passed == $tests-total, $functions-passed + 1, $functions-passed);
+
+		@debug '';
+		@debug '@function #{$function}() :';
+		@debug '	Passed: #{$tests-passed} / #{$tests-total} (#{$coverage})';
+		@debug '';
+		@debug '--------------';
+		@debug '';
+	}
+
+	$coverage: ($functions-passed / $functions-total) * 100%;
+
+	@debug 'Scarab function tests complete.';
+	@debug '#{$functions-passed} of #{$functions-total} functions passed (#{$coverage})';
+}

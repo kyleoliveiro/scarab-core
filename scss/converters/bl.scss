@@ -1,0 +1,11 @@
+// Return a multiple of the BASELINE value
+//
+// @param { number } $value - Baseline multiplier
+// @return { number:distance:rem }
+
+@function bl (
+	$value: 1
+) {
+	$result: global(baseline) * $value;
+	@return $result;
+}

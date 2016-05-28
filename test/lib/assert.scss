@@ -1,0 +1,30 @@
+// Assert
+// ------
+
+@function assert( $result, $operator, $value ) {
+	
+	@if $operator == 'equal' {
+		@return if( $result == $value, true, false );
+	}
+
+	@if $operator == 'not' {
+		@return if( not $result == $value, true, false );
+	}
+
+	@if $operator == 'gt' {
+		@return if( $result > $value, true, false );
+	}
+
+	@if $operator == 'gte' {
+		@return if( $result >= $value, true, false );
+	}
+
+	@if $operator == 'lt' {
+		@return if( $result < $value, true, false );
+	}
+
+	@if $operator == 'lte' {
+		@return if( $result <= $value, true, false );
+	}
+
+}

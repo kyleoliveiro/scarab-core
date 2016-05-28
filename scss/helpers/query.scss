@@ -1,0 +1,11 @@
+// Include an @media query block for proerty declarations
+//
+// @param { arglist } $query - Media query descriptor
+
+@mixin query( $query ) {
+
+	@media ( min-width: breakpoint($query) ) {
+		@content;
+	}
+
+}

@@ -10,15 +10,20 @@ const $ = gulpLoadPlugins();
 
 const dirs = {
 	src: './scss/',
+	test: './test/',
 	dest: './build/'
 };
 
 const paths = {
-	styles: {
-		main: 'style.scss',
+	scarab: {
+		main: 'scarab.scss',
 		src: dirs.src,
 		dest: dirs.dest,
 		ext: '.+(scss|css)'
+	},
+	test: {
+		main: 'test.scss',
+		src: dirs.test
 	}
 };
 
@@ -37,7 +42,7 @@ const config = {
 
 
 /* 
-* `gulp styles`
+* `gulp sass`
 * -------------
 * – Glob import .scss files
 * - Compile Sass to CSS
@@ -45,9 +50,9 @@ const config = {
 * - Generate minified CSS file
 */
 
-gulp.task('styles', () => {
+gulp.task('sass', () => {
 
-	return gulp.src( paths.styles.src + paths.styles.main )
+	return gulp.src( paths.scarab.src + paths.scarab.main )
 
 		.pipe( $.sassGlob() )
 
@@ -61,7 +66,7 @@ gulp.task('styles', () => {
 
 		]) )
 
-	.pipe( gulp.dest( paths.styles.dest ) )
+	.pipe( gulp.dest( paths.scarab.dest ) )
 
 		.pipe( $.postcss([
 			cssnano()
@@ -71,7 +76,26 @@ gulp.task('styles', () => {
 			path.extname = '.min.css'
 		}) )
 
-	.pipe( gulp.dest( paths.styles.dest ) )
+	.pipe( gulp.dest( paths.scarab.dest ) )
+
+});
+
+
+
+/* 
+* `gulp test`
+* -------------
+* – Test Scarab
+*/
+
+gulp.task('test', ['sass'], () => {
+
+	return gulp.src( paths.test.src + paths.test.main )
+
+		.pipe( $.sassGlob() )
+
+		.pipe( $.sass( config.sass )
+			.on('error', $.sass.logError) )
 
 });
 
@@ -90,8 +114,8 @@ gulp.task('watch', () => {
 		return paths[resource].src + '**/*' + paths[resource].ext;
 	}
 
-	$.watch([ _glob('styles')], ( file ) => {
-		gulp.start('styles');
+	$.watch([ _glob('scarab')], ( file ) => {
+		gulp.start('sass');
 	});
 
 });
@@ -104,4 +128,4 @@ gulp.task('watch', () => {
 * – Run `gulp styles`
 */
 
-gulp.task('default', ['styles']);
+gulp.task('default', ['test']);

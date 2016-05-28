@@ -1,0 +1,60 @@
+// Add a vertical baseline grid overlay to the :root element.
+//
+// @param { boolean } $is-active 				- Whether to activate the baseline grid
+// @param { boolean } $disable-vertical-borders - Whether to remove vertical borders from elements
+// @param { boolean } $disable-vertical-align	- Whether to disable vertical-align on elements
+// @param { color } $grid-color 				- The color of the baseline grid's guides
+
+@mixin baseline-grid (
+	$is-active: false,
+	$disable-vertical-borders: true,
+	$disable-vertical-align: true,
+	$grid-color: rgba(125, 255, 255, 0.5)
+) {
+	@at-root {
+		.scarab-baseline-grid {
+			position: relative !important;
+			min-height: 100vh !important;
+			
+			&:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			    background-image: linear-gradient($grid-color 1px, transparent 1px);
+				background-size: 100% bl(1);
+				pointer-events: none;
+				z-index: 100000;
+			}
+
+
+
+			// vertical `border`s and `vertical-align` properties throw off the baseline grid.
+			// the relative vertical between elements, which is what's important, stays in tact.
+			// disable these properties temporarily for a more accurate baseline overlay.
+			
+			@if $disable-vertical-borders == true {
+				*, *:before, *:after {
+					border-top: none !important;
+					border-bottom: none !important;
+				}
+			}
+
+			@if $disable-vertical-align == true {
+				*, *:before, *:after {
+					vertical-align: top !important;
+				}
+			}
+		}
+	}
+
+	@if $is-active == true {
+		@at-root {
+			:root {
+				@extend .scarab-baseline-grid;
+			}
+		}
+	}
+}

@@ -1,0 +1,28 @@
+// Define a new value for a key in the global $SCARAB variable
+//
+// @param { string } $key			- Name of the key in $SCARAB
+// @param { arglist } $definition	- Definition of the new value
+
+@mixin define (
+	$key,
+	$definition...
+) {
+	$key: to-upper-case($key);
+	
+	// single argument for $definition replaces existing key
+	@if length($definition) == 1 {
+		$value: nth( $definition, 1 );
+		$SCARAB: map-merge( $SCARAB, ($key: $value) ) !global;
+	}
+
+	// two arguments registers a new key-value pair on an existing map
+	@if ( length($definition) == 2 ) and ( type-of(map-get($SCARAB, $key)) == map ) {
+		$sub-key:		nth( $definition, 1 );
+		$sub-value:		nth( $definition, 2 );
+		$current-value:	map-get( $SCARAB, $key );
+		$new-value:		map-merge( $current-value, ($sub-key: $sub-value) );
+
+		$SCARAB: map-merge( $SCARAB, ($key: $new-value) ) !global;
+	}
+
+}

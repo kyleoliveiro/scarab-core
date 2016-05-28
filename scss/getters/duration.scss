@@ -1,0 +1,11 @@
+// Return a duration value from the `DURATIONS` configuration map
+//
+// @param { string } $duration - Name of duration to return
+// @return { number:time }
+
+@function duration (
+	$duration: 	map-get( global(durations), default )
+) {
+	$value:		map-get( global(durations), $duration );
+	@return $value;
+}

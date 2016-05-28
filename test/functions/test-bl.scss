@@ -1,0 +1,34 @@
+@include function-test( bl, (
+	(
+		title: 'positive integer',
+		args: ( 17 ),
+		asserts: (
+			equal: 17 * $BASELINE,
+			gt: 0
+		)
+	),
+	(
+		title: 'positive float',
+		args: ( 3.142 ),
+		asserts: (
+			equal: 3.142 * $BASELINE,
+			gt: 0
+		)
+	),
+	(
+		title: 'negative integer',
+		args: ( -4 ),
+		asserts: (
+			equal: -4 * $BASELINE,
+			lt: 0
+		)
+	),
+	(
+		title: 'negative float',
+		args: ( -102.59 ),
+		asserts: (
+			equal: -102.59 * $BASELINE,
+			lt: 0
+		)
+	)
+) );

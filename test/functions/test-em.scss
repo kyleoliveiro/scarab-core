@@ -1,0 +1,34 @@
+@include function-test( em, (
+	(
+		title: 'positive integer',
+		args: ( 1941 ),
+		asserts: (
+			equal: (1941/16)*1em,
+			gt: 0
+		)
+	),
+	(
+		title: 'positive float',
+		args: ( 0.042 ),
+		asserts: (
+			equal: (0.042/16)*1em,
+			gt: 0
+		)
+	),
+	(
+		title: 'negative integer',
+		args: ( -400 ),
+		asserts: (
+			equal: (-400/16)*1em,
+			lt: 0
+		)
+	),
+	(
+		title: 'negative float',
+		args: ( -6.325 ),
+		asserts: (
+			equal: (-6.325/16)*1em,
+			lt: 0
+		)
+	)
+) );

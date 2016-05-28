@@ -1,0 +1,33 @@
+// Generate declarations for responsive font sizes
+//
+// @param { string } $size - Name of size from $TYPE-SCALE
+
+@mixin type-scale( $size ) {
+
+	$breakpoint-map: 	map-get( global(type-scale), $size );
+
+	@each $pair in $breakpoint-map {
+		$breakpoint:	nth( $pair, 1 );
+		$property-map:	nth( $pair, 2 );
+
+		$properties: 	map-keys( $property-map );
+		$values: 		map-values( $property-map );
+
+		@if $breakpoint == 'base' {
+			$j: 1;
+			@each $property in $properties {
+				#{$property}: nth( $values, $j );
+				$j: $j + 1;
+			}
+		} @else {
+			@include query( #{ $breakpoint } ) {
+				$j: 1;
+				@each $property in $properties {
+					#{$property}: nth( $values, $j );
+					$j: $j + 1;
+				}
+			}
+		}
+	}
+
+}

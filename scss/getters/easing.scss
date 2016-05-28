@@ -1,0 +1,11 @@
+// Return an easing value from the `EASINGS` configuration map
+//
+// @param { string } $easing - Name of easing to return
+// @return { string }
+
+@function easing (
+	$easing: 	map-get( global(easings), default )
+) {
+	$value:		map-get( global(easings), $easing );	
+	@return $value;
+}

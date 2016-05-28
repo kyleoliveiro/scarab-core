@@ -1,0 +1,29 @@
+// Generate style declarations for each specified breakpoint
+//
+// @param { list } $properties		- Properties to add declarations for
+// @param { map } $breakpoint-map	- Map of breakpoints to values
+
+@mixin responsive( $properties, $breakpoint-map ) {
+
+	@each $pair in $breakpoint-map {
+		$breakpoint:	nth( $pair, 1 );
+		$value:			nth( $pair, 2 );
+
+		// 'base' breakpoint
+		@if $breakpoint == 'base' {
+			@each $property in $properties {
+				#{$property}: $value;
+			}
+		}
+
+		// named breakpoints
+		@else {
+			@include query( #{$breakpoint} ) {
+				@each $property in $properties {
+					#{$property}: $value;
+				}
+			}
+		}
+	}
+	
+}

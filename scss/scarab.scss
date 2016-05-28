@@ -1,0 +1,15 @@
+$SCARAB: (
+	BASELINE:		(),
+	BREAKPOINTS:	(),
+	DURATIONS:		(),
+	EASINGS:		(),
+	PALETTES:		(),
+	TYPEFACES:		(),
+	TYPE-SCALE:		()
+);
+
+@import '_';
+
+body {
+	@include type-scale(body);
+}

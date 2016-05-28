@@ -1,10 +1,10 @@
 {
   "name": "scarab-scss",
   "version": "2.0.1",
-  "description": "SCSS boilerplate for rapid stylesheet development.",
-  "main": "scss/style.scss",
+  "description": "SCSS utilities for rapid stylesheet development",
+  "main": "scss/scarab.scss",
   "scripts": {
-    "test": "gulp styles",
+    "test": "gulp test",
     "build": "gulp",
     "start": "gulp watch"
   },
@@ -15,6 +15,8 @@
     "url": "https://github.com/watchtowerdigital/scarab"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "autoprefixer": "^6.3.5",
     "babel-core": "^6.7.4",
     "babel-preset-es2015": "^6.6.0",
@@ -27,6 +29,5 @@
     "gulp-sass": "^2.3.1",
     "gulp-sass-glob": "kyleoliveiro/gulp-sass-glob",
     "gulp-watch": "^4.3.5"
-  },
-  "devDependencies": {}
+  }
 }
