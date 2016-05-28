@@ -1,7 +1,7 @@
 {
   "name": "scarab-scss",
   "version": "2.0.1",
-  "description": "SCSS utilities for rapid stylesheet development",
+  "description": "Sass utility framework for rapid stylesheet development",
   "main": "scss/scarab.scss",
   "scripts": {
     "test": "gulp test",
