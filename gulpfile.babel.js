@@ -128,4 +128,4 @@ gulp.task('watch', () => {
 * – Run `gulp styles`
 */
 
-gulp.task('default', ['test']);
+gulp.task('default', ['sass']);
