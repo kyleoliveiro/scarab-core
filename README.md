@@ -22,7 +22,7 @@ npm install scarab-scss --save-dev
 
 Import `scarab.scss` at the beginning of your stylesheet:
 ```scss
-@import 'node_modules/scarab-scss/scss/scarab'
+@import 'node_modules/scarab-scss/scss/scarab';
 ```
 
 ## Configuration
@@ -30,13 +30,13 @@ Importing Scarab creates a new global variable, `$SCARAB` in your Sass project. 
 
 ```
 $SCARAB: (
-	BASELINE:		(),
-	BREAKPOINTS:	(),
-	DURATIONS:		(),
-	EASINGS:		(),
-	PALETTES:		(),
-	TYPEFACES:		(),
-	TYPE-SCALE:		()
+	BASELINE: 		(),
+	BREAKPOINTS: 	(),
+	DURATIONS: 		(),
+	EASINGS: 		(),
+	PALETTES: 		(),
+	TYPEFACES: 		(),
+	TYPE-SCALE: 	()
 );
 ```
 
@@ -45,9 +45,7 @@ Scarab relies on this variable for most of its functions and mixins to work. It 
 To configure variables in your project, use the [`define()`](scss/lib/define.scss) mixin:
 
 ```scss
-// Usage:
-// @include define( $key, $declaration... )
-
+// Usage: @include define( $key, $declaration... )
 
 // single argument for $declaration replaces
 // the existing value for $key in $SCARAB
@@ -63,9 +61,7 @@ To configure variables in your project, use the [`define()`](scss/lib/define.scs
 // value in a map or replaces an existing one
 
 @include define( breakpoints, 'medium', 1024px );
-
-// works with, our without quotes
-@include define( breakpoints, huge, 1600px );
+@include define( breakpoints, 'huge', 1600px );
 ```
 
 For more examples of configuration, have a look at how Scarab's default configuration is defined in [`scss/config/`](scss/config/).
@@ -81,9 +77,9 @@ Reduce media query clutter with the [`responsive()`](scss/helpers/responsive.scs
 ```scss
 .button {
 	@include responsive(( padding-left, padding-right ), (
-		base:	14px,
-		medium: 18px,
-		large:	22px
+		'base': 	14px,
+		'medium': 	18px,
+		'large': 	22px
 	));
 }
 ```
@@ -116,9 +112,9 @@ The [`type-scale()`](scss/helpers/type-scale.scss) mixin generates typographic s
 
 ```scss
 @include define( type-scale, 'body', (
-	base: 	( font-size: 0.8rem, 	line-height: 1.3 ),
-	small: 	( font-size: 1rem, 		line-height: 1.4 ),
-	large:  ( font-size: 1.2rem,	line-height: 1.5 )
+	'base': 	( font-size: 0.8rem, 	line-height: 1.3 ),
+	'small': 	( font-size: 1rem, 		line-height: 1.4 ),
+	'large': 	( font-size: 1.2rem, 	line-height: 1.5 )
 ) );
 
 body {
