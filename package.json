@@ -2,6 +2,7 @@
   "name": "scarab-scss",
   "version": "3.0.3",
   "description": "Sass utility framework for rapid stylesheet development",
+  "keywords": ["sass", "scss", "mixins", "responsive", "front-end"],
   "main": "scss/scarab.scss",
   "scripts": {
     "test": "gulp test",
