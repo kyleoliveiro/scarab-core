@@ -23,7 +23,7 @@ npm install scarab-scss --save-dev
 
 Import `scarab.scss` at the beginning of your stylesheet:
 ```scss
-@import "node_modules/scarab-scss/scss/scarab";
+@import "path/to/node_modules/scarab-scss/scss/scarab";
 ```
 
 ## Configuration
@@ -48,6 +48,8 @@ Scarab relies on this variable for most of its functions and mixins to work. It 
 **To configure variables in your stylesheet, use the [`define()`](scss/lib/define.scss) mixin:**
 
 ```scss
+// Example
+
 // Usage: @include define( $key, $declaration... )
 //
 // Input a single argument for $declaration to 
@@ -57,18 +59,21 @@ Scarab relies on this variable for most of its functions and mixins to work. It 
 // Input two arguments for $declaration to define
 // a new value in a map, or replace an existing one.
 
-// create a new key, "BREAKPOINTS", in $SCARAB,
+// Create a new key, "BREAKPOINTS", in $SCARAB,
 // and set its value to the second argument provided
+
 @include define( breakpoints, (
-	"small":	600px,
-	"medium":	900px,
-	"large":	1300px
+	"small":    600px,
+	"medium":   900px,
+	"large":    1300px
 ) );
 
-// replace the existing value of the "medium" breakpoint
+// Replace the existing value of the "medium" breakpoint
+
 @include define( breakpoints, "medium", 1024px );
 
-// define a new breakpoint, "huge", and set its value to 1600px
+// Define a new breakpoint, "huge", and set its value to 1600px
+
 @include define( breakpoints, "huge", 1600px );
 ```
 
@@ -90,9 +95,9 @@ Declare responsive properties with the [`responsive()`](scss/helpers/responsive.
 
 .button {
 	@include responsive(( padding-left, padding-right ), (
-		"base": 14px,
+		"base":   14px,
 		"medium": 18px,
-		"large": 22px
+		"large":  22px
 	));
 }
 ```
@@ -131,8 +136,8 @@ Use the [`type-scale()`](scss/helpers/type-scale.scss) mixin to generate typogra
 // config/type-scale.scss
 //
 // @include define( type-scale, "body", (
-// 	 "base": ( font-size: 0.8rem, line-height: 1.3 ),
-// 	 "small": ( font-size: 1rem, line-height: 1.4 ),
+// 	 "base":  ( font-size: 0.8rem, line-height: 1.3 ),
+// 	 "small": ( font-size: 1rem,   line-height: 1.4 ),
 // 	 "large": ( font-size: 1.2rem, line-height: 1.5 )
 // ) );
 
