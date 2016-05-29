@@ -4,7 +4,7 @@
 // @return { string }
 
 @function typeface (
-	$typeface:	map-get( global(typefaces), default )
+	$typeface:	default
 ) {
 	$value:		map-get( global(typefaces), $typeface );
 	@return $value;

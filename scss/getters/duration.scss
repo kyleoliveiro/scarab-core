@@ -4,7 +4,7 @@
 // @return { number:time }
 
 @function duration (
-	$duration: 	map-get( global(durations), default )
+	$duration: 	default
 ) {
 	$value:		map-get( global(durations), $duration );
 	@return $value;

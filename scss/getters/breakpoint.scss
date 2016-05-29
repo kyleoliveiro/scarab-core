@@ -4,7 +4,7 @@
 // @return { number:distance }
 
 @function breakpoint (
-	$breakpoint: 	map-get( global(breakpoints), default )
+	$breakpoint: 	default
 ) {
 	$value: 		map-get( global(breakpoints), $breakpoint );
 	@return $value;

@@ -4,7 +4,7 @@
 // @return { string }
 
 @function easing (
-	$easing: 	map-get( global(easings), default )
+	$easing: 	default
 ) {
 	$value:		map-get( global(easings), $easing );	
 	@return $value;
