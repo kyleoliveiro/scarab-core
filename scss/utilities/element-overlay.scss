@@ -9,7 +9,6 @@
 	$base-color: random-color(),
 	$transition-delay: duration()
 ) {
-
 	@at-root {
 		$selector-base: ' > *';
 		$selector: ' > *';
@@ -20,14 +19,14 @@
 		$content-pre: '';
 
 		.scarab-element-overlay {
-			@for $i from 1 through 10 {
+			@for $i from 1 through 20 {
 
 				$background-color: rgba( $base-color, 0.15 );
 				$border-color: desaturate( $base-color, 25 );
 				$text-color: invert( $border-color );
 
 				&#{ $selector } {
-					@include transition( box-shadow, duration(short));
+					transition: box-shadow duration(short) easing();
 					background: $background-color !important;
 					user-select: none;
 					cursor: crosshair;
@@ -39,7 +38,7 @@
 					}
 
 					&:before {
-						@include transition( opacity, duration(short) );
+						transition: opacity duration(short) easing();
 						transition-delay: 0;
 						content: $content-pre;
 						visibility: hidden;
@@ -70,7 +69,7 @@
 
 					&:focus,
 					&:active {
-						@include transition( all );
+						transition: all duration() easing();
 						box-shadow: 0 0 0 2px $border-color;
 
 						&:before {
@@ -90,8 +89,10 @@
 				$content-pre: $content-pre-base + $content-pre;
 			}
 		}
+	}
 
-		@if $is-active == true {
+	@if $is-active == true {
+		@at-root {
 			body {
 				@extend .scarab-element-overlay;
 			}
