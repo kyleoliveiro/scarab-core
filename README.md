@@ -171,8 +171,5 @@ Scarab also provides a bunch of other [helpers mixins](scss/helpers/) like [`tra
 ### Development utilities
 Included are the [`baseline-grid()`](scss/utilities/baseline-grid.scss) and [`element-overlay()`](scss/utilities/element-overlay.scss) mixins, which overlay visual guides on top of the DOM. These help with achieving a consistent vertical rythmn.
 
-## Roadmap
-
-
 ## Documentation
 Documentation is under development and is available in [`docs/`](/docs/).
