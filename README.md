@@ -15,6 +15,7 @@ Scarab is a Sass utility framework designed for rapid stylesheet development.
 	* [Helper mixins](#helper-mixins)
 	* [Development utilities](#development-utilities)
 * [Documentation](#documentation)
+* [Resources](#resources)
 
 ## Installation
 To get started, add Scarab as a dev-dependency in your project via npm:
@@ -179,3 +180,6 @@ Included are the [`baseline-grid()`](scss/utilities/baseline-grid.scss) and [`el
 
 ## Documentation
 Documentation is under development and is available in [`docs/`](/docs/).
+
+## Resources
+* [**scarab-snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework
