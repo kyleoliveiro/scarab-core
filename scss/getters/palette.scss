@@ -6,9 +6,11 @@
 @function palette(
 	$color...
 ) {
+	$value: ();
+
 	// single arg for $color defaults to base color
 	@if length( $color ) == 1 {
-		$colors: map-get( global(palettes), $color );
+		$colors: map-get( global(palettes), nth($color, 1) );
 		$value: map-get( $colors, base );
 	}
 
