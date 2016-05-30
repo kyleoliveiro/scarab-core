@@ -10,6 +10,7 @@ Scarab is a Sass utility framework designed for rapid stylesheet development.
 * [Features](#features)
 	* [No style declarations](#no-style-declarations)
 	* [Variable management](#variable-management)
+	* [Responsive property declarations](#responsive-property-declarations)
 	* [Responsive typography](#responsive-typography)
 	* [Helper mixins](#helper-mixins)
 	* [Development utilities](#development-utilities)
@@ -87,7 +88,7 @@ Scarab is a utility framework, not a UI library. Therefore simply including the 
 ### Variable management
 Easily access and manage your global stylesheet configuration with the `define()`mixin, and [getter functions](scss/getters/) like `palette()`, `duration()`, and `typeface()`.
 
-### Responsive properties
+### Responsive property declarations
 Declare responsive properties with the [`responsive()`](scss/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
 
 ```scss
