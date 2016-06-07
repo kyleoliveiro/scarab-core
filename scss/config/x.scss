@@ -1,0 +1,16 @@
+@include define( x, (
+	S: (
+		base: bl(1),
+		large: bl(2)
+	),
+
+	M: (
+		base: bl(2),
+		large: bl(4)
+	),
+
+	L: (
+		base: bl(3),
+		large: bl(6)
+	)
+) );

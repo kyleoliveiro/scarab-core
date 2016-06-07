@@ -1,0 +1,18 @@
+// Return a size map value from the `Y` configuration map
+//
+// @param { string } $size - Name of the size to return
+// @return { string }
+
+@function y(
+	$size: M,
+	$responsive: true
+) {
+	$size: to-upper-case($size);
+	$value: map-get( global(y), $size );
+
+	@if not $responsive {
+		$value: map-get( $value, base );
+	}
+
+	@return $value;
+}
