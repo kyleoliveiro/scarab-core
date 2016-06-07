@@ -30,6 +30,7 @@
 					background: $background-color !important;
 					user-select: none;
 					cursor: crosshair;
+					overflow: none !important;
 
 					@each $attr in $attrs {
 						&[ #{ $attr } ]:before {
