@@ -1,0 +1,11 @@
+// Convert a unit-based value to a unitless one
+//
+// @param { number } $value - Value with units to strip
+// @return { number }
+
+@function strip-units (
+	$value
+) {
+	$value: $value / ($value * 0 + 1);
+	@return $value;
+}
