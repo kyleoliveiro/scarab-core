@@ -9,11 +9,3 @@ $SCARAB: (
 );
 
 @import '_';
-
-$map: (
-	base: bl(1),
-	large: bl(2),
-	huge: bl(8)
-);
-
-@debug negative( $map );
