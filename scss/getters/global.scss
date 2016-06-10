@@ -1,18 +1,16 @@
-// Return the value $SCARAB configuration variable
+// Return a value from the $SCARAB configuration map
 //
-// @param { string } $key - Name of key in $SCARAB
+// @param { arglist } $key - Name of key or keys to retrieve the value from
 // @return { any }
 
 @function global (
-	$key
+	$keys...
 ) {
-	$key:	to-upper-case($key);
-	$value: ();
+	$value: $SCARAB;
 
-	@if( $key ) {
-		$value: map-get( $SCARAB, $key );
-	} @else {
-		$value: $SCARAB;
+	@each $key in $keys {
+		$key: to-lower-case( inspect($key) );
+		$value: map-get( $value, $key );
 	}
 	
 	@return $value;
