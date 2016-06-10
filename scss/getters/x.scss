@@ -11,7 +11,7 @@
 	$size: to-upper-case($size);
 	$value: map-get( global(x), $size );
 
-	@if breakpoint {
+	@if $breakpoint {
 		$value: map-get( $value, $breakpoint );
 	}
 
