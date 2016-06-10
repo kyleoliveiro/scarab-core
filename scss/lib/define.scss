@@ -7,7 +7,7 @@
 	$key,
 	$definition...
 ) {
-	$key: to-upper-case($key);
+	$key: to-lower-case($key);
 	
 	// single argument for $definition replaces existing key
 	@if length($definition) == 1 {
