@@ -4,25 +4,43 @@
 // @param { arglist } $definition	- Definition of the new value
 
 @mixin define (
-	$key,
 	$definition...
 ) {
-	$key: to-lower-case($key);
-	
-	// single argument for $definition replaces existing key
-	@if length($definition) == 1 {
-		$value: nth( $definition, 1 );
+
+	@if length( $definition ) == 2 {
+		$key: to-lower-case( nth( $definition, 1 ) );
+		$value: nth( $definition, 2 );
+
 		$SCARAB: map-merge( $SCARAB, ($key: $value) ) !global;
 	}
 
-	// two arguments registers a new key-value pair on an existing map
-	@if ( length($definition) == 2 ) and ( type-of(map-get($SCARAB, $key)) == map ) {
-		$sub-key:		nth( $definition, 1 );
-		$sub-value:		nth( $definition, 2 );
-		$current-value:	map-get( $SCARAB, $key );
-		$new-value:		map-merge( $current-value, ($sub-key: $sub-value) );
+	@if length( $definition ) > 2 {
+		$maps: ($SCARAB,);
+		$value: nth( $definition, -1 );
+		$result: ();
 
-		$SCARAB: map-merge( $SCARAB, ($key: $new-value) ) !global;
+		@for $i from 1 through length( $definition ) - 2 {
+			$current-key: nth( $definition, $i );
+			$current-map: nth( $maps, -1 );
+			$current-value: map-get( $current-map, $current-key );
+			$maps: append( $maps, $current-value );
+		}
+
+		@for $i from length($maps) through 1 {
+			$current-key: nth( $definition, $i );
+			$current-map: nth( $maps, $i );
+			$current-value: ();
+
+			@if $i == length($maps) {
+				$current-value: $value;
+			} @else {
+				$current-value: $result;
+			}
+
+			$result: map-merge( $current-map, ($current-key: $current-value) );
+		}
+
+		$SCARAB: map-merge( $SCARAB, $result ) !global;
 	}
 
 }
