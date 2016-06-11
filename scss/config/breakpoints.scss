@@ -1,4 +1,4 @@
-@include define( breakpoints, (
+@include set( breakpoints, (
 	tiny:	em(480),
 	small:	em(640),
 	medium:	em(960),
@@ -6,4 +6,4 @@
 	huge:	em(1920),
 ) );
 
-@include define( breakpoints, 'navigation', breakpoint(medium) );
+@include set( breakpoints, 'navigation', breakpoint(medium) );

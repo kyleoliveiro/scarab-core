@@ -1,7 +1,7 @@
-@include define( typefaces, (
+@include set( typefaces, (
 	primary:	( sans-serif ),
 	secondary:	( serif ),
 	accent:		( monospace )
 ));
 
-@include define( typefaces, default, typeface(primary) );
+@include set( typefaces, default, typeface(primary) );

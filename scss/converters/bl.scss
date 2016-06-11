@@ -6,6 +6,6 @@
 @function bl (
 	$value: 1
 ) {
-	$result: global(baseline) * $value;
+	$result: get(baseline) * $value;
 	@return $result;
 }

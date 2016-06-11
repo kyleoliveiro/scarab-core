@@ -1,4 +1,4 @@
-@include define( easings, (
+@include set( easings, (
 	ease-out:			ease-out,
 	ease-out-sine:		cubic-bezier(0.39, 0.575, 0.565, 1),
 	ease-out-cubic:		cubic-bezier(0.215, 0.61, 0.355, 1),
@@ -28,4 +28,4 @@
 	ease-in-out-back:	cubic-bezier(0.68, -0.55, 0.265, 1.55)
 ));
 
-@include define( easings, default, easing(ease-out-circ) );
+@include set( easings, default, easing(ease-out-circ) );

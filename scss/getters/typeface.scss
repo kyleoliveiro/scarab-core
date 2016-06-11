@@ -6,6 +6,6 @@
 @function typeface (
 	$typeface:	default
 ) {
-	$value:		map-get( global(typefaces), $typeface );
+	$value:		map-get( get(typefaces), $typeface );
 	@return $value;
 }

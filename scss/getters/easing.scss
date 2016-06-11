@@ -6,6 +6,6 @@
 @function easing (
 	$easing: 	default
 ) {
-	$value:		map-get( global(easings), $easing );	
+	$value:		map-get( get(easings), $easing );	
 	@return $value;
 }

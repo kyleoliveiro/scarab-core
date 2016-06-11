@@ -6,6 +6,6 @@
 @function breakpoint (
 	$breakpoint: 	default
 ) {
-	$value: 		map-get( global(breakpoints), $breakpoint );
+	$value: 		map-get( get(breakpoints), $breakpoint );
 	@return $value;
 }

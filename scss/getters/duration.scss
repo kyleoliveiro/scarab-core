@@ -6,6 +6,6 @@
 @function duration (
 	$duration: 	default
 ) {
-	$value:		map-get( global(durations), $duration );
+	$value:		map-get( get(durations), $duration );
 	@return $value;
 }

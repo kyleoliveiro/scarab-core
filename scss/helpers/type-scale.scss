@@ -4,7 +4,7 @@
 
 @mixin type-scale( $size ) {
 
-	$breakpoint-map: 	map-get( global(type-scale), $size );
+	$breakpoint-map: 	map-get( get(type-scale), $size );
 
 	@each $pair in $breakpoint-map {
 		$breakpoint:	nth( $pair, 1 );

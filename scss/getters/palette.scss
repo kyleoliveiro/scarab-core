@@ -10,14 +10,14 @@
 
 	// single arg for $color defaults to base color
 	@if length( $color ) == 1 {
-		$colors: map-get( global(palettes), nth($color, 1) );
+		$colors: map-get( get(palettes), nth($color, 1) );
 		$value: map-get( $colors, base );
 	}
 
 	// two args for $color uses second arg as key name
 	@else {
 		$palette: nth( $color, 2 );
-		$colors: map-get( global(palettes), $palette );
+		$colors: map-get( get(palettes), $palette );
 		$shade: nth( $color, 1 );
 
 		// default to base color on invalid key name

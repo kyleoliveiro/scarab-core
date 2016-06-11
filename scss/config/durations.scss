@@ -1,7 +1,7 @@
-@include define( durations, (
+@include set( durations, (
 	short:		0.15s,
 	medium: 	0.4s,
 	long:		1.2s
 ) );
 
-@include define( durations, default, duration(medium) );
+@include set( durations, default, duration(medium) );
