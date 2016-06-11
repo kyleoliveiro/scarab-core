@@ -1,48 +1,37 @@
-@include set( type-scale, (
+@include set-default( type-scale, (
 	title: (
-		base: 	( font-size: rem(28), 	line-height: bl(3) ),
-		small: 	( font-size: rem(36), 	line-height: bl(4) ),
-		large:	( font-size: rem(48), 	line-height: bl(5) ),
-		huge: 	( font-size: rem(56), 	line-height: bl(6) )
+		base:  ( font-size: rem(26), line-height: bl(2) ),
+		tiny:  ( font-size: rem(28), line-height: bl(2.5) ),
+		large: ( font-size: rem(32), line-height: bl(3) )
 	),
 	heading: (
-		base: 	( font-size: rem(20), 	line-height: bl(2) ),
-		small: 	( font-size: rem(24), 	line-height: bl(3) ),
-		large:	( font-size: rem(32), 	line-height: bl(4) ),
-		huge:	( font-size: rem(40), 	line-height: bl(4) )
+		base:  ( font-size: rem(22), line-height: bl(2) ),
+		tiny:  ( font-size: rem(24), line-height: bl(2) ),
+		large: ( font-size: rem(28), line-height: bl(2.5) )
 	),
 	subheading: (
-		base: 	( font-size: rem(18), 	line-height: bl(2) ),
-		small:  ( font-size: rem(22),	line-height: bl(3) ),
-		large:	( font-size: rem(28),	line-height: bl(3) ),
-		huge: 	( font-size: rem(32),	line-height: bl(4) )
+		base:  ( font-size: rem(18), line-height: bl(2) ),
+		tiny:  ( font-size: rem(20), line-height: bl(2) ),
+		large: ( font-size: rem(24), line-height: bl(2.5) )
 	),
 	accent: (
-		base: 	( font-size: rem(16), 	line-height: bl(2) ),
-		small: 	( font-size: rem(18), 	line-height: bl(2) ),
-		large: 	( font-size: rem(20), 	line-height: bl(3) ),
-		huge:	( font-size: rem(24), 	line-height: bl(3) )
+		base:  ( font-size: rem(16), line-height: bl(1.5) ),
+		tiny:  ( font-size: rem(18), line-height: bl(2) ),
+		large: ( font-size: rem(20), line-height: bl(2.5) )
 	),
 	body: (
-		base: 	( font-size: rem(14), 	line-height: bl(2) ),
-		small: 	( font-size: rem(16), 	line-height: bl(2) ),
-		large:  ( font-size: rem(18),	line-height: bl(3) ),
-		huge: 	( font-size: rem(20), 	line-height: bl(3) )
+		base:  ( font-size: rem(13), line-height: bl(1.5) ),
+		tiny:  ( font-size: rem(16), line-height: bl(1.5) ),
+		large: ( font-size: rem(17), line-height: bl(2) )
 	),
 	small: (
-		base: 	( font-size: rem(10), 	line-height: bl(2) ),
-		small: 	( font-size: rem(12), 	line-height: bl(2) ),
-		large:  ( font-size: rem(14),	line-height: bl(2) ),
-		huge: 	( font-size: rem(16), 	line-height: bl(2) ),
+		base:  ( font-size: rem(12), line-height: bl(1.5) ),
+		tiny:  ( font-size: rem(13), line-height: bl(1.5) ),
+		large: ( font-size: rem(14), line-height: bl(2) )
 	),
 	tiny: (
-		base: 	( font-size: rem(8), 	line-height: bl(2) ),
-		small: 	( font-size: rem(10), 	line-height: bl(2) ),
-		large:  ( font-size: rem(12),	line-height: bl(2) ),
-		huge: 	( font-size: rem(14), 	line-height: bl(2) ),
-	),
-	button: (
-		base: 	( font-size: rem(12), 	line-height: 1 )
+		base:  ( font-size: rem(10), line-height: bl(1) ),
+		tiny:  ( font-size: rem(11), line-height: bl(1) ),
+		large: ( font-size: rem(12), line-height: bl(1.5) )
 	)
-));
-
+) );

@@ -1,7 +1,7 @@
-@include set( typefaces, (
-	primary:	( sans-serif ),
-	secondary:	( serif ),
-	accent:		( monospace )
+@include set-default( typefaces, (
+	primary:   ( sans-serif ),
+	secondary: ( serif ),
+	accent:    ( monospace )
 ));
 
-@include set( typefaces, default, typeface(primary) );
+@include set-default( typefaces, default, typeface(primary) );

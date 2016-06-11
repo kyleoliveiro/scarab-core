@@ -1,13 +1,15 @@
-@include set( palettes, (
-	white:	(
-		base:	#ffffff,
-	),	
-	black:	(
-		base:	#000000,
+@include set-default( palettes, (
+	white: (
+		base: #ffffff
 	),
-	grey:	(
-		light:	#e0e0e0,
-		base:	#888888,
-		dark: 	#212121,
+	black: (
+		base: #000000
 	),
-));
+	grey: (
+		xlight: #f5f5f5,
+		light: #e0e0e0,
+		base: #bdbdbd,
+		dark: #424242,
+		xdark: #212121
+	)
+) );

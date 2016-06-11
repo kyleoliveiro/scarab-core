@@ -1,16 +1,16 @@
-@include set( x, (
-	S: (
-		base: bl(1),
-		large: bl(2)
+@include set-default( x, (
+	s: (
+		base:  bl(1),
+		large: bl(1.5)
 	),
 
-	M: (
-		base: bl(2),
-		large: bl(4)
+	m: (
+		base:  bl(2),
+		large: bl(3)
 	),
 
-	L: (
-		base: bl(3),
-		large: bl(6)
+	l: (
+		base:  bl(3),
+		large: bl(4.5)
 	)
 ) );

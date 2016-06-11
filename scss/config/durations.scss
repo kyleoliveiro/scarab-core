@@ -1,7 +1,7 @@
-@include set( durations, (
-	short:		0.15s,
-	medium: 	0.4s,
-	long:		1.2s
+@include set-default( durations, (
+	short:  0.15s,
+	medium: 0.4s,
+	long:   1.2s
 ) );
 
-@include set( durations, default, duration(medium) );
+@include set-default( durations, default, duration(medium) );
