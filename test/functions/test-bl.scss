@@ -3,7 +3,7 @@
 		title: 'positive integer',
 		args: ( 17 ),
 		asserts: (
-			equal: 17 * $BASELINE,
+			equal: 17 * $baseline,
 			gt: 0
 		)
 	),
@@ -11,7 +11,7 @@
 		title: 'positive float',
 		args: ( 3.142 ),
 		asserts: (
-			equal: 3.142 * $BASELINE,
+			equal: 3.142 * $baseline,
 			gt: 0
 		)
 	),
@@ -19,7 +19,7 @@
 		title: 'negative integer',
 		args: ( -4 ),
 		asserts: (
-			equal: -4 * $BASELINE,
+			equal: -4 * $baseline,
 			lt: 0
 		)
 	),
@@ -27,7 +27,7 @@
 		title: 'negative float',
 		args: ( -102.59 ),
 		asserts: (
-			equal: -102.59 * $BASELINE,
+			equal: -102.59 * $baseline,
 			lt: 0
 		)
 	)

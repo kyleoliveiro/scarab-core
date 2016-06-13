@@ -1,20 +1,20 @@
 // Import Scarab
 @import '../scss/scarab';
 
-@include define( baseline, rem(1+random(63)) );
+@include set( baseline, rem(1+random(63)) );
 
 $int_pos: random(1000);
 $int_neg: random(1000) * -1;
 $flt_pos: random() * random(1000);
 $flt_neg: random() * random(1000) * -1;
 
-$BASELINE: map-get( $SCARAB, BASELINE );
-$BREAKPOINTS: map-get( $SCARAB, BREAKPOINTS );
-$DURATIONS: map-get( $SCARAB, DURATIONS );
-$EASINGS: map-get( $SCARAB, EASINGS );
-$PALETTES: map-get( $SCARAB, PALETTES );
-$TYPE-SCALE: map-get( $SCARAB, TYPE-SCALE );
-$TYPEFACES: map-get( $SCARAB, TYPEFACES );
+$baseline: map-get( $SCARAB, baseline );
+$breakpoints: map-get( $SCARAB, breakpoints );
+$durations: map-get( $SCARAB, durations );
+$easings: map-get( $SCARAB, easings );
+$palettes: map-get( $SCARAB, palettes );
+$type-scale: map-get( $SCARAB, type-scale );
+$typefaces: map-get( $SCARAB, typefaces );
 
 // Import test utilities
 @import 'lib/assert';
