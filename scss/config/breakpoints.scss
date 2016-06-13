@@ -1,9 +1,0 @@
-@include set-default( breakpoints, (
-	tiny:	em(480),
-	small:	em(640),
-	medium:	em(960),
-	large:	em(1440),
-	huge:	em(1920),
-) );
-
-@include set-default( breakpoints, navigation, breakpoint(medium) );
