@@ -82,9 +82,9 @@ Declare responsive properties with the [`responsive()`](scss/helpers/responsive.
 
 .button {
 	@include responsive(( padding-left, padding-right ), (
-		"base":   14px,
-		"medium": 18px,
-		"large":  22px
+		'base':   14px,
+		'medium': 18px,
+		'large':  22px
 	));
 }
 ```
@@ -97,7 +97,7 @@ Declare responsive properties with the [`responsive()`](scss/helpers/responsive.
 	padding-right: 14px;
 }
 
-// `small` breakpoint
+// "small" breakpoint
 @media (min-width: 40em) {
 	.button {
 		padding-left: 18px;
@@ -105,7 +105,7 @@ Declare responsive properties with the [`responsive()`](scss/helpers/responsive.
 	}
 }
 
-// `large` breakpoint
+// "large" breakpoint
 @media (min-width: 90em) {
 	.button {
 		padding-left: 22px;
@@ -123,9 +123,9 @@ Use the [`type-scale()`](scss/helpers/type-scale.scss) mixin to generate typogra
 // config/type-scale.scss
 //
 // @include set( type-scale, "body", (
-// 	 "base":  ( font-size: 0.8rem, line-height: 1.3 ),
-// 	 "small": ( font-size: 1rem,   line-height: 1.4 ),
-// 	 "large": ( font-size: 1.2rem, line-height: 1.5 )
+// 	 'base':  ( font-size: 0.8rem, line-height: 1.3 ),
+// 	 'small': ( font-size: 1rem,   line-height: 1.4 ),
+// 	 'large': ( font-size: 1.2rem, line-height: 1.5 )
 // ) );
 
 body {
@@ -158,13 +158,14 @@ body {
 ```
 
 ### Helper mixins
-Scarab also provides a bunch of other [helpers mixins](scss/helpers/) like [`transitions()`](scss/helpers/transitions.scss) and [`query()`](scss/helpers/query.scss). More are planned in the future.
+Scarab also provides a bunch of other [helper mixins](scss/helpers/) like [`transitions()`](scss/helpers/transitions.scss) and [`query()`](scss/helpers/query.scss). More are planned in the future.
 
 ### Development utilities
 Included are the [`baseline-grid()`](scss/utilities/baseline-grid.scss) and [`element-overlay()`](scss/utilities/element-overlay.scss) mixins, which overlay visual guides on top of the DOM. These help with achieving a consistent vertical rythmn.
 
 ## Documentation
-Documentation is under development and is available in [`docs/`](/docs/).
+Documentation is under development and is available in [`docs/`](/docs/). The source files in [`scss/`](/scss/) also contain some documentation.
 
 ## Resources
-* [**scarab-snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework
+* [**Scarab snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework
+* [**Carapace**](https://github.com/watchtowerdigital/carapace.git) — Sass UI framework for rapid prototyping. An extension of Scarab.
