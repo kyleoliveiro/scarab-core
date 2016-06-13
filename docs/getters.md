@@ -1,12 +1,15 @@
 # Getters
-Getters are functions that return a value from the global `$SCARAB` variable. To make the most of these functions, be sure to [define your stylesheet configuration](#configuration) on a per-project basis.
+Getters are functions that return a value from the `$SCARAB` global variable.
 
-## global
-Returns a value of a key in $SCARAB. This is useful if you want to use Scarab variables with other Sass plugins.
+To make the most of these functions, be sure to [define your stylesheet configuration](https://github.com/watchtowerdigital/scarab#configuration) on a per-project basis.
+
+## get
+**Returns a value of a key in $SCARAB**
+
+This is useful if you want to use Scarab variables with other Sass plugins, or if you intend to define custom keys in $SCARAB.
 
 ```scss
-$my-breakpoints: global( breakpoints );
-
+$my-breakpoints: get( breakpoints );
 @debug $my-breakpoints;
 
 //	(
@@ -17,8 +20,12 @@ $my-breakpoints: global( breakpoints );
 //	)
 ```
 
+`Source: `[`/scss/getters/get.scss`](../scss/getters/get.scss)
+
+
+
 ## breakpoint
-Returns a breakpoint value from `BREAKPOINTS`.
+**Returns a breakpoint value from the `breakpoints` configuration map**
 
 ```scss
 @media (max-width: breakpoint(small)) { // @media (max-width: 600px)
@@ -26,8 +33,12 @@ Returns a breakpoint value from `BREAKPOINTS`.
 }
 ```
 
+`Source: `[`/scss/getters/breakpoint.scss`](../scss/getters/breakpoint.scss)
+
+
+
 ## duration
-Returns a duration value from `DURATIONS`.
+**Returns a duration value from the `durations` configuration map**
 
 ```scss
 .element {
@@ -36,8 +47,12 @@ Returns a duration value from `DURATIONS`.
 }
 ```
 
+`Source: `[`/scss/getters/duration.scss`](../scss/getters/duration.scss)
+
+
+
 ## easing
-Returns an easing value from `EASINGS`.
+**Returns an easing value from the `easings` configuration map**
 
 ```scss
 .element {
@@ -45,8 +60,12 @@ Returns an easing value from `EASINGS`.
 }
 ```
 
+`Source: `[`/scss/getters/easing.scss`](../scss/getters/easing.scss)
+
+
+
 ## palette
-Returns a color from `PALETTES`.
+**Returns a color from `palettes` configuration map**
 
 ```scss
 .element {
@@ -55,11 +74,45 @@ Returns a color from `PALETTES`.
 }
 ```
 
+`Source: `[`/scss/getters/palette.scss`](../scss/getters/palette.scss)
+
+
+
 ## typeface
-Return a typeface value from `TYPEFACES`.
+**Return a typeface value from `typefaces` configuration map**
 
 ```scss
 .element {
 	font-family: typeface(primary);	// sans-serif
 }
 ```
+
+`Source: `[`/scss/getters/typeface.scss`](../scss/getters/typeface.scss)
+
+
+
+## x
+**Returns a horizontal sizing map from the `x` configuration map**
+
+```scss
+.element {
+	// Passes the 'large' horizontal sizing map to the responsive() mixin
+	@include responsive( (margin-left, margin-right), x(l) );
+}
+```
+
+`Source: `[`/scss/getters/x.scss`](../scss/getters/x.scss)
+
+
+
+## y
+**Returns a vertical sizing breakpoint map from the `y` configuration map**
+
+```scss
+.element {
+	// Passes the 'default' vertical sizing map to the responsive() mixin
+	@include responsive( (padding-top, padding-bottom), y() );
+}
+```
+
+`Source: `[`/scss/getters/y.scss`](../scss/getters/y.scss)
