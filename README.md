@@ -122,7 +122,7 @@ Use the [`type-scale()`](scss/helpers/type-scale.scss) mixin to generate typogra
 
 // config/type-scale.scss
 //
-// @include define( type-scale, "body", (
+// @include set( type-scale, "body", (
 // 	 "base":  ( font-size: 0.8rem, line-height: 1.3 ),
 // 	 "small": ( font-size: 1rem,   line-height: 1.4 ),
 // 	 "large": ( font-size: 1.2rem, line-height: 1.5 )
