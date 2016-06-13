@@ -5,10 +5,10 @@
 // @return { string }
 
 @function y(
-	$size: M,
+	$size: default,
 	$breakpoint: false
 ) {
-	$size: to-upper-case($size);
+	$size: to-lower-case($size);
 	$value: map-get( get(y), $size );
 
 	@if $breakpoint {
