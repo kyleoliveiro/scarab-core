@@ -29,54 +29,37 @@ Import `scarab.scss` at the beginning of your stylesheet:
 ```
 
 ## Configuration
-Importing Scarab creates a new global variable, `$SCARAB` in your Sass project.
+Importing Scarab creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
 
-**This is where your stylesheet configuration is stored:**
+Scarab relies on the `$SCARAB` global variable for most of its functions and mixins to work. It provides some sane defaults, but you should configure these on a per-project basis.
 
-```
-$SCARAB: (
-	BASELINE:    (),
-	BREAKPOINTS: (),
-	DURATIONS:   (),
-	EASINGS:     (),
-	PALETTES:    (),
-	TYPEFACES:   (),
-	TYPE-SCALE:  ()
-);
-```
-
-Scarab relies on this variable for most of its functions and mixins to work. It provides some sane defaults, but you should configure these on a per-project basis.
-
-**To configure variables in your stylesheet, use the [`define()`](scss/lib/define.scss) mixin:**
+**To configure variables in your stylesheet, use the [`set()`](scss/lib/set.scss) mixin:**
 
 ```scss
-// Example
-
-// Usage: @include define( $key, $declaration... )
+// @function set()
 //
-// Input a single argument for $declaration to 
-// replace the existing value for $key in $SCARAB.
+// Set a new value for a key in the $SCARAB configuration map
 //
+// @param { arglist } $definition - Definition of the new value
 //
-// Input two arguments for $declaration to define
-// a new value in a map, or replace an existing one.
+// set() takes an arglist, $definition as its parameters.
+//
+// The last argument in $definition should be the value that you want to set.
+// Preceding that is a chain of keys in the $SCARAB variable where the value should be set.
 
-// Create a new key, "BREAKPOINTS", in $SCARAB,
-// and set its value to the second argument provided
-
-@include define( breakpoints, (
-	"small":    600px,
-	"medium":   900px,
-	"large":    1300px
+// Example:
+// Configure stylesheet breakpoints
+@include set( breakpoints, (
+	'small':    600px,
+	'medium':   900px,
+	'large':    1300px
 ) );
 
 // Replace the existing value of the "medium" breakpoint
-
-@include define( breakpoints, "medium", 1024px );
+@include set( breakpoints, 'medium', 1024px );
 
 // Define a new breakpoint, "huge", and set its value to 1600px
-
-@include define( breakpoints, "huge", 1600px );
+@include set( breakpoints, 'huge', 1600px );
 ```
 
 For more examples of configuration, have a look at how Scarab's default configuration is defined in [`scss/config/`](scss/config/).
@@ -86,8 +69,10 @@ For more examples of configuration, have a look at how Scarab's default configur
 ### No style declarations
 Scarab is a utility framework, not a UI library. Therefore simply including the framework outputs zero CSS. Use Scarab to augment development and extend an exisitng UI library for your project, or create your own from scratch.
 
+If you are looking for a barebones UI framework as a starting point for your project, check out [Carapace](https://github.com/watchtowerdigital/carapace.git).
+
 ### Variable management
-Easily access and manage your global stylesheet configuration with the `define()`mixin, and [getter functions](scss/getters/) like `palette()`, `duration()`, and `typeface()`.
+Easily access and manage your global stylesheet configuration with the `set()`mixin, and [getter functions](scss/getters/) like `get()`, `palette()`, `typeface()`, and more.
 
 ### Responsive property declarations
 Declare responsive properties with the [`responsive()`](scss/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
