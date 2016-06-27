@@ -21,7 +21,8 @@
 		@for $i from 1 through length( $definition ) - 2 {
 			$current-key: nth( $definition, $i );
 			$current-map: nth( $maps, -1 );
-			$current-value: map-get( $current-map, $current-key );
+			$current-value: map-get( $current-map, $current-key ) or ();
+
 			$maps: append( $maps, $current-value );
 		}
 

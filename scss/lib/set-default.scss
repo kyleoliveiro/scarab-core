@@ -17,10 +17,10 @@
 	@if length( $definition ) > 2 {
 		$current-map: $SCARAB;
 		@for $i from 1 through length( $definition ) - 1 {
-			$current-key: nth($definition, $i);
-			$current-map: map-get( $current-map, $current-key );
-
-			@if not $current-map {
+			$current-key: nth( $definition, $i );
+			@if map-has-key( $current-map, $current-key ) {
+				$current-map: map-get( $current-map, $current-key );
+			} @else {
 				@include set( $definition... );
 			}
 		}
