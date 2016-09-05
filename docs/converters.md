@@ -5,6 +5,10 @@ Converters are functions that convert one unit to another, or transform a value 
 **Returns a multiple of the global `baseline` value**
 
 ```scss
+// config/sizing.scss
+//
+// @include set( baseline, 1rem );
+
 .element {
 	margin-bottom: bl(2); // 2rem
 }
@@ -47,12 +51,12 @@ Converters are functions that convert one unit to another, or transform a value 
 $number: 10px;
 $number: negative($number); // -10px;
 
-$list: (1, 2rem, 30px);
+$list: (1, -2rem, 30px);
 $list: negative($list);     // (-1, -2rem, -30px);
 
 $map: (
 	a: 1,
-	b: (1, 2rem, 30px)
+	b: (1, -2rem, 30px)
 );
 $map: negative($map);       // ( a: -1, b: (-1, -2rem, -30px) );
 ```
