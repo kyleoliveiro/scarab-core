@@ -1,34 +1,34 @@
+// @function set( $definition )
+//
 // Set a new value for a key in the $SCARAB configuration map
 //
 // @param { arglist } $definition - Definition of the new value
 
-@mixin set (
-	$definition...
-) {
+@mixin set ( $definition... ) {
 
 	@if length( $definition ) == 2 {
-		$key: to-lower-case( nth( $definition, 1 ) );
+		$key:   to-lower-case( nth( $definition, 1 ) );
 		$value: nth( $definition, 2 );
 
 		$SCARAB: map-merge( $SCARAB, ($key: $value) ) !global;
 	}
 
 	@if length( $definition ) > 2 {
-		$maps: ($SCARAB,);
-		$value: nth( $definition, -1 );
+		$maps:   ( $SCARAB, );
+		$value:  nth( $definition, -1 );
 		$result: ();
 
 		@for $i from 1 through length( $definition ) - 2 {
-			$current-key: nth( $definition, $i );
-			$current-map: nth( $maps, -1 );
+			$current-key:   nth( $definition, $i );
+			$current-map:   nth( $maps, -1 );
 			$current-value: map-get( $current-map, $current-key ) or ();
 
 			$maps: append( $maps, $current-value );
 		}
 
 		@for $i from length($maps) through 1 {
-			$current-key: nth( $definition, $i );
-			$current-map: nth( $maps, $i );
+			$current-key:   nth( $definition, $i );
+			$current-map:   nth( $maps, $i );
 			$current-value: ();
 
 			@if $i == length($maps) {

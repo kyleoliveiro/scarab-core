@@ -4,7 +4,7 @@
 //
 // @param { string } $size - Name of size from $TYPE-SCALE
 
-@mixin type-scale( $size ) {
+@mixin type-scale ( $size ) {
 
 	$breakpoint-map: 	map-get( get(type-scale), $size );
 

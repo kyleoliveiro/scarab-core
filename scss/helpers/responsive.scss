@@ -5,7 +5,7 @@
 // @param { list } $properties		- Properties to add declarations for
 // @param { map } $breakpoint-map	- Map of breakpoints to values
 
-@mixin responsive( $properties, $breakpoint-map ) {
+@mixin responsive ( $properties, $breakpoint-map ) {
 
 	@each $pair in $breakpoint-map {
 		$breakpoint:	nth( $pair, 1 );

@@ -9,9 +9,9 @@
 	$transitions: ();
 
 	@each $pair in $property-map {
-		$property:		nth( $pair, 1 );
-		$declaration:	nth( $pair, 2 );
-		$transitions:	append( $transitions, #{$property} #{$declaration}, 'comma' );
+		$property:    nth( $pair, 1 );
+		$declaration: nth( $pair, 2 );
+		$transitions: append( $transitions, #{$property} #{$declaration}, 'comma' );
 	}
 	
 	transition: $transitions;
