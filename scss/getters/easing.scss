@@ -1,11 +1,13 @@
+// @function easing( [$easing] )
+//
 // Return an easing value from the `EASINGS` configuration map
 //
 // @param { string } $easing - Name of easing to return
 // @return { string }
 
-@function easing (
-	$easing: 	default
-) {
-	$value:		map-get( get(easings), $easing );	
+@function easing ( $easing: default ) {
+
+	$value: map-get( get(easings), $easing );	
 	@return $value;
+	
 }

@@ -1,11 +1,13 @@
+// @function typeface( [$typeface] )
+//
 // Return a typeface value from the `TYPEFACES` configuration map
 //
 // @param { string } $typeface - Name of typeface to return
 // @return { string }
 
-@function typeface (
-	$typeface:	default
-) {
-	$value:		map-get( get(typefaces), $typeface );
+@function typeface ( $typeface:	default ) {
+	
+	$value:	map-get( get(typefaces), $typeface );
 	@return $value;
+
 }

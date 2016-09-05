@@ -1,11 +1,12 @@
+// @function get( [$keys...] )
+//
 // Return a value from the $SCARAB configuration map
 //
 // @param { arglist } $keys - Name of key or keys to retrieve the value from
 // @return { any }
 
-@function get (
-	$keys...
-) {
+@function get ( $keys... ) {
+
 	$value: $SCARAB;
 
 	@each $key in $keys {
@@ -14,4 +15,5 @@
 	}
 	
 	@return $value;
+	
 }
