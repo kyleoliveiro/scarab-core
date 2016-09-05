@@ -1,11 +1,12 @@
+// @function negative( $value )
+//
 // Convert a value, list, or map of values to negative value(s)
 //
 // @param { number|list|map } $value - Number, list, or map to convert
 // @return { number|list|map }
 
-@function negative(
-	$value
-) {
+@function negative( $value ) {
+
 	@if type-of( $value ) == 'number' {
 		$value: $value * -1;
 	}
@@ -33,7 +34,7 @@
 			$index: $index + 1;
 
 			$key: nth($keys, $index);
-			$val: $val * -1;
+			$val: negative($val);
 			
 			$negative-map: map-merge( $negative-map, (
 				#{$key}: #{$val}
@@ -44,4 +45,5 @@
 	}
 
 	@return $value;
+	
 }
