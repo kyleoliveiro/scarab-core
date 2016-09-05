@@ -1,11 +1,13 @@
+// @function em( [$value] )
+//
 // Convert a px-based value to em's
 //
 // @param { number } $value - Value to convert
 // @return { number:distance:em }
 
-@function em (
-	$value: 1
-) {
+@function em ( $value: 1 ) {
+
 	$result: $value / 16 * 1em;
 	@return $result;
+	
 }
