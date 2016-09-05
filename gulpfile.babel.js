@@ -22,8 +22,8 @@ const paths = {
 		ext: '.+(scss|css)'
 	},
 	test: {
-		main: 'test.scss',
-		src: dirs.test
+		main: 'scarab.scss',
+		src: dirs.src
 	}
 };
 
@@ -35,7 +35,6 @@ const config = {
 		browsers: ['last 2 versions']
 	},
 	mqpacker: {
-		sort: true
 	}
 };
 
