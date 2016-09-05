@@ -43,8 +43,6 @@
 		$media-query: 'all and (min-width: #{$min-query}) and (max-width: #{$max-query})';
 	}
 
-	@debug $media-query;
-
 	@media #{$media-query} {
 		@content;
 	}
