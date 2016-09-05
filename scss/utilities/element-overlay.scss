@@ -1,8 +1,11 @@
+// @mixin element-overlay( [$is-active], [$base-color], [$transition-duration], [$levels] )
+//
 // Add an element overlay to the :root element.
 //
-// @param { boolean } $is-active		- Whether to activate the element overlay
-// @param { boolean } $base-color		- Base color of the element overlay
-// @param { boolean } $transition-delay	- Delay for overlay transitions
+// @param { boolean } $is-active           - Whether to activate the element overlay
+// @param { boolean } $base-color          - Base color of the element overlay
+// @param { boolean } $transition-duration - Delay for overlay transitions
+// @param { boolean } $levels              - Number of levels deep in the DOM to overlay
 
 @mixin element-overlay( $is-active: false, $base-color: random-color(), $transition-duration: duration(), $levels: 20 ) {
 	@at-root {
