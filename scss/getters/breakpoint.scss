@@ -5,7 +5,7 @@
 // @param { string } $breakpoint - Name of breakpoint to return
 // @return { number:distance }
 
-@function breakpoint( $breakpoint: default ) {
+@function breakpoint ( $breakpoint: default ) {
 
 	$value: map-get( get(breakpoints), $breakpoint );
 	@return $value;

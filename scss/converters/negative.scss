@@ -5,7 +5,7 @@
 // @param { number|list|map } $value - Number, list, or map to convert
 // @return { number|list|map }
 
-@function negative( $value ) {
+@function negative ( $value ) {
 
 	@if type-of( $value ) == 'number' {
 		$value: abs($value) * -1;
