@@ -10,7 +10,6 @@ This is useful if you want to use Scarab variables with other Sass plugins, or i
 
 `@function get( [$key...] )`
 
-
 ```scss
 // my-config/breakpoints.scss
 //
