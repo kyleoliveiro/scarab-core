@@ -1,0 +1,31 @@
+// @function dedupe( $map )
+//
+// Return a map with keys containing duplicate values removed.
+//
+// @param { string } $map - Name of map to dedupe
+// @return { map }
+
+@function dedupe( $map ) {
+
+	$deduped-map: ();
+	$indices:     ();
+	$values:      map-values($map);
+
+	@each $value in $values {
+		$indices: append($indices, index($values, $value));
+	}
+
+	$last-index: 0;
+	@each $index in $indices {
+		@if $index > $last-index {
+			$deduped-map: map-merge($deduped-map, (
+				nth(nth($map, $index), 1): nth(nth($map, $index), 2)
+			) );
+		}
+
+		$last-index: $index;
+	}
+
+	@return $deduped-map;
+
+}
