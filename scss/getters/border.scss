@@ -1,0 +1,7 @@
+// @function border( $key )
+// 
+// Returns a border value from the `BORDERS` configuration map
+
+@function border( $key ) {
+	@return get( borders, $key );
+}
