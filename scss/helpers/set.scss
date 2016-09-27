@@ -7,8 +7,12 @@
 @mixin set ( $definition... ) {
 
 	@if length( $definition ) == 2 {
-		$key:   to-lower-case( nth( $definition, 1 ) );
+		$key:   to-lower-case( inspect( nth( $definition, 1 ) ) );
 		$value: nth( $definition, 2 );
+
+		@if type-of( $value ) == 'map' {
+			$value: stringify-keys( $value );
+		}
 
 		$SCARAB: map-merge( $SCARAB, ($key: $value) ) !global;
 	}
