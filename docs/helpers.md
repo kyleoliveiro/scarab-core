@@ -14,9 +14,9 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 @include set( baseline, 1.25rem );
 
 @include set( type-scale, subheading, (
-	 base:  ( font-size: bl(0.8), line-height: bl(1)   ),
-	 small: ( font-size: bl(1),   line-height: bl(1.5) ),
-	 huge:  ( font-size: bl(1.2), line-height: bl(2)   )
+     base:  ( font-size: bl(0.8), line-height: bl(1)   ),
+     small: ( font-size: bl(1),   line-height: bl(1.5) ),
+     huge:  ( font-size: bl(1.2), line-height: bl(2)   )
 ) );
 ```
 
@@ -54,21 +54,21 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 // Example
 
 @include query( small ) {
-	body {
-		background-color: grey;
-	}
+    body {
+        background-color: grey;
+    }
 }
 
 @include query( below medium ) {
-	.navigation {
-		display: none;
-	}
+    .navigation {
+        display: none;
+    }
 }
 
 @include query( medium to huge ) {
-	.page-title {
-		font-size: 3rem;
-	}
+    .page-title {
+        font-size: 3rem;
+    }
 }
 ```
 ```scss
@@ -102,11 +102,11 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 // Example
 
 .button {
-	@include responsive(( padding-left, padding-right ), (
-		base:   14px,
-		medium: 18px,
-		large:  22px
-	));
+    @include responsive(( padding-left, padding-right ), (
+        base:   14px,
+        medium: 18px,
+        large:  22px
+    ));
 }
 ```
 
@@ -114,24 +114,24 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 // Output
 
 .button {
-	padding-left: 14px;
-	padding-right: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
 }
 
 // 'medium' breakpoint
 @media (min-width: 1024px) {
-	.button {
-		padding-left: 18px;
-		padding-right: 18px;
-	}
+    .button {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
 }
 
 // 'large' breakpoint
 @media (min-width: 1300px) {
-	.button {
-		padding-left: 22px;
-		padding-right: 22px;
-	}
+    .button {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
 }
 ```
 
@@ -146,10 +146,10 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 // Example
 
 a {
-  	@include transitions( (
-		color: 1s 0.5s linear,
-		background-color: 0.25s ease-out
-	) );
+    @include transitions( (
+        color: 1s 0.5s linear,
+        background-color: 0.25s ease-out
+    ) );
 }
 ```
 ```scss
@@ -173,37 +173,37 @@ a {
 // config/type-scale.scss
 //
 // @include set( type-scale, subheading, (
-// 	 base:  ( font-size: 0.8rem, line-height: 1.3 ),
-// 	 small: ( font-size: 1rem,   line-height: 1.4 ),
-// 	 huge:  ( font-size: 1.2rem, line-height: 1.5 )
+//   base:  ( font-size: 0.8rem, line-height: 1.3 ),
+//   small: ( font-size: 1rem,   line-height: 1.4 ),
+//   huge:  ( font-size: 1.2rem, line-height: 1.5 )
 // ) );
 
 .subheading, h2 {
-	@include type-scale( subheading );
+    @include type-scale( subheading );
 }
 ```
 ```scss
 // Output
 
 .subheading, h2 {
-	font-size: 0.8rem;
-	line-height: 1.3;
+    font-size: 0.8rem;
+    line-height: 1.3;
 }
 
 // 'small' breakpoint
 @media (min-width: 600px) {
-	.subheading, h2 {
-		font-size: 1rem;
-		line-height: 1.4;
-	}
+    .subheading, h2 {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
 }
 
 // 'huge' breakpoint
 @media (min-width: 1600px) {
-	.subheading, h2 {
-		font-size: 1.2rem;
-		line-height: 1.5;
-	}
+    .subheading, h2 {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
 }
 ```
 
@@ -216,8 +216,71 @@ a {
 
 ```scss
 body {
-	background-color: random-color(); // Background color will be randomized each time the pre-processor runs
+    background-color: random-color(); // Background color will be randomized each time the pre-processor runs
 }
 ```
 
 `Source: `[`/scss/helpers/random-color.scss`](../scss/helpers/random-color.scss)
+
+
+
+## dedupe
+**Return a map with keys containing duplicate values removed**
+
+If a map contains key-value pairs with multiple values, the first key in the map is retained, and the other duplicates are removed.
+
+`@function dedupe( $map )`
+
+```scss
+$colors: (
+    blue:  #0000ff,
+    brand: #0000ff,
+    red:   #ff0000,
+    green: #00ff00
+);
+
+@debug dedupe($colors);
+
+// DEBUG: (
+//    blue:  #0000ff,
+//    red:   #ff0000,
+//    green: #00ff00
+// );
+```
+
+
+
+## stringify-keys
+**Returns a map with stringified keys**
+
+Scarab utilizes this function under the hood with the `set()` function. This ensures that variables defined with the `set()` function are retrievable with `get()` regardless of whether they have been set with or without quotes.
+
+`@function stringify-keys( $map )`
+
+```
+// Example
+
+$map: (
+    0:   0,
+    one: 1,
+    tw0: two
+);
+
+@each $key, $val in $map {
+    @debug type-of($key);
+}
+
+// DEBUG: number
+// DEBUG: string
+// DEBUG: string
+
+$stringified-map: stringify-keys($map);
+
+@each $key, $val in $stringified-map {
+    @debug type-of($key);
+}
+
+// DEBUG: string
+// DEBUG: string
+// DEBUG: string
+```
