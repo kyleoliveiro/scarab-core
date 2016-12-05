@@ -1,0 +1,7 @@
+// @function border-width( $key )
+// 
+// Returns a border-width value from the `BORDER-WIDTHS` configuration map
+
+@function border-width( $key: default ) {
+	@return get( border-widths, $key );
+}
