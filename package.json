@@ -21,7 +21,7 @@
     "url": "https://github.com/watchtowerdigital/scarab"
   },
   "dependencies": {
-    "node-sass": "^3.13.0",
+    "node-sass": "^3.14.0-0",
     "onchange": "^3.2.0"
   },
   "devDependencies": {}
