@@ -1,6 +1,6 @@
 {
   "name": "scarab-scss",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Sass utility framework for rapid stylesheet development",
   "keywords": [
     "sass",
