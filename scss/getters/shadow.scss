@@ -2,6 +2,6 @@
 // 
 // Returns a box-shadow value from the `SHADOWS` configuration map
 
-@function shadow( $key ) {
+@function shadow( $key: default ) {
 	@return get( shadows, $key );
 }

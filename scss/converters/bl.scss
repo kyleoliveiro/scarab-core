@@ -6,8 +6,6 @@
 // @return { number:distance:rem }
 
 @function bl ( $value: 1 ) {
-
 	$result: get(baseline) * $value;
 	@return $result;
-	
 }

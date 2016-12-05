@@ -1,13 +1,16 @@
 @import 'get';
 @import 'get-keys';
 
-// These depend on 'get'
-
+// These depend on 'get':
 @import 'breakpoint';
 @import 'duration';
 @import 'easing';
+@import 'font-size';
+@import 'font-weight';
+@import 'line-height';
+@import 'tracking';
 @import 'palette';
-@import 'border';
+@import 'border-width';
 @import 'radius';
 @import 'shadow';
 @import 'typeface';

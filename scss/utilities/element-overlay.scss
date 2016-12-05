@@ -7,7 +7,7 @@
 // @param { boolean } $transition-duration - Delay for overlay transitions
 // @param { boolean } $levels              - Number of levels deep in the DOM to overlay
 
-@mixin element-overlay( $is-active: false, $base-color: random-color(), $transition-duration: duration(), $levels: 20 ) {
+@mixin element-overlay( $is-active: true, $base-color: random-color(), $transition-duration: 0.5s, $levels: 20 ) {
 	@at-root {
 		$selector-base: ' > *';
 		$selector: ' > *';
@@ -17,9 +17,8 @@
 		$content-pre-base: '—';
 		$content-pre: '';
 
-		.scarab-element-overlay {
+		%scarab-element-overlay {
 			@for $i from 1 through $levels {
-
 				$background-color: rgba( $base-color, 0.15 );
 				$border-color: desaturate( $base-color, 25 );
 				$text-color: invert( $border-color );
@@ -93,9 +92,8 @@
 	@if $is-active == true {
 		@at-root {
 			body {
-				@extend .scarab-element-overlay;
+				@extend %scarab-element-overlay;
 			}
 		}
 	}
-
 }

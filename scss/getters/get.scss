@@ -5,15 +5,13 @@
 // @param { arglist } $keys - Name of key or keys to retrieve the value from
 // @return { any }
 
-@function get ( $keys... ) {
-
+@function get( $keys... ) {
 	$value: $SCARAB;
 
 	@each $key in $keys {
-		$key: to-lower-case( inspect($key) );
+		$key:   to-lower-case( inspect($key) );
 		$value: map-get( $value, $key );
 	}
 	
 	@return $value;
-	
 }

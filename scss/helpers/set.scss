@@ -5,7 +5,6 @@
 // @param { arglist } $definition - Definition of the new value
 
 @mixin set ( $definition... ) {
-
 	@if length( $definition ) == 2 {
 		$key:   to-lower-case( inspect( nth( $definition, 1 ) ) );
 		$value: nth( $definition, 2 );
@@ -46,5 +45,4 @@
 
 		$SCARAB: map-merge( $SCARAB, $result ) !global;
 	}
-
 }

@@ -9,9 +9,11 @@
 
 	@each $key, $val in $map {
 		$key: inspect($key);
-
-		@if type-of($val) == 'map' {
-			$val: stringify-keys($val);
+		
+		@each $v in $val {
+			@if type-of($v) == 'map' {
+				$v: stringify-keys($v);
+			}
 		}
 
 		$stringified-map: map-merge($stringified-map, ($key: $val));
@@ -19,3 +21,4 @@
 
 	@return $stringified-map;
 }
+

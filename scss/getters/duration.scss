@@ -1,13 +1,7 @@
-// @function duration( [$duration] )
-//
-// Return a duration value from the `DURATIONS` configuration map
-//
-// @param { string } $duration - Name of duration to return
-// @return { number:time }
+// @function duration( $key )
+// 
+// Returns a duration value from the `DURATIONS` configuration map
 
-@function duration ( $duration: default ) {
-
-	$value:	map-get( get(durations), $duration );
-	@return $value;
-
+@function duration( $key: default ) {
+	@return get( durations, $key );
 }

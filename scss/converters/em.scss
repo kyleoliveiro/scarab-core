@@ -6,8 +6,6 @@
 // @return { number:distance:em }
 
 @function em ( $value: 1 ) {
-
 	$result: $value / 16 * 1em;
 	@return $result;
-	
 }

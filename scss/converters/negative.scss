@@ -6,7 +6,6 @@
 // @return { number|list|map }
 
 @function negative ( $value ) {
-
 	@if type-of( $value ) == 'number' {
 		$value: abs($value) * -1;
 	}
@@ -45,5 +44,4 @@
 	}
 
 	@return $value;
-	
 }

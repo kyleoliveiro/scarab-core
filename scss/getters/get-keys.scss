@@ -7,13 +7,11 @@
 // @return { list }
 
 @function get-keys( $map-name, $dedupe: true ) {
-
 	$map: get($map-name);
-	
+
 	@if $dedupe == true {
 		$map: dedupe(get($map-name));
 	}
 
 	@return map-keys( $map );
-
 }

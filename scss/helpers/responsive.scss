@@ -6,7 +6,6 @@
 // @param { map } $breakpoint-map	- Map of breakpoints to values
 
 @mixin responsive ( $properties, $breakpoint-map ) {
-
 	@each $pair in $breakpoint-map {
 		$breakpoint:	nth( $pair, 1 );
 		$value:			nth( $pair, 2 );
@@ -26,6 +25,5 @@
 				}
 			}
 		}
-	}
-	
+	}	
 }

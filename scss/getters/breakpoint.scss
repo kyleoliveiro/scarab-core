@@ -1,13 +1,7 @@
-// @function breakpoint( [$breakpoint] )
-//
-// Return a breakpoint value from the `BREAKPOINTS` configuration map
-//
-// @param { string } $breakpoint - Name of breakpoint to return
-// @return { number:distance }
+// @function breakpoint( $key )
+// 
+// Returns a breakpoint value from the `BREAKPOINTS` configuration map
 
-@function breakpoint ( $breakpoint: default ) {
-
-	$value: map-get( get(breakpoints), $breakpoint );
-	@return $value;
-
+@function breakpoint( $key: default ) {
+	@return get( breakpoints, $key );
 }

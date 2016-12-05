@@ -6,7 +6,6 @@
 // @return { map }
 
 @function dedupe( $map ) {
-
 	$deduped-map: ();
 	$indices:     ();
 	$values:      map-values($map);
@@ -27,5 +26,5 @@
 	}
 
 	@return $deduped-map;
-
 }
+

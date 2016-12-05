@@ -7,7 +7,6 @@
 // @return { string }
 
 @function y ( $size: default, $breakpoint: false ) {
-
 	$size:  to-lower-case( $size );
 	$value: map-get( get(y), $size );
 
@@ -16,5 +15,4 @@
 	}
 
 	@return $value;
-
 }

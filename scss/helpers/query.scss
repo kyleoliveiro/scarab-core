@@ -12,19 +12,20 @@
 	// e.g. query(small) => @media min-width(breakpoint(small)) {}
 	@if length($query) == 1 {
 		$breakpoint: $query;
-		$media-query: (min-width: breakpoint($breakpoint));
+		$media-query: '(min-width: #{breakpoint($breakpoint)})';
 	}
-
-	// e.g. query(until medium) => @media max-width(breakpoint(medium)) {}
-	// e.g. query(from small)   => @media min-width(breakpoint(small)) {}
+	
 	@else if length($query) == 2 {
 		$condition:  nth( $query, 1 );
 		$breakpoint: nth( $query, 2 );
 
+		// e.g. query(until medium) => @media max-width(breakpoint(medium)) {}
 		@if $condition == 'until' {
-			$media-query: (max-width: breakpoint($breakpoint));
-		} @else if $condition == 'from' {
-			$media-query: (min-width: breakpoint($breakpoint));
+			$media-query: '(max-width: #{breakpoint($breakpoint)})';
+		}
+		// e.g. query(from small)   => @media min-width(breakpoint(small)) {}
+		@else if $condition == 'from' {
+			$media-query: '(min-width: #{breakpoint($breakpoint)})';
 		}
 	}
 
@@ -46,5 +47,4 @@
 	@media #{$media-query} {
 		@content;
 	}
-
 }

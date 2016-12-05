@@ -6,8 +6,6 @@
 // @return { number }
 
 @function strip-units ( $value ) {
-
-	$value: $value / ($value * 0 + 1);
-	@return $value;
-	
+	$result: $value / ($value * 0 + 1);
+	@return $result;
 }
