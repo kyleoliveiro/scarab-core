@@ -6,24 +6,31 @@
 // @param { map } $breakpoint-map	- Map of breakpoints to values
 
 @mixin responsive ( $properties, $breakpoint-map ) {
-	@each $pair in $breakpoint-map {
-		$breakpoint:	nth( $pair, 1 );
-		$value:			nth( $pair, 2 );
+	@if(type-of($breakpoint-map) == 'map') {
+		@each $pair in $breakpoint-map {
+			$breakpoint:	nth( $pair, 1 );
+			$value:			nth( $pair, 2 );
 
-		// 'base' breakpoint
-		@if $breakpoint == 'base' {
-			@each $property in $properties {
-				#{$property}: $value;
-			}
-		}
-
-		// named breakpoints
-		@else {
-			@include query( #{$breakpoint} ) {
+			// 'base' breakpoint
+			@if $breakpoint == 'base' {
 				@each $property in $properties {
 					#{$property}: $value;
 				}
 			}
+
+			// named breakpoints
+			@else {
+				@include query( #{$breakpoint} ) {
+					@each $property in $properties {
+						#{$property}: $value;
+					}
+				}
+			}
 		}
-	}	
+	} @else {
+		$value: $breakpoint-map;
+		@each $property in $properties {
+			#{$property}: $value;
+		}
+	}
 }
