@@ -24,5 +24,7 @@
     "node-sass": "^3.14.0-0",
     "onchange": "^3.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-sass": "^4.1.1"
+  }
 }
