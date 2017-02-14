@@ -128,6 +128,30 @@ $breakpoint-names: get-keys( breakpoints );
 
 
 
+## opacity
+**Returns an opacity value from the `opacity` configuration map**
+
+`@function opacity( [$opacity] )`
+
+```scss
+// my-config/opacity.scss
+//
+// @include set( opacity, (
+//      opaque:      1,
+//      translucent: 0.8
+//      ...
+//  ) );
+//
+
+.element {
+    opacity: opacity(translucent); // 0.8
+}
+```
+
+`Source: `[`/scss/getters/opacity.scss`](../scss/getters/opacity.scss)
+
+
+
 ## palette
 **Returns a color from `palettes` configuration map**
 
