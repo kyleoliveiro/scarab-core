@@ -13,14 +13,29 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 
 @include set( baseline, 1.25rem );
 
-@include set( type-scale, subheading, (
-     base:  ( font-size: bl(0.8), line-height: bl(1)   ),
-     small: ( font-size: bl(1),   line-height: bl(1.5) ),
-     huge:  ( font-size: bl(1.2), line-height: bl(2)   )
-) );
+@debug get(baseline);
+    // 1.25rem
+
+@include set( breakpoints, (
+    small  : 600px,
+    medium : 1024px,
+    large  : 1300px,
+    huge   : 1600px
+ ) );
+
+@debug get(breakpoints);
+    //  (
+    //      small  : 600px,
+    //      medium : 1024px,
+    //      large  : 1300px,
+    //      huge   : 1600px
+    //  )
+
+@debug get(breakpoints, small);
+    // 600px
 ```
 
-`Source: `[`/scss/helpers/set.scss`](../scss/helpers/set.scss)
+`Source: `[`/lib/helpers/set.scss`](../lib/helpers/set.scss)
 
 
 
@@ -41,7 +56,7 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 @debug get(baseline) // 1.25rem
 ```
 
-`Source: `[`/scss/helpers/set-default.scss`](../scss/helpers/set-default.scss)
+`Source: `[`/lib/helpers/set-default.scss`](../lib/helpers/set-default.scss)
 
 
 
@@ -137,78 +152,6 @@ The `set()` mixin allows you to configure your stylesheet with global variables.
 
 
 
-## transitions
-**Applies multiple transition declarations to an element**
-
-`@mixin transitions( $property-map )`
-
-```scss
-// Example
-
-a {
-    @include transitions( (
-        color: 1s 0.5s linear,
-        background-color: 0.25s ease-out
-    ) );
-}
-```
-```scss
-// Output
-
-a {
-  transition: color 1s 0.5s linear, background-color 0.25s ease-out;
-}
-```
-
-
-
-## type-scale
-**Applies `font-size` and `line-height` declarations to an element at different named breakpoints**
-
-`@mixin type-scale( $size )`
-
-```scss
-// Example
-
-// config/type-scale.scss
-//
-// @include set( type-scale, subheading, (
-//   base:  ( font-size: 0.8rem, line-height: 1.3 ),
-//   small: ( font-size: 1rem,   line-height: 1.4 ),
-//   huge:  ( font-size: 1.2rem, line-height: 1.5 )
-// ) );
-
-.subheading, h2 {
-    @include type-scale( subheading );
-}
-```
-```scss
-// Output
-
-.subheading, h2 {
-    font-size: 0.8rem;
-    line-height: 1.3;
-}
-
-// 'small' breakpoint
-@media (min-width: 600px) {
-    .subheading, h2 {
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-}
-
-// 'huge' breakpoint
-@media (min-width: 1600px) {
-    .subheading, h2 {
-        font-size: 1.2rem;
-        line-height: 1.5;
-    }
-}
-```
-
-
-
 ## random-color
 **Returns random color**
 
@@ -220,7 +163,7 @@ body {
 }
 ```
 
-`Source: `[`/scss/helpers/random-color.scss`](../scss/helpers/random-color.scss)
+`Source: `[`/lib/helpers/random-color.scss`](../lib/helpers/random-color.scss)
 
 
 
@@ -247,6 +190,7 @@ $colors: (
 //    green: #00ff00
 // );
 ```
+`Source: `[`/lib/helpers/dedupe.scss`](../lib/helpers/dedupe.scss)
 
 
 
@@ -284,3 +228,4 @@ $stringified-map: stringify-keys($map);
 // DEBUG: string
 // DEBUG: string
 ```
+`Source: `[`/lib/helpers/stringify-keys.scss`](../lib/helpers/stringify-keys.scss)

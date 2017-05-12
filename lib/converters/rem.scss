@@ -1,0 +1,11 @@
+// @function rem ( $value )
+//
+// Convert a px-based value to rem
+//
+// @param  { number } $value - Value to convert
+// @return { number:distance:rem }
+
+@function rem ( $value ) {
+	$result: $value / 16 * 1rem;
+	@return $result;
+}

@@ -1,7 +1,0 @@
-// @function font-size( $key )
-// 
-// Returns a font-size value from the `FONT-SIZES` configuration map
-
-@function font-size( $key ) {
-	@return get( font-sizes, $key );
-}

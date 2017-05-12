@@ -1,7 +1,0 @@
-// @function line-height( $key )
-// 
-// Returns a line-height value from the `LINE-HEIGHTS` configuration map
-
-@function line-height( $key: default ) {
-	@return get( line-heights, $key );
-}

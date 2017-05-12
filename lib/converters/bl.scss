@@ -1,0 +1,11 @@
+// @function bl ( $value )
+//
+// Return a multiple of `get(baseline)`
+//
+// @param  { number } $value - Baseline multiplier
+// @return { number:distance:rem }
+
+@function bl ( $value ) {
+	$result: get(baseline) * $value;
+	@return $result;
+}

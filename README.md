@@ -1,4 +1,4 @@
-# Scarab
+# scarab-scss
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
 
@@ -12,7 +12,6 @@ Scarab is a Sass utility framework designed for rapid stylesheet development.
     * [No style declarations](#no-style-declarations)
     * [Variable management](#variable-management)
     * [Responsive property declarations](#responsive-property-declarations)
-    * [Responsive typography](#responsive-typography)
     * [Helper mixins](#helper-mixins)
     * [Development utilities](#development-utilities)
 * [Documentation](#documentation)
@@ -26,15 +25,13 @@ npm install scarab-scss --save-dev
 
 Import `scarab-scss` at the beginning of your stylesheet:
 ```scss
-@import 'path/to/node_modules/scarab-scss/_';
+@import 'path/to/node_modules/scarab-scss/scarab';
 ```
 
 ## Configuration
-Importing Scarab creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
+Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
 
-Scarab relies on the `$SCARAB` global variable for most of its functions and mixins to work.
-
-**To configure variables in your stylesheet, use the [`set()`](scss/lib/set.scss) mixin:**
+**To configure variables in your stylesheet, use the [`set()`](lib/lib/set.scss) mixin:**
 
 ```scss
 // @function set( $definition )
@@ -63,20 +60,18 @@ Scarab relies on the `$SCARAB` global variable for most of its functions and mix
 @include set( breakpoints, huge, 1600px );
 ```
 
-For more examples of configuration, have a look at how [`scarab-carapace`](https://github.com/watchtowerdigital/carapace/scss/config/) defines its configuration.
+For more examples of configuration, have a look at the [`scarab-carapace`](https://github.com/watchtowerdigital/scarab-carapace/src/config/) configuration folder.
 
 ## Features
 
 ### No style declarations
-Scarab is a utility framework, not a UI library. Therefore simply including the framework outputs zero CSS.
-
-If you are looking for a barebones UI framework as a starting point for your project, check out [`scarab-carapace`](https://github.com/watchtowerdigital/carapace.git).
+Scarab is a utility framework, not a UI library. Importing `scarab-scss` outputs zero CSS.
 
 ### Variable management
-Easily access and manage your global stylesheet configuration with the `set()`mixin, and [getter functions](scss/getters/) like `get()`, `palette()`, `typeface()`, and more.
+Conveniently access and manage your global stylesheet configuration with the `set()` mixin, and [getter functions](lib/getters/).
 
 ### Responsive property declarations
-Declare responsive properties with the [`responsive()`](scss/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
+Declare responsive properties with the [`responsive()`](lib/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
 
 ```scss
 // Example
@@ -115,58 +110,17 @@ Declare responsive properties with the [`responsive()`](scss/helpers/responsive.
 }
 ```
 
-### Responsive typography
-Use the [`type-scale()`](scss/helpers/type-scale.scss) mixin to generate typographic styles for an element at each breakpoint specified in the breakpoint map.
-
-```scss
-// Example
-
-// config/type-scale.scss
-//
-// @include set( type-scale, subheading, (
-//   base:  ( font-size: 0.8rem, line-height: 1.3 ),
-//   small: ( font-size: 1rem,   line-height: 1.4 ),
-//   huge:  ( font-size: 1.2rem, line-height: 1.5 )
-// ) );
-
-.subheading, h2 {
-    @include type-scale( subheading );
-}
-```
-```scss
-// Output
-
-.subheading, h2 {
-    font-size: 0.8rem;
-    line-height: 1.3;
-}
-
-// 'small' breakpoint
-@media (min-width: 600px) {
-    .subheading, h2 {
-        font-size: 1rem;
-        line-height: 1.4;
-    }
-}
-
-// 'huge' breakpoint
-@media (min-width: 1600px) {
-    .subheading, h2 {
-        font-size: 1.2rem;
-        line-height: 1.5;
-    }
-}
-```
-
 ### Helper mixins
-Scarab also provides a bunch of other [helper mixins](scss/helpers/) like [`transitions()`](scss/helpers/transitions.scss) and [`query()`](scss/helpers/query.scss), to name a few.
+Scarab provides a bunch of [helper mixins](lib/helpers/) like [`type-scale()`](lib/helpers/type-scale.scss) and [`query()`](lib/helpers/query.scss).
 
 ### Development utilities
-Included are the [`baseline-grid()`](scss/utilities/baseline-grid.scss) and [`element-overlay()`](scss/utilities/element-overlay.scss) mixins, which overlay visual guides on top of the DOM. These help when trying to achieve a consistent vertical rythmn.
+The [`baseline-grid()`](lib/utilities/baseline-grid.scss) and [`element-overlay()`](lib/utilities/element-overlay.scss) mixins overlay visual guides over the DOM. These help when debugging layout and trying to achieve a consistent vertical rythmn.
 
 ## Documentation
-Documentation is available in [`docs/`](docs/).
+Documentation is available in the [`docs/`](docs/) folder.
 
 ## Resources
-* [**Scarab snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework
-* [**Carapace**](https://github.com/watchtowerdigital/carapace.git) — Sass UI framework for rapid prototyping. An extension of Scarab.
+* [**scarab-carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Highly configurable framework for generating functional CSS classes
+* [**scarab-styleguide**](https://github.com/watchtowerdigital/scarab-styleguide.git) — Generate automatic styleguides from scarab-carapace configuration
+* [**scarab-cli**](https://github.com/watchtowerdigital/scarab-cli.git) — Command-Line Interface for the Scarab Sass ecosystem
+* [**scarab-snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework

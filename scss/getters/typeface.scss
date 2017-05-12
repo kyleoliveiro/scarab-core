@@ -1,7 +1,0 @@
-// @function typeface( $key )
-// 
-// Returns a typeface value from the `TYPEFACES` configuration map
-
-@function typeface( $key: default ) {
-	@return get( typefaces, $key );
-}

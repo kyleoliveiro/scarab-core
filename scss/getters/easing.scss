@@ -1,7 +1,0 @@
-// @function easing( $key )
-// 
-// Returns a easing value from the `EASINGS` configuration map
-
-@function easing( $key: default ) {
-	@return get( easings, $key );
-}

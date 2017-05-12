@@ -1,7 +1,0 @@
-// @function radius( $key )
-// 
-// Returns a boorder-radius value from the `RADII` configuration map
-
-@function radius( $key: default ) {
-	@return get( radii, $key );
-}

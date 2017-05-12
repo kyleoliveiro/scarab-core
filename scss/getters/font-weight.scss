@@ -1,7 +1,0 @@
-// @function font-weight( $key )
-// 
-// Returns a font-weight value from the `FONT-WEIGHTS` configuration map
-
-@function font-weight( $key: default ) {
-	@return get( font-weights, $key );
-}

@@ -1,7 +1,0 @@
-// @function opacity( $key )
-// 
-// Returns a opacity value from the `OPACITY` configuration map
-
-@function opacity( $key: default ) {
-	@return get( opacity, $key );
-}

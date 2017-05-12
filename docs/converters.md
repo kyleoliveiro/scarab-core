@@ -1,25 +1,23 @@
 # Converters
-Converters are functions that convert one unit to another, or transform a value in a predictable manner. 
+Converters are functions that convert one unit to another, or transform a value, or set of values in a predictable manner.
 
 ## bl
-**Returns a multiple of the global `baseline` value**
+**Return a multiple of `get(baseline)`**
 
 ```scss
-// config/sizing.scss
-//
-// @include set( baseline, 1rem );
+@include set( baseline, 1rem );
 
 .element {
 	margin-bottom: bl(2); // 2rem
 }
 ```
 
-`Source: `[`/scss/converters/bl.scss`](../scss/converters/bl.scss)
+`Source: `[`/lib/converters/bl.scss`](../lib/converters/bl.scss)
 
 
 
 ## em
-**Converts a px-based value to em's**
+**Convert a px-based value to em**
 
 ```scss
 .element {
@@ -27,12 +25,12 @@ Converters are functions that convert one unit to another, or transform a value 
 }
 ```
 
-`Source: `[`/scss/converters/em.scss`](../scss/converters/em.scss)
+`Source: `[`/lib/converters/em.scss`](../lib/converters/em.scss)
 
 
 
 ## rem
-**Converts a px-based value to rem's**
+**Convert a px-based value to rem**
 
 ```scss
 .element {
@@ -40,12 +38,12 @@ Converters are functions that convert one unit to another, or transform a value 
 }
 ```
 
-`Source: `[`/scss/converters/rem.scss`](../scss/converters/rem.scss)
+`Source: `[`/lib/converters/rem.scss`](../lib/converters/rem.scss)
 
 
 
 ## negative
-**Converts a number, numbers in a list, or numbers in values of a map, to negative numbers**
+**Convert a value, list, or map of values to negative value(s)**
 
 ```scss
 $number: 10px;
@@ -61,16 +59,31 @@ $map: (
 $map: negative($map);       // ( a: -1, b: (-1, -2rem, -30px) );
 ```
 
-`Source: `[`/scss/converters/negative.scss`](../scss/converters/negative.scss)
+`Source: `[`/lib/converters/negative.scss`](../lib/converters/negative.scss)
 
 
 
 ## strip-units
-**Strips units from a number**
+**Convert a unit-based value to a unitless one**
 
 ```scss
 $number: 10px;
 $number: strip-units(10px); // 10
 ```
 
-`Source: `[`/scss/converters/strip-units.scss`](../scss/converters/strip-units.scss)
+`Source: `[`/lib/converters/strip-units.scss`](../lib/converters/strip-units.scss)
+
+
+
+## str-replace
+**Replace substrings within a string**
+
+```scss
+$string: 'Beetle';
+$string: str-replace($string, 'e');      // Btl
+
+$string: 'Beetle';
+$string: str-replace($string, 'e', '3'); // B33tl3
+```
+
+`Source: `[`/lib/converters/str-replace.scss`](../lib/converters/str-replace.scss)

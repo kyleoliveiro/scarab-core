@@ -1,0 +1,22 @@
+// @function str-replace ( $haystack, $needle, $replacement )
+//
+// Replace a substring within a string
+//
+// @param  { string } $haystack    - String to search in
+// @param  { string } $needle      - String to search for
+// @param  { string } $replacement - Replacement string
+// @return { string }
+
+@function str-replace ( $haystack, $needle, $replacement: '' ) {
+	@if $replacement == null {
+		$replacement: '';
+	}
+	
+	$index: str-index($haystack, $needle);
+
+	@if $index {
+		@return str-slice($haystack, 1, $index - 1) + $replacement + str-replace(str-slice($haystack, $index + str-length($needle)), $needle, $replacement);
+	}
+
+	@return $haystack;
+}

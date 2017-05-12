@@ -1,0 +1,46 @@
+// @function negative ( $value )
+//
+// Convert a value, list, or map of values to negative value(s)
+//
+// @param  { number|list|map } $value - Number, list, or map to convert
+// @return { number|list|map }
+
+@function negative ( $value ) {
+	@if type-of($value) == 'number' {
+		$value: abs($value) * -1;
+	}
+
+	@else if type-of($value) == 'list' {
+		$negative-list: ();
+
+		@each $val in $value {
+			$val           : abs($val) * -1;
+			$negative-list : append($negative-list, $val);
+		}
+
+		$value: $negative-list;
+	}
+
+	@else if type-of( $value ) == 'map' {
+		$negative-map: ();
+
+		$map    : $value;
+		$keys   : map-keys( $map );
+		$values : map-values( $map );
+
+		$index: 0;
+		@each $val in $values {
+			$index : $index + 1;
+			$key   : nth($keys, $index);
+			$val   : negative($val);
+			
+			$negative-map: map-merge( $negative-map, (
+				#{$key}: #{$val}
+			) );
+		}
+
+		$value: $negative-map;
+	}
+
+	@return $value;
+}

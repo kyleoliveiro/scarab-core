@@ -1,6 +1,6 @@
 {
   "name": "scarab-scss",
-  "version": "5.2.0",
+  "version": "6.0.0",
   "description": "Sass utility framework for rapid stylesheet development",
   "keywords": [
     "sass",
@@ -9,10 +9,10 @@
     "responsive",
     "front-end"
   ],
-  "main": "scss/scarab.scss",
+  "main": "scarab.scss",
   "scripts": {
-    "build": "node-sass --error-bell _.scss -o build/",
-    "start": "onchange \"scss/**/*.scss\" -- npm run build"
+    "test":  "node-sass scarab.scss -o build/",
+    "start": "onchange \"lib/**/*.scss\" -- npm test"
   },
   "author": "Kyle Oliveiro <kyle@watchtower.digital>",
   "license": "BSD-3-Clause",
@@ -20,11 +20,8 @@
     "type": "git",
     "url": "https://github.com/watchtowerdigital/scarab"
   },
-  "dependencies": {
-    "node-sass": "^3.14.0-0",
-    "onchange": "^3.2.0"
-  },
   "devDependencies": {
-    "node-sass": "^4.1.1"
+    "node-sass": "^4.1.1",
+    "onchange": "^3.2.0"
   }
 }

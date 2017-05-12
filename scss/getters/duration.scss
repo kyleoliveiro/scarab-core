@@ -1,7 +1,0 @@
-// @function duration( $key )
-// 
-// Returns a duration value from the `DURATIONS` configuration map
-
-@function duration( $key: default ) {
-	@return get( durations, $key );
-}

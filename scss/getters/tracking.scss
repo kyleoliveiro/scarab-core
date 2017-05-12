@@ -1,7 +1,0 @@
-// @function tracking( $key )
-// 
-// Returns a letter-spacing value from the `TRACKING` configuration map
-
-@function tracking( $key: default ) {
-	@return get( tracking, $key );
-}
