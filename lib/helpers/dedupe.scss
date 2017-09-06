@@ -1,11 +1,15 @@
-// @function dedupe ( $map )
-//
-// Return a map with keys containing duplicate values removed
-//
-// @param  { string } $map - Name of map to dedupe
-// @return { map }
+/// Remove keys from a map which contain duplicate values
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @param {string} $map - Name of map to retrieve keys from
+/// @param {bool} $dedupe [true] - Whether to dedupe the map before getting keys
+/// @return {list}
 
-@function dedupe( $map ) {
+@function dedupe($map) {
 	$deduped-map : ();
 	$indices     : ();
 	$values      : map-values($map);

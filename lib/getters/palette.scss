@@ -1,15 +1,17 @@
-// @function palette ( $color )
-//
-// Return a color value from the `PALETTES` configuration map
-//
-// @param  { arglist } $color - Description of color to return
-// @return { string:color }
+/// Return a color value from the configured `palettes`
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group getters
+///
+/// @require {function} get
+///
+/// @param {arglist} $color - Description of color to return
+/// @return {color}
 
-@function palette ( $color ) {
+@function palette($color) {
 	$value: ();
-
-	// Single argument for $color defaults to 'base' color.
-	// Else, get a named color from the palette
 
 	@if length($color) == 1 {
 		$colors : map-get(get(palettes), inspect($color));
@@ -19,7 +21,7 @@
 		$colors  : map-get(get(palettes), inspect($palette));
 		$shade   : nth($color, 1);
 
-		// default to base color on invalid key name
+		// Default to base color on invalid key name
 		@if not map-has-key($colors, $shade) {
 			$shade: 'base';
 		}

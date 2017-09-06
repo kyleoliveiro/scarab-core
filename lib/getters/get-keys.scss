@@ -1,17 +1,23 @@
-// @function get-keys ( $map-name, [$dedupe] )
-//
-// Return a list of keys from a configuration map in `$SCARAB`.
-//
-// @param  { string }  $map    - Name of map to retrieve keys from
-// @param  { boolean } $dedupe - Whether to dedupe the map before getting keys
-// @return { list }
+/// Return a list of keys from a configuration map in `$SCARAB`
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group getters
+///
+/// @require {function} get
+/// @require {function} dedupe
+///
+/// @param {string} $map - Name of map to retrieve keys from
+/// @param {bool} $dedupe [true] - Whether to dedupe the map before getting keys
+/// @return {list}
 
-@function get-keys ( $map-name, $dedupe: true ) {
+@function get-keys($map-name, $dedupe: true) {
 	$map: get($map-name);
 
 	@if $dedupe == true {
 		$map: dedupe(get($map-name));
 	}
 
-	@return map-keys( $map );
+	@return map-keys($map);
 }

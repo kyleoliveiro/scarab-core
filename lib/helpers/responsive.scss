@@ -1,11 +1,17 @@
-// @mixin responsive ( $properties, $query-map )
-//
-// Generate style declarations for each specified query
-//
-// @param { list } $properties - Properties to declare
-// @param { map }  $query-map  - Map of queries-to-values
+/// Declare properties at multiple breakpoints
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {mixin} query
+///
+/// @param {list} $properties - Properties to declare
+/// @param {map} $query-map - Map of queries-to-values
 
-@mixin responsive ( $properties, $query-map ) {
+@mixin responsive($properties, $query-map) {
+
 	@if type-of($query-map) == 'map' {
 		@each $query, $value in $query-map {
 			@if $query == 'base' {
@@ -13,7 +19,7 @@
 					#{$property}: $value;
 				}
 			} @else {
-				@include query( #{$query} ) {
+				@include query(#{$query}) {
 					@each $property in $properties {
 						#{$property}: $value;
 					}
@@ -26,4 +32,5 @@
 			#{$property}: $value;
 		}
 	}
+	
 }

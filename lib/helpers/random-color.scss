@@ -1,12 +1,15 @@
-// @function random-color ()
-//
-// Return a random hexadecimal color
-//
-// @return { string:color }
+/// Return a random color
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @return {color}
 
-@function random-color () {
+@function random-color() {
 	$r : random(255);
 	$g : random(255);
 	$b : random(255);
-	@return rgb( $r, $g, $b );
+	@return rgb($r, $g, $b);
 }

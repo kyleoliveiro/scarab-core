@@ -31,19 +31,27 @@ Import `scarab-scss` at the beginning of your stylesheet:
 ## Configuration
 Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
 
-**To configure variables in your stylesheet, use the [`set()`](lib/lib/set.scss) mixin:**
+**To configure variables in your stylesheet, use the [`set()`](lib/helpers/set.scss) mixin:**
 
 ```scss
-// @function set( $definition )
-//
-// Set a new value for a key in the $SCARAB configuration map
-//
-// @param { arglist } $definition - Definition of the new value
-//
-// set() takes an arglist, $definition as its parameters.
-//
-// The last argument in $definition should be the value that you want to set.
-// Preceding that is a chain of keys in the $SCARAB variable where the value should be set.
+/// Set a new value for a key in $SCARAB
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {variable} SCARAB
+///
+/// @param {arglist} $definition - Definition of the new value
+
+/**
+ *
+ * set() takes an arglist, $definition as its parameters.
+ * The last argument in $definition should be the value that you want to set.
+ * Preceding that is a chain of keys in the $SCARAB variable where the value should be set.
+ *
+ */
 
 // Example:
 // Configure stylesheet breakpoints
@@ -117,7 +125,7 @@ Scarab provides a bunch of [helper mixins](lib/helpers/) like [`type-scale()`](l
 The [`baseline-grid()`](lib/utilities/baseline-grid.scss) and [`element-overlay()`](lib/utilities/element-overlay.scss) mixins overlay visual guides over the DOM. These help when debugging layout and trying to achieve a consistent vertical rythmn.
 
 ## Documentation
-Documentation is available in the [`docs/`](docs/) folder.
+Documentation is available in the [`sassdocs/`](sassdocs/) folder.
 
 ## Resources
 * [**scarab-carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Highly configurable framework for generating functional CSS classes

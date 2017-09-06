@@ -1,11 +1,16 @@
-// @function bl ( $value )
-//
-// Return a multiple of `get(baseline)`
-//
-// @param  { number } $value - Baseline multiplier
-// @return { number:distance:rem }
+/// Return a multiple of `get(baseline)`
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group converters
+///
+/// @require {function} get
+///
+/// @param {number} $value - Baseline multiplier
+/// @return {length} Unit depends on the baseline value
 
-@function bl ( $value ) {
+@function bl($value) {
 	$result: get(baseline) * $value;
 	@return $result;
 }

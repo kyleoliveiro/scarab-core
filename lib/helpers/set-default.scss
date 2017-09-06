@@ -1,26 +1,29 @@
-// @mixin set-default( $definition )
-//
-// Set a default value for a key in the $SCARAB configuration map
-//
-// @param { arglist } $definition - Definition of the new value
+/// Set a default value for a key in the $SCARAB configuration map
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {variable} SCARAB
+/// @require {mixin} set
+///
+/// @param {arglist} $definition - Definition of the default value
 
-@mixin set-default ( $definition... ) {
-	@if length( $definition ) == 2 {
-		$key: to-lower-case( nth( $definition, 1 ) );
-
-		@if not map-has-key( $SCARAB, $key ) {
-			@include set( $definition... );
+@mixin set-default($definition...) {
+	@if length($definition) == 2 {
+		$key: to-lower-case(nth($definition, 1));
+		@if not map-has-key($SCARAB, $key) {
+			@include set($definition...);
 		}
-	}
-
-	@if length( $definition ) > 2 {
+	} @else if length($definition) > 2 {
 		$current-map: $SCARAB;
-		@for $i from 1 through length( $definition ) - 1 {
-			$current-key: nth( $definition, $i );
-			@if map-has-key( $current-map, $current-key ) {
-				$current-map: map-get( $current-map, $current-key );
+		@for $i from 1 through length($definition) - 1 {
+			$current-key: nth($definition, $i);
+			@if map-has-key($current-map, $current-key) {
+				$current-map: map-get($current-map, $current-key);
 			} @else {
-				@include set( $definition... );
+				@include set($definition...);
 			}
 		}
 	}

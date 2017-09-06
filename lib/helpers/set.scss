@@ -1,11 +1,16 @@
-// @mixin set ( $definition )
-//
-// Set a new value for a key in $SCARAB
-//
-// @param { arglist } $definition - Definition of the new value
+/// Set a new value for a key in $SCARAB
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {variable} SCARAB
+///
+/// @param {arglist} $definition - Definition of the new value
 
-@mixin set ( $definition... ) {
-	@if length( $definition ) == 2 {
+@mixin set($definition...) {
+	@if length($definition) == 2 {
 		$key   : to-lower-case(inspect(nth($definition, 1)));
 		$value : nth($definition, 2);
 
@@ -13,17 +18,18 @@
 			$value: stringify-keys($value);
 		}
 
-		$SCARAB: map-merge($SCARAB, (
-			$key: $value
-		) ) !global;
+		$SCARAB: map-merge(
+			$SCARAB,
+			($key: $value)
+		) !global;
 	}
 
-	@if length( $definition ) > 2 {
-		$maps   : ( $SCARAB, );
+	@if length($definition) > 2 {
+		$maps   : ($SCARAB,);
 		$value  : nth($definition, -1);
 		$result : ();
 
-		@for $i from 1 through length( $definition ) - 2 {
+		@for $i from 1 through length($definition) - 2 {
 			$current-key   : to-lower-case(inspect(nth($definition, $i)));
 			$current-map   : nth($maps, -1);
 			$current-value : map-get($current-map, $current-key) or ();
@@ -42,9 +48,10 @@
 				$current-value: $result;
 			}
 
-			$result: map-merge($current-map, (
-				$current-key: $current-value
-			) );
+			$result: map-merge(
+				$current-map,
+				($current-key: $current-value)
+			);
 		}
 
 		$SCARAB: map-merge($SCARAB, $result) !global;

@@ -1,10 +1,15 @@
-// @mixin query ( $query )
-//
-// Include an @media query block for property declarations
-//
-// @param { arglist } $query - Media query descriptor
+/// Declare properties within a @media query block
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {function} get
+///
+/// @param {arglist} $query - Description of the media query
 
-@mixin query ( $query ) {
+@mixin query($query) {
 	$condition:   ();
 	$breakpoint:  ();
 	$media-query: ();
@@ -16,8 +21,8 @@
 	}
 	
 	@else if length($query) == 2 {
-		$condition:  nth( $query, 1 );
-		$breakpoint: nth( $query, 2 );
+		$condition:  nth($query, 1);
+		$breakpoint: nth($query, 2);
 
 		// e.g. query(until medium) => @media max-width(get(breakpoints, medium)) {}
 		@if $condition == 'until' {
@@ -31,8 +36,8 @@
 
 	// e.g. query(small to medium) => @media min-width(get(breakpoints, small)) and max-width(get(breakpoints, medium)) {}
 	@else if length($query) == 3 {
-		$bp1: nth( $query, 1 );
-		$bp2: nth( $query, 3 );
+		$bp1: nth($query, 1);
+		$bp2: nth($query, 3);
 		$min-query: get(breakpoints, $bp1);
 		$max-query: get(breakpoints, $bp2);
 

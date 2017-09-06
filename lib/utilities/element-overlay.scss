@@ -1,13 +1,16 @@
-// @mixin element-overlay( [$is-active], [$base-color], [$transition-duration], [$levels] )
-//
-// Add an element overlay to the :root element
-//
-// @param { boolean } $is-active           - Whether to activate the element overlay
-// @param { boolean } $base-color          - Base color of the element overlay
-// @param { boolean } $transition-duration - Delay for overlay transitions
-// @param { boolean } $levels              - Number of levels deep in the DOM to overlay
+/// Add an element overlay to the :root element
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group utilities
+///
+/// @param {bool} $is-active [true] - Whether to activate the element overlay
+/// @param {color} $base-color [random-color()] - Base color of the element overlay
+/// @param {duration} $transition-duration [0.5s] - Delay for overlay transitions
+/// @param {number} $levels [20] - Number of levels deep in the DOM to overlay
 
-@mixin element-overlay( $is-active: true, $base-color: random-color(), $transition-duration: 0.5s, $levels: 20 ) {
+@mixin element-overlay($is-active: true, $base-color: random-color(), $transition-duration: 0.5s, $levels: 20) {
 	@at-root {
 		$selector-base: ' > *';
 		$selector: ' > *';
@@ -19,18 +22,18 @@
 
 		%scarab-element-overlay {
 			@for $i from 1 through $levels {
-				$background-color: rgba( $base-color, 0.15 );
-				$border-color: desaturate( $base-color, 25 );
-				$text-color: invert( $border-color );
+				$background-color: rgba($base-color, 0.15);
+				$border-color: desaturate($base-color, 25);
+				$text-color: invert($border-color);
 
-				&#{ $selector } {
+				&#{$selector} {
 					transition: box-shadow $transition-duration;
 					background: $background-color !important;
 					user-select: none;
 					cursor: crosshair;
 
 					@each $attr in $attrs {
-						&[ #{ $attr } ]:before {
+						&[#{$attr}]:before {
 							content: $content-pre " #{ $attr }: [ " attr($attr) " ]";
 						}
 					}

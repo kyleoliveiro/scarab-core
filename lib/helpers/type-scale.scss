@@ -1,10 +1,15 @@
-// @mixin type-scale( $size )
-//
-// Generate declarations for font-size and line-height
-//
-// @param { string } $size - Name of size from $TYPE-SCALE
+/// Generate declarations for font-size and line-height
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @require {variable} SCARAB
+///
+/// @param {string} $size - Name of size in `get(font-sizes)` and `get(line-heights)`
 
-@mixin type-scale ( $size ) {
+@mixin type-scale($size) {
 	font-size: get(font-sizes, $size);
 	line-height: get(line-heights, $size);
 }
