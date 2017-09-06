@@ -125,7 +125,7 @@ Scarab provides a bunch of [helper mixins](lib/helpers/) like [`type-scale()`](l
 The [`baseline-grid()`](lib/utilities/baseline-grid.scss) and [`element-overlay()`](lib/utilities/element-overlay.scss) mixins overlay visual guides over the DOM. These help when debugging layout and trying to achieve a consistent vertical rythmn.
 
 ## Documentation
-Documentation is available in the [`sassdocs/`](sassdocs/) folder.
+Documentation is available in the [`sassdoc/`](sassdoc/) folder.
 
 ## Resources
 * [**scarab-carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Highly configurable framework for generating functional CSS classes
