@@ -29,7 +29,7 @@ Import `scarab-scss` at the beginning of your stylesheet:
 
 
 ## Documentation
-**[https://watchtowerdigital.github.io/scarab](https://watchtowerdigital.github.io/scarab/index.html)**
+**[https://watchtowerdigital.github.io/scarab](https://watchtowerdigital.github.io/scarab/)**
 
 Documentation source is available in the [`docs/`](docs/) folder.
 
@@ -79,7 +79,7 @@ Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass pr
 @include set( breakpoints, huge, 1600px );
 ```
 
-For more examples of configuration, have a look at the [`#configuration`](https://watchtowerdigital.github.io/scarab/index.html) section in the docs.
+For more examples of configuration, have a look at the [`#configuration`](https://watchtowerdigital.github.io/scarab/#configuration) section in the docs.
 
 ### Responsive property declarations
 Declare responsive properties with the [`responsive()`](lib/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
