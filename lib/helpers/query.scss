@@ -8,6 +8,43 @@
 /// @require {function} get
 ///
 /// @param {arglist} $query - Description of the media query
+///
+/// @example
+///   @include query( small ) {
+///       body {
+///           background-color: grey;
+///       }
+///   }
+///   
+///   @include query( below medium ) {
+///       .navigation {
+///           display: none;
+///       }
+///   }
+///   
+///   @include query( medium to huge ) {
+///       .page-title {
+///           font-size: 3rem;
+///       }
+///   }
+///
+///   // The above code compiles to the following CSS:
+///   
+///   @media (min-width: 600px) {
+///       body {
+///           background-color: grey
+///       }
+///   }
+///   @media (max-width: 1024px) {
+///       .navigation {
+///           display: none
+///       }
+///   }
+///   @media all and (min-width: 1024px) and (max-width: 1600px) {
+///       .page-title {
+///           font-size: 3rem
+///       }
+///   }
 
 @mixin query($query) {
 	$condition:   ();

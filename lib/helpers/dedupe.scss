@@ -1,5 +1,8 @@
 /// Remove keys from a map which contain duplicate values
 ///
+/// If a map contains key-value pairs with multiple values,
+/// the first key in the map is retained, and duplicates are removed.
+///
 /// @author Kyle Oliveiro
 ///
 /// @access public
@@ -8,6 +11,21 @@
 /// @param {string} $map - Name of map to retrieve keys from
 /// @param {bool} $dedupe [true] - Whether to dedupe the map before getting keys
 /// @return {list}
+///
+/// @example
+///   $colors: (
+///     blue:  #0000ff,
+///     red:   #ff0000,
+///     green: #00ff00,
+///     brand: #0000ff
+///   );
+///
+///   @debug dedupe($colors);
+///   // (
+///   //    blue:  #0000ff,
+///   //    red:   #ff0000,
+///   //    green: #00ff00
+///   // );
 
 @function dedupe($map) {
 	$deduped-map : ();

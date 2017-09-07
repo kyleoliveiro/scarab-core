@@ -7,6 +7,11 @@
 ///
 /// @param {number} $value - Value (in px) to convert
 /// @return {rem}
+///
+/// @example
+///   .element {
+///     font-size: rem(32); // 2rem
+///   }
 
 @function rem($value) {
 	$result: $value / 16 * 1rem;

@@ -9,6 +9,13 @@
 ///
 /// @param {number} $value - Baseline multiplier
 /// @return {length} Unit depends on the baseline value
+///
+/// @example
+///   @include set(baseline, 1rem);
+///  
+///   .element {
+///     margin-bottom: bl(2); // 2rem
+///   }
 
 @function bl($value) {
 	$result: get(baseline) * $value;

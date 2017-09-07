@@ -7,10 +7,9 @@ Scarab is a Sass utility framework designed for rapid stylesheet development.
 
 ## Table of contents
 * [Installation](#installation)
-* [Configuration](#configuration)
 * [Features](#features)
     * [No style declarations](#no-style-declarations)
-    * [Variable management](#variable-management)
+    * [Stylesheet configuration](#stylesheet-configuration)
     * [Responsive property declarations](#responsive-property-declarations)
     * [Helper mixins](#helper-mixins)
     * [Development utilities](#development-utilities)
@@ -28,7 +27,19 @@ Import `scarab-scss` at the beginning of your stylesheet:
 @import 'path/to/node_modules/scarab-scss/scarab';
 ```
 
-## Configuration
+
+## Documentation
+**[https://watchtowerdigital.github.io/scarab](https://watchtowerdigital.github.io/scarab)**
+
+Documentation source is available in the [`docs/`](docs/) folder.
+
+
+## Features
+
+### No style declarations
+Scarab is a utility framework, not a UI library. Importing `scarab-scss` outputs zero CSS.
+
+### Stylesheet configuration
 Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
 
 **To configure variables in your stylesheet, use the [`set()`](lib/helpers/set.scss) mixin:**
@@ -68,15 +79,7 @@ Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass pr
 @include set( breakpoints, huge, 1600px );
 ```
 
-For more examples of configuration, have a look at the [`scarab-carapace`](https://github.com/watchtowerdigital/scarab-carapace/src/config/) configuration folder.
-
-## Features
-
-### No style declarations
-Scarab is a utility framework, not a UI library. Importing `scarab-scss` outputs zero CSS.
-
-### Variable management
-Conveniently access and manage your global stylesheet configuration with the `set()` mixin, and [getter functions](lib/getters/).
+For more examples of configuration, have a look at the [`#configuration`](https://watchtowerdigital.github.io/scarab) section in the docs.
 
 ### Responsive property declarations
 Declare responsive properties with the [`responsive()`](lib/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
@@ -123,9 +126,6 @@ Scarab provides a bunch of [helper mixins](lib/helpers/) like [`type-scale()`](l
 
 ### Development utilities
 The [`baseline-grid()`](lib/utilities/baseline-grid.scss) and [`element-overlay()`](lib/utilities/element-overlay.scss) mixins overlay visual guides over the DOM. These help when debugging layout and trying to achieve a consistent vertical rythmn.
-
-## Documentation
-Documentation is available in the [`sassdoc/`](sassdoc/) folder.
 
 ## Resources
 * [**scarab-carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Highly configurable framework for generating functional CSS classes

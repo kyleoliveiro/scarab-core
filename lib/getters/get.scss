@@ -6,9 +6,28 @@
 /// @group getters
 ///
 /// @require {variable} SCARAB
+/// @see {mixin} set
 ///
 /// @param {arglist} $keys - Description of key to retrieve the value from
 /// @return {any}
+///
+/// @example
+///   @include set( breakpoints, (
+///     small  : 600px,
+///     medium : 1024px,
+///     large  : 1300px,
+///     huge   : 1600px
+///   ) );
+///
+///   @debug get(breakpoints);
+///   // (
+///   //     small  : 600px,
+///   //     medium : 1024px,
+///   //     large  : 1300px,
+///   //     huge   : 1600px
+///   // )
+///
+///   @debug get(breakpoints, small); // 600px
 
 @function get($keys...) {
 	$value: $SCARAB;

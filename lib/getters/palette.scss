@@ -9,6 +9,23 @@
 ///
 /// @param {arglist} $color - Description of color to return
 /// @return {color}
+/// @example
+///   @include set( palettes, (
+///     grey: (
+///       light : #EEEEEE,
+///       null  : #D0D0D0,
+///       dark  : #404040
+///     ), ...
+///   ) );
+///
+///   .element {
+///     background-color: palette(light grey); // #EEEEEE
+///     color: palette(dark grey);             // #404040
+///
+///     &:hover {
+///       color: palette(grey); // palette(null grey) => #D0D0D0
+///     }
+///   }
 
 @function palette($color) {
 	$value: ();

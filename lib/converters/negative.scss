@@ -7,6 +7,19 @@
 ///
 /// @param {number|list|map} $value - Number, list, or map to convert
 /// @return {number|list|map}
+///
+/// @example
+///   $number: 10px;
+///   $number: negative($number); // -10px;
+///
+///   $list: (1, -2rem, 30px);
+///   $list: negative($list);     // (-1, -2rem, -30px);
+///
+///   $map: (
+///     a: 1,
+///     b: (1, -2rem, 30px)
+///   );
+///   $map: negative($map);       // ( a: -1, b: (-1, -2rem, -30px) );
 
 @function negative($value) {
 	@if type-of($value) == 'number' {

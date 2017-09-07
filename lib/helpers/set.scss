@@ -6,8 +6,31 @@
 /// @group helpers
 ///
 /// @require {variable} SCARAB
+/// @see {function} get
 ///
 /// @param {arglist} $definition - Definition of the new value
+///
+/// @example
+///   @include set( baseline, 1.25rem );
+///   
+///   @debug get(baseline); // 1.25rem
+///   
+///   @include set( breakpoints, (
+///       small  : 600px,
+///       medium : 1024px,
+///       large  : 1300px,
+///       huge   : 1600px
+///    ) );
+///   
+///   @debug get(breakpoints);
+///   // (
+///   //     small  : 600px,
+///   //     medium : 1024px,
+///   //     large  : 1300px,
+///   //     huge   : 1600px
+///   // )
+///   
+///   @debug get(breakpoints, small); // 600px
 
 @mixin set($definition...) {
 	@if length($definition) == 2 {

@@ -9,6 +9,13 @@
 /// @param {string} $needle - Substring to search for
 /// @param {string} $replacement [''] - Replacement string
 /// @return {string}
+///
+/// @example
+///   $string: 'Beetle';
+///   $string: str-replace($string, 'e');      // Btl
+///
+///   $string: 'Beetle';
+///   $string: str-replace($string, 'e', '3'); // B33tl3
 
 @function str-replace($haystack, $needle, $replacement: '') {
 	@if $replacement == null {

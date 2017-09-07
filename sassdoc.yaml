@@ -1,0 +1,8 @@
+dest: ./docs
+exclude:
+  - node_modules/**/*
+  - build/**/*
+  - docs/**/*
+verbose: true
+basePath: https://github.com/watchtowerdigital/scarab/tree/master
+googleAnalytics: UA-106098263-1

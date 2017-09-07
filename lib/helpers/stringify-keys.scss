@@ -1,8 +1,36 @@
-// @function stringify-map( $map )
-//
-// Returns a map with stringified keys
-//
-// @param { map } $map - The map to stringify
+/// Return a map with stringified keys
+///
+/// @author Kyle Oliveiro
+///
+/// @access public
+/// @group helpers
+///
+/// @param {map} $map - The map to stringify
+///
+/// @example
+///   $map: (
+///       0:   0,
+///       one: 1,
+///       tw0: two
+///   );
+///   
+///   @each $key, $val in $map {
+///       @debug type-of($key);
+///   }
+///   
+///   // DEBUG: number
+///   // DEBUG: string
+///   // DEBUG: string
+///   
+///   $stringified-map: stringify-keys($map);
+///   
+///   @each $key, $val in $stringified-map {
+///       @debug type-of($key);
+///   }
+///   
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
 
 @function stringify-keys( $map ) {
 	$stringified-map: ();

@@ -6,6 +6,11 @@
 /// @group helpers
 ///
 /// @return {color}
+///
+/// @example
+///   body {
+///       background-color: random-color();
+///   }
 
 @function random-color() {
 	$r : random(255);

@@ -9,6 +9,17 @@
 /// @require {mixin} set
 ///
 /// @param {arglist} $definition - Definition of the default value
+///
+/// @example
+///   @include set-default( baseline, 1rem );
+///   @debug get(baseline) // 1rem
+///   
+///   @include set( baseline, 1.25rem );
+///   @debug get(baseline) // 1.25rem
+///   
+///   // This will not work, since a value already exists
+///   @include set-default( baseline, 1rem ); 
+///   @debug get(baseline) // 1.25rem
 
 @mixin set-default($definition...) {
 	@if length($definition) == 2 {

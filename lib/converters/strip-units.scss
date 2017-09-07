@@ -7,6 +7,10 @@
 ///
 /// @param {number} $value - Value with units
 /// @return {number}
+///
+/// @example
+///   $number: 10px;
+///   $number: strip-units(10px); // 10
 
 @function strip-units($value) {
 	$result: $value / ($value * 0 + 1);

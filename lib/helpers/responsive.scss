@@ -9,6 +9,39 @@
 ///
 /// @param {list} $properties - Properties to declare
 /// @param {map} $query-map - Map of queries-to-values
+///
+/// @example
+///   .button {
+///       @include responsive(( padding-left, padding-right ), (
+///           base:   14px,
+///           medium: 18px,
+///           large:  22px
+///       ));
+///   }
+///
+///   // The above code will output:
+///
+///   .button {
+///       padding-left: 14px;
+///       padding-right: 14px;
+///   }
+///   
+///   // 'medium' breakpoint
+///   @media (min-width: 1024px) {
+///       .button {
+///           padding-left: 18px;
+///           padding-right: 18px;
+///       }
+///   }
+///   
+///   // 'large' breakpoint
+///   @media (min-width: 1300px) {
+///       .button {
+///           padding-left: 22px;
+///           padding-right: 22px;
+///       }
+///   }
+
 
 @mixin responsive($properties, $query-map) {
 
