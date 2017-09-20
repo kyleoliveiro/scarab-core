@@ -1,22 +1,17 @@
-# scarab-scss
+# Scarab
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
 
 **Sass utility framework for rapid stylesheet development**
+- No style declarations
+- Stylesheet configuration
+- Responsive property declarations
+- Helper mixins
+- Development utilities
 
-### [Documentation](https://watchtowerdigital.github.io/scarab)
+## [Documentation](https://watchtowerdigital.github.io/scarab)
 
 Documentation source is available in the [`docs/`](docs/) folder.
-
-## Table of contents
-* [Installation](#installation)
-* [Features](#features)
-    * [No style declarations](#no-style-declarations)
-    * [Stylesheet configuration](#stylesheet-configuration)
-    * [Responsive property declarations](#responsive-property-declarations)
-    * [Helper mixins](#helper-mixins)
-    * [Development utilities](#development-utilities)
-* [Resources](#resources)
 
 ## Installation
 To get started, add Scarab as a dev-dependency in your project via npm:
@@ -59,17 +54,17 @@ Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass pr
 
 // Example:
 // Configure stylesheet breakpoints
-@include set( breakpoints, (
-    small:    600px,
-    medium:   900px,
-    large:    1300px
-) );
+@include set(breakpoints, (
+    small:  600px,
+    medium: 900px,
+    large:  1300px
+));
 
 // Replace the existing value of the 'medium' breakpoint
-@include set( breakpoints, medium, 1024px );
+@include set(breakpoints, medium, 1024px);
 
 // Define a new breakpoint, 'huge', and set its value to 1600px
-@include set( breakpoints, huge, 1600px );
+@include set(breakpoints, huge, 1600px);
 ```
 
 For more examples of configuration, have a look at the [`#configuration`](https://watchtowerdigital.github.io/scarab/#configuration) section in the docs.
@@ -81,7 +76,7 @@ Declare responsive properties with the [`responsive()`](lib/helpers/responsive.s
 // Example
 
 .button {
-    @include responsive(( padding-left, padding-right ), (
+    @include responsive((padding-left, padding-right), (
         base:   14px,
         medium: 18px,
         large:  22px
