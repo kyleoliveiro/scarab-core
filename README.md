@@ -2,8 +2,11 @@
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
 
-## Sass utility framework
-Scarab is a Sass utility framework designed for rapid stylesheet development.
+**Sass utility framework for rapid stylesheet development**
+
+### [Documentation](https://watchtowerdigital.github.io/scarab)
+
+Documentation source is available in the [`docs/`](docs/) folder.
 
 ## Table of contents
 * [Installation](#installation)
@@ -13,7 +16,6 @@ Scarab is a Sass utility framework designed for rapid stylesheet development.
     * [Responsive property declarations](#responsive-property-declarations)
     * [Helper mixins](#helper-mixins)
     * [Development utilities](#development-utilities)
-* [Documentation](#documentation)
 * [Resources](#resources)
 
 ## Installation
@@ -27,13 +29,6 @@ Import `scarab-scss` at the beginning of your stylesheet:
 @import 'path/to/node_modules/scarab-scss/scarab';
 ```
 
-
-## Documentation
-**[https://watchtowerdigital.github.io/scarab](https://watchtowerdigital.github.io/scarab/)**
-
-Documentation source is available in the [`docs/`](docs/) folder.
-
-
 ## Features
 
 ### No style declarations
@@ -46,8 +41,6 @@ Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass pr
 
 ```scss
 /// Set a new value for a key in $SCARAB
-///
-/// @author Kyle Oliveiro
 ///
 /// @access public
 /// @group helpers
