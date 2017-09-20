@@ -1,4 +1,4 @@
-# Scarab
+# ![Scarab](scarab-logo.png)
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
 
