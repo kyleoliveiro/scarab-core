@@ -1,4 +1,4 @@
-# <img src="scarab-logo.png" width="275" alt="Scarab">
+# <img src="scarab-logo.png" width="275" height="96" alt="Scarab">
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
 
