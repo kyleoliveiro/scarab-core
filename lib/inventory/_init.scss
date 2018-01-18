@@ -43,4 +43,4 @@ $__SCARAB_INVENTORY : (
 
 // Merge into $__SCARAB
 $__SCARAB: map-merge($__SCARAB, ('INVENTORY': $__SCARAB_INVENTORY));
-$__SCARAB_OPTIONS: null;
+$__SCARAB_INVENTORY: null;
