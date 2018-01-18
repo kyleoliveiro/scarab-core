@@ -1,0 +1,19 @@
+/// Converts `px` to `em`.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} unit-strip
+///
+/// @param {Number} $value - Value (in px) to convert
+/// @param {Number} $base-font-size [16] - Value of the base font size (in px)
+/// 
+/// @return {Number} - `$value` in `em` units
+///
+/// @example
+///   em(32)
+///   // => 2em
+
+@function em($value, $base-font-size: 16) {
+  $result: $value / unit-strip($base-font-size) * 1em;
+  @return $result;
+}

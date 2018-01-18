@@ -1,0 +1,19 @@
+@include describe('gradient [func]') {
+
+  @include it('Returns a `gradient` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'gradient': (
+          '0': none,
+          'hz-white-black': linear-gradient(to right, white 0%, black 100%)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      gradient(hz-white-black),
+      linear-gradient(to right, white 0%, black 100%)
+    );
+  }
+
+}

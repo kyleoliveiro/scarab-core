@@ -1,0 +1,21 @@
+@include describe('measure [func]') {
+
+  @include it('Returns a `measure` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'measure': (
+          '0': none,
+          's': 12em,
+          'm': 20em,
+          'l': 30em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      measure(m),
+      20em
+    );
+  }
+
+}

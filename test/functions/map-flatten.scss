@@ -1,0 +1,92 @@
+@include describe('map-flatten [func]') {
+
+  @include it('Flattens a map one level deep') {
+    @include assert-equal(
+      map-flatten((
+        'blue': #0000ff,
+        'red': (
+          '1': #ff0000,
+          '2': #cc0000
+        ),
+        'cyan': (
+          '1': (
+            'a': #00ffff,
+            'b': #00cccc
+          ),
+          '2': (
+            'a': #00ffff,
+            'b': #00cccc
+          )
+        )
+      )),
+      (
+        'blue': #0000ff,
+        'red-1': #ff0000,
+        'red-2': #cc0000,
+        'cyan-1': (
+          'a': #00ffff,
+          'b': #00cccc
+        ),
+        'cyan-2': (
+          'a': #00ffff,
+          'b': #00cccc
+        )
+      )
+    );
+  }
+
+  @include it('Accepts a custom separator') {
+    @include assert-equal(
+      map-flatten((
+        'blue': #0000ff,
+        'red': (
+          '1': #ff0000,
+          '2': #cc0000
+        ),
+        'cyan': (
+          '1': (
+            'a': #00ffff,
+            'b': #00cccc
+          ),
+          '2': (
+            'a': #00ffff,
+            'b': #00cccc
+          )
+        )
+      ), '@='),
+      (
+        'blue': #0000ff,
+        'red@=1': #ff0000,
+        'red@=2': #cc0000,
+        'cyan@=1': (
+          'a': #00ffff,
+          'b': #00cccc
+        ),
+        'cyan@=2': (
+          'a': #00ffff,
+          'b': #00cccc
+        )
+      )
+    );
+  }
+
+  @include it('Does not generate variant for default key') {
+    @include assert-equal(
+      map-flatten((
+        transparent: transparent,
+        grey: (
+          _: #cccccc,
+          1: #999999,
+          2: #333333
+        )
+      )),
+      (
+        transparent: transparent,
+        grey: #cccccc,
+        grey-1: #999999,
+        grey-2: #333333
+      )
+    );
+  }
+
+}

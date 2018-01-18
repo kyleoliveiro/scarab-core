@@ -1,0 +1,46 @@
+/// Finds and removes a value in a list.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to search
+/// @param {*} $search - Value to remove
+/// @param {Bool} $all [false] - Whether to remove all occurrances of the value
+/// 
+/// @return {List} - New list with value(s) removed
+/// 
+/// @example
+///   list-remove(1 2 3 1 2 3, 2)
+///   // => (1 3 1 2 3)
+///   
+///   list-remove(1 2 3 1 2 3, 2, true)
+///   // => (1 3 1 3)
+
+@function list-remove($list, $search, $all: false) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+
+  $result: ();
+
+  // Remove the first instance of $search
+  $first-search-index: index($list, $search);
+  $i: 0;
+  
+  @each $item in $list {
+    $i: $i + 1;
+    @if $i != $first-search-index {
+      $result: append($result, $item);
+    }
+  }
+
+  @if $all == true {
+    // Remove all remanining instances of $search
+    @while not not index($result, $search) {
+      $result: list-remove($result, $search);
+    }
+  }
+
+  // Preserve list seperator and brackets
+  $result: join($result, (), $separator, $bracketed);
+
+  @return $result;
+}

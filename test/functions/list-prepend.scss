@@ -1,0 +1,54 @@
+@include describe('list-prepend [func]') {
+
+  @include it('Prepends a single value to the start of a list') {
+    @include assert-equal(
+      list-prepend(10px 20px, 30px),
+      (30px 10px 20px),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-prepend((10px, 20px), 30px),
+      (30px, 10px, 20px),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-prepend([10px 20px], 30px),
+      [30px 10px 20px],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-prepend([10px, 20px], 30px),
+      [30px, 10px, 20px],
+      'Supports bracketed comma lists'
+    );
+  }
+
+  @include it('Prepends multiple values to the start of a list') {
+    @include assert-equal(
+      list-prepend(1 2, 3, 4, 5 6),
+      ((5 6) 4 3 1 2),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-prepend((1, 2), 3, 4, (5, 6)),
+      ((5, 6), 4, 3, 1, 2),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-prepend([1 2], 3, 4, [5 6]),
+      [[5 6] 4 3 1 2],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-prepend([1, 2], 3, 4, [5, 6]),
+      [[5, 6], 4, 3, 1, 2],
+      'Supports bracketed comma lists'
+    );
+  }
+}

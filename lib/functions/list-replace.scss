@@ -1,0 +1,34 @@
+/// Finds and replaces a value in a list.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to search
+/// @param {*} $search - Value search for
+/// @param {*} $replace - Replacement value
+/// @param {Bool} $all [false] - Whether to replace all occurrances of the value
+/// 
+/// @return {List} - New list with value(s) replaced
+/// 
+/// @example
+///   list-replace((1 2 3), 2)
+///   // => (1 2)
+///   
+///   list-replace((1 2 2 2 3), 2, 4)
+///   // => (1 4 2 2 3)
+///   
+///   list-replace((1 2 2 2 3), 2, 4, true)
+///   // => (1 4 4 4 3)
+
+@function list-replace($list, $search, $replace, $all: false) {
+  // Replace the first instance of $search
+  $result: set-nth($list, index($list, $search), $replace);
+
+  @if $all == true {
+    // Replace all remanining instances of $search
+    @while not not index($result, $search) {
+      $result: list-replace($result, $search, $replace);
+    }
+  }
+
+  @return $result;
+}

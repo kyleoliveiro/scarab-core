@@ -1,0 +1,44 @@
+/// Escapes a string for use as a CSS class name.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} const
+/// @requires {function} str-remove
+/// @requires {function} str-escape
+/// @requires {function} str-prepend
+/// @requires {function} list-contains
+/// 
+/// @link https://mathiasbynens.be/notes/css-escapes Notes on CSS escapes
+///
+/// @param {String} $class-name - The class name to escape
+/// 
+/// @return {String} - Escaped string
+///
+/// @example
+///   class-escape('blue')
+///   // => 'blue'
+///   
+///   class-escape('13lue')
+///   // => '\31 3lue'
+///   
+///   class-escape('@cl@ss:(1)')
+///   // => '\@cl\@ss\3A \(1\)'
+
+@function class-escape($class-name) {
+  $result: $class-name;
+  $first-char: str-slice($class-name, 1, 1);
+
+  // Remove whitespace
+  $result: str-remove($result, ' ', true);
+
+  // Escape special characters
+  $result: str-escape($result);
+
+  // Unicode-escape the first character if it's a number
+  @if list-contains(const(CHARSPACE, DECIMAL), $first-char) {
+    $result: str-slice($result, 2); // Remove the first character
+    $result: str-prepend($result, ' ', $first-char, '\\3');
+  }
+
+  @return $result;
+}

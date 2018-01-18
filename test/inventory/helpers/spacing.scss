@@ -1,0 +1,21 @@
+@include describe('spacing [func]') {
+
+  @include it('Returns a `spacing` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'spacing': (
+          '0': none,
+          's': 2rem,
+          'm': 4rem,
+          'l': 8rem
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      spacing(l),
+      8rem
+    );
+  }
+
+}

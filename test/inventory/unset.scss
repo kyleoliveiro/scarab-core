@@ -1,0 +1,189 @@
+@include describe('unset [func]') {
+
+  @include it('Removes a key-value pair from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'breakpoints': (
+          's': 100px,
+          'm': 200px,
+          'l': 300px
+        )
+      )
+    ) !global;
+
+    $_: unset(baseline);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'breakpoints': (
+            's': 100px,
+            'm': 200px,
+            'l': 300px
+          )
+        )
+      ))
+    );
+
+
+
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'palettes': (
+          'blue': (
+            'light': skyblue,
+            'base': blue,
+            'dark': darkblue
+          )
+        )
+      )
+    ) !global;
+
+    $_: unset(palettes, blue, base);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'baseline': 1rem,
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Removes a nested key'
+    );
+
+
+
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'palettes': (
+          'blue': (
+            'light': skyblue,
+            'base': blue,
+            'dark': darkblue
+          )
+        )
+      )
+    ) !global;
+
+    $_: unset(palettes, blue);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'baseline': 1rem,
+          'palettes': (
+          )
+        )
+      )),
+      'Removes a nested key that is a color name'
+    );
+  }
+
+}
+
+
+
+@include describe('unset [mixin]') {
+
+  @include it('Removes a key-value pair from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'breakpoints': (
+          's': 100px,
+          'm': 200px,
+          'l': 300px
+        )
+      )
+    ) !global;
+
+    @include unset(baseline);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'breakpoints': (
+            's': 100px,
+            'm': 200px,
+            'l': 300px
+          )
+        )
+      ))
+    );
+
+
+
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'palettes': (
+          'blue': (
+            'light': skyblue,
+            'base': blue,
+            'dark': darkblue
+          )
+        )
+      )
+    ) !global;
+
+    @include unset(palettes, blue, base);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'baseline': 1rem,
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Removes a nested key'
+    );
+
+
+
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem,
+        'palettes': (
+          'blue': (
+            'light': skyblue,
+            'base': blue,
+            'dark': darkblue
+          )
+        )
+      )
+    ) !global;
+
+    @include unset(palettes, blue);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'INVENTORY': (
+          'baseline': 1rem,
+          'palettes': (
+          )
+        )
+      )),
+      'Removes a nested key that is a color name'
+    );
+  }
+
+}

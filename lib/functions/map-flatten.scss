@@ -1,0 +1,38 @@
+/// Flattens a map one-level deep.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} option
+/// @requires {function} map-append
+///
+/// @param {Map} $map - Map to operate on
+/// @param {String} $separator [option(namescheme, variant-prefix)] - Separator to use for flattened key names
+/// 
+/// @return {Map} - New flattened map
+///
+/// @example
+///   map-flatten(('cyan': ('1': #00ffff, '2': #00aaaa)), '-')
+///   // => ('cyan-1': #00ffff, 'cyan-2': #00aaaa)
+
+@function map-flatten($map, $separator: option(namescheme, variant-prefix)) {
+  $result: ();
+
+  @each $key, $val in $map {
+    @if type-of($val) == 'map' {
+      $_result: ();
+      @each $k, $v in $val {
+        @if $k == option(namescheme, default-key) {
+          $_result: map-append($_result, #{$key}, $v);
+        } @else {
+          $_result: map-append($_result, #{$key}#{$separator}#{$k}, $v);
+        }
+      }
+
+      $result: map-merge($result, $_result);
+    } @else {
+      $result: map-append($result, $key, $val);
+    }
+  }
+
+  @return $result;
+}

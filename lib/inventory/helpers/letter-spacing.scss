@@ -1,0 +1,35 @@
+/// Returns a `letter-spacing` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function ls()`
+/// - `@function tracking()`
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function letter-spacing($path...) {
+  $result: get(letter-spacing, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias letter-spacing
+
+@function ls($args...) {
+  @return letter-spacing($args...);
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias letter-spacing
+
+@function tracking($args...) {
+  @return letter-spacing($args...);
+}

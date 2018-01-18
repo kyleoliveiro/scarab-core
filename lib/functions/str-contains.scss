@@ -1,0 +1,22 @@
+/// Checks if a string contains a substring.
+///
+/// @group 5_functions
+///
+/// @requires {function} is-null
+/// 
+/// @param {String} $string - String to search in
+/// @param {String} $substring - Substring to search for
+/// 
+/// @return {Bool} - Whether `$string` contains `$substring`
+///
+/// @example
+///   str-contains('team', 'i')
+///   // => false
+///   
+///   str-contains('hello', 'hell')
+///   // => true
+
+@function str-contains($string, $substring) {
+  $result: if(is-null(str-index($string, $substring)), false, true);
+  @return $result;
+}

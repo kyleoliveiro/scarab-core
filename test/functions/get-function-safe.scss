@@ -1,0 +1,28 @@
+@include describe('get-function-safe [func]') {
+
+  @include it('Safely calls native `get-function` if supported') {
+    // Expect {func} if `get-function` is supported.
+    // Otherwise, expect a {string}
+    @if function-exists('get-function') {
+      @include assert-equal(
+        get-function-safe('rgb'),
+        get-function('rgb'),
+        'Current Sass compiler supports `get-function()`'
+      );
+    } @else {
+      @include assert-equal(
+        get-function-safe('rgb'),
+        'rgb',
+        'Current Sass compuler does not support `get-function()`'
+      );
+    }
+  }
+
+  @include it('Can be used safely with `call()`') {
+    @include assert-equal(
+      call(get-function-safe('str-length'), 'hello world'),
+      11
+    );
+  }
+
+}

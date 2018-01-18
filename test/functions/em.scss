@@ -1,0 +1,17 @@
+@include describe('em [func]') {
+
+  @include it('Converts px to em') {
+    @include assert-equal(
+      em(32),
+      2em,
+      'Default base font size'
+    );
+
+    @include assert-equal(
+      em(32, 10),
+      3.2em,
+      'Custom base font size'
+    );
+  }
+
+}

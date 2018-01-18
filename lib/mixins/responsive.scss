@@ -1,0 +1,28 @@
+/// Generates responsive property declaration(s).
+///
+/// @group 6_mixins
+///
+/// @requires {function} get
+/// @requires {function} option
+/// @requires {mixin} query
+///
+/// @param {String|List} $properties - Properties to declare
+/// @param {Map} $breakpoint-map - Map of breakpoint values to property values
+/// 
+/// @output Responsive properties
+
+@mixin responsive($properties, $breakpoint-map) {
+	@each $breakpoint, $value in $breakpoint-map {
+		@if $breakpoint == option(namescheme, default-key) {
+			@each $property in $properties {
+				#{$property}: $value;
+			}
+		} @else {
+			@include query($breakpoint) {
+				@each $property in $properties {
+					#{$property}: $value;
+				}
+			}
+		}
+	}
+}

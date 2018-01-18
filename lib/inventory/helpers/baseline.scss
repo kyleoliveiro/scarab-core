@@ -1,0 +1,35 @@
+/// Returns a multiple of `get(baseline)`.
+/// 
+/// **Aliases**
+/// - `@function bl()`
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {Number} $multiplier [1] - Baseline multiplier
+/// 
+/// @return {Number} - Unit depends on the baseline value
+///
+/// @example
+///   @include set(baseline, 1rem);
+///
+///   baseline(2)
+///   // => 2rem
+///   
+///   bl(2.5)
+///   // => 2.5rem
+
+@function baseline($multiplier: 1) {
+	$result: get(baseline) * $multiplier;
+	@return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias baseline
+
+@function bl($args...) {
+  @return baseline($args...);
+}

@@ -1,0 +1,33 @@
+@include describe('map-each-key [func]') {
+
+  @include it('Calls a function on each key in a map') {
+    @include assert-equal(
+      map-each-key((
+        a : 1,
+        b : 2,
+        c : 3
+      ), 'to-upper-case'),
+      (
+        A : 1,
+        B : 2,
+        C : 3
+      )
+    );
+  }
+
+  @include it('Supports passing args to the called function') {
+    @include assert-equal(
+      map-each-key((
+        'apple' : 1,
+        'orange' : 2,
+        'banana' : 3
+      ), 'str-replace', ('a', '4', true)),
+      (
+        '4pple' : 1,
+        'or4nge' : 2,
+        'b4n4n4' : 3
+      )
+    );
+  }
+
+}

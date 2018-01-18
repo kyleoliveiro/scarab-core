@@ -1,0 +1,62 @@
+/// Converts direct keys of a map to strings.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} to-string
+///
+/// @param {Map} $map - Map to stringify
+/// 
+/// @return {Map} - New map with direct keys converted to strings
+///
+/// @example
+///   $map: (
+///     1:     1,
+///     hello: 2,
+///     red:   3,
+///     map:   (
+///     	1:    1,
+///     	blue: 2 
+///     )
+///   );
+///   
+///   @each $key, $val in $map {
+///     @debug type-of($key);
+///     
+///     @if type-of($val) == 'map' {
+///     	@each $k, $v in $val {
+///     		@debug type-of($v);
+///     	}
+///     }
+///   }
+///   
+///   // DEBUG: number
+///   // DEBUG: string
+///   // DEBUG: color
+///   // DEBUG: string
+///   // DEBUG: number
+///   // DEBUG: color
+///   
+///   $stringified-map: stringify-keys($map);
+///   
+///   @each $key, $val in $stringified-map {
+///       @debug type-of($key);
+///   }
+///   
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: number
+///   // DEBUG: color
+
+@function map-stringify-keys($map) {
+	$result: ();
+
+	@each $key, $value in $map {
+		$key: quote(to-string($key));
+		$result: map-merge($result, ($key: $value));
+	}
+
+	@return $result;
+}
+

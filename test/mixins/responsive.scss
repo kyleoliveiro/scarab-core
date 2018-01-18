@@ -1,0 +1,66 @@
+@include describe('responsive [mixin]') {
+
+  @include it('Generates responsive properties') {
+    
+    @include assert('Single property') {
+      @include output {
+        @include responsive(margin, (
+          _     : 11px,
+          111px : 27px,
+          278px : 34px,
+          394px : 46px
+        ));
+      }
+
+      @include expect {
+        margin: 11px;
+
+        @media (min-width: 111px) {
+          margin: 27px;
+        }
+
+        @media (min-width: 278px) {
+          margin: 34px;
+        }
+
+        @media (min-width: 394px) {
+          margin: 46px;
+        }
+      }
+    }
+
+    @include assert('Multiple properties') {
+      @include output {
+        @include responsive((margin, padding), (
+          _     : 11px,
+          111px : 27px,
+          278px : 34px,
+          394px : 46px
+        ));
+      }
+
+      @include expect {
+        margin: 11px;
+        padding: 11px;
+
+        @media (min-width: 111px) {
+          margin: 27px;
+          padding: 27px;
+        }
+
+        @media (min-width: 278px) {
+          margin: 34px;
+          padding: 34px;
+        }
+
+        @media (min-width: 394px) {
+          margin: 46px;
+          padding: 46px;
+        }
+      }
+    }
+
+  }
+
+}
+

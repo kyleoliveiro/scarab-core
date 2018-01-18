@@ -1,0 +1,10 @@
+@include describe('random-color [func]') {
+
+  @include it('Returns a random color value') {
+    @include assert-equal(
+      type-of(random-color()),
+      color
+    );
+  }
+
+}

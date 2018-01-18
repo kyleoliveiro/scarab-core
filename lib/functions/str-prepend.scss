@@ -1,0 +1,25 @@
+/// Prepends to a string.
+///
+/// @group 5_functions
+///
+/// @param {String} $string - String to prepend to
+/// @param {ArgList} $strings - String(s) to be prepended
+///
+/// @return {String}
+///
+/// @example
+///   str-prepend('hello', 'world')
+///   // => 'worldhello'
+///   
+///   str-prepend('hello', ' ', 'world')
+///   // => 'world hello'
+
+@function str-prepend($string, $strings...) {
+  $result: $string;
+  
+  @each $string in $strings {
+    $result: $string + $result;
+  }
+
+  @return $result;
+}

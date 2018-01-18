@@ -1,0 +1,89 @@
+@include describe('to-string [func]') {
+
+  @include it('Converts a value to an unquoted string') {
+    @include assert-equal(
+      to-string(false),
+      'false',
+      'Boolean'
+    );
+
+    @include assert-equal(
+      to-string(null),
+      'null',
+      'Null'
+    );
+
+    @include assert-equal(
+      to-string(1),
+      '1',
+      'Integer'
+    );
+
+    @include assert-equal(
+      to-string(3.142),
+      '3.142',
+      'Float'
+    );
+
+    @include assert-equal(
+      to-string(32px),
+      '32px',
+      'Number with units'
+    );
+
+    @include assert-equal(
+      to-string(blue),
+      'blue',
+      'Color'
+    );
+
+    @include assert-equal(
+      to-string((1,2,3)),
+      '1, 2, 3',
+      'Comma list'
+    );
+
+    @include assert-equal(
+      to-string((1 2 3)),
+      '1 2 3',
+      'Space list'
+    );
+
+    @include assert-equal(
+      to-string([1,2,3]),
+      '[1, 2, 3]',
+      'Comma bracket list'
+    );
+
+    @include assert-equal(
+      to-string([1 2 3]),
+      '[1 2 3]',
+      'Space bracket list'
+    );
+
+    @include assert-equal(
+      to-string((a: 1, b: 2)),
+      '(a: 1, b: 2)',
+      'Map'
+    );
+
+    @include assert-equal(
+      to-string(hello),
+      inspect(hello),
+      'Unquoted string'
+    );
+
+    @include assert-equal(
+      to-string('hello'),
+      inspect(hello),
+      'Single quoted string'
+    );
+
+    @include assert-equal(
+      to-string("hello"),
+      inspect(hello),
+      'Double quoted string'
+    );
+  }
+
+}

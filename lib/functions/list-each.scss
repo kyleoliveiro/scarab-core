@@ -1,0 +1,36 @@
+/// Calls a function on each item in a list.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} get-function-safe
+///
+/// @param {List} $list - List to operate on
+/// @param {String} $function-name - Name of the function to call on each item
+/// @param {List} $args [()] - List of args to pass to the function
+/// 
+/// @return {List} - New list with modified values
+///
+/// @example
+///   list-each((1.2, 2.5, 3.7), 'round')
+///   // => (1, 3, 4)
+///   
+///   list-each(('hello', 'world'), 'str-insert', ('123', 1))
+///   // => ('123hello', '123world')
+
+@function list-each($list, $function-name, $args: ()) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+
+  $result: ();
+
+  // Apply the transformation to each item in $list
+  // and push the results into a new list
+  @each $item in $list {
+    $item: call(get-function-safe($function-name), $item, $args...);
+    $result: append($result, $item);
+  }
+  
+  // Preserve list seperator and brackets
+  $result: join($result, (), $separator, $bracketed);
+  @return $result;
+}

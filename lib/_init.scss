@@ -1,0 +1,20 @@
+/// Global variable where all user configuration is stored.
+///
+/// Never modify this variable or its children directly. Instead, use:
+/// - `set-option()` / `option()` to manage options
+/// - `define()` / `const()` to manage constants
+/// - `set()` / `get()` to manage the inventory
+///
+/// @access private
+/// @group 0_variables
+///
+/// @type Map
+/// @prop {Map} OPTIONS - Contains Scarab options
+/// @prop {Map} CONSTANTS - Contains constant values
+/// @prop {Map} INVENTORY - Contains the stylesheet inventory
+
+$__SCARAB: (
+  'CONSTANTS' : (),
+  'INVENTORY' : (),
+  'OPTIONS'   : ()
+);

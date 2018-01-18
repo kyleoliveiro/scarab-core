@@ -1,0 +1,27 @@
+/// Returns a value from the `OPTIONS` map
+///
+/// @group 1_options
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} to-string
+/// 
+/// @see {mixin} set
+///
+/// @param  {ArgList} $path - Path of the key to retrieve the value from
+/// @return {*}
+///
+/// @example
+///   @include set-option(throw-errors, false);
+///
+///   option(throw-errors);
+///   // => false
+
+@function option($path...) {
+	$result: map-get($__SCARAB, 'OPTIONS');
+
+	@each $key in $path {
+		$result: map-get($result, to-string($key));
+	}
+	
+	@return $result;
+}

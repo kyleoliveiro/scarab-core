@@ -1,0 +1,45 @@
+@include describe('str-compare [func]') {
+
+  @include it('Compares two strings to determine which comes first') {
+    @include assert-true(
+      str-compare('a', 'b'),
+      'Letter `a` comes before `b`'
+    );
+
+    @include assert-false(
+      str-compare('b', 'a'),
+      'Letter `b` comes before `a`'
+    );
+
+    @include assert-true(
+      str-compare('apples', 'oranges'),
+      '`apples` comes before `oranges`'
+    );
+
+    @include assert-false(
+      str-compare('oranges', 'apples'),
+      '`oranges` comes before `apples`'
+    );
+
+    @include assert-true(
+      str-compare('room-13', 'room-24'),
+      '`room-13` comes before `room-24`'
+    );
+
+    @include assert-false(
+      str-compare('room-24', 'room-13'),
+      '`room-24` comes before `room-13`'
+    );
+
+    @include assert-true(
+      str-compare('room 13', 'room 24'),
+      '`room 13` comes before `room 24`'
+    );
+
+    @include assert-false(
+      str-compare('room 24', 'room 13'),
+      '`room 24` comes before `room 13`'
+    );
+  }
+
+}

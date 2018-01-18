@@ -1,0 +1,65 @@
+/// Replaces a substring within a string.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} str-append
+/// @requires {function} str-remove
+/// @requires {function} str-contains
+/// @requires {function} list-append
+///
+/// @param {String} $string - String to search in
+/// @param {String} $search - Substring to search for
+/// @param {String} $replace [''] - Replacement string
+/// @param {Boolean} $all [false] - Whether to replace all occurances
+/// 
+/// @return {String}
+///
+/// @example
+///   str-replace($string, 'e', '3')
+///   // => B3etle
+///   
+///   str-replace($string, 'e', '3', true)
+///   // => B33tl3
+///   
+///   str-replace($string, 'e', true)
+///   // => Btl
+
+@function str-replace($string, $search, $replace: '', $all: false) {
+  $result: $string;	
+	$first-index: str-index($string, $search);
+
+	@if $first-index {
+    @if not $all {
+      // Replace the first occurance
+      $result: str-append(
+        str-slice($string, 1, ($first-index - 1)),
+        $replace,
+        str-slice($string, $first-index + str-length($search))
+      );
+    } @else {
+      $indexes: [];
+      $occurances: 0;
+      $_string: $string;
+    
+      @while str-contains($_string, $search) {
+        $index: str-index($_string, $search) + ($occurances * str-length($replace));
+        $indexes: list-append($indexes, $index);
+        $_string: str-remove($_string, $search);
+        $occurances: $occurances + 1;
+      }
+
+      @each $index in $indexes {
+        // Remove $search at $index
+        $result: str-append(
+          str-slice($result, 1, $index - 1),
+          str-slice($result, ($index + str-length($search)))
+        );
+
+        // Insert $replace at $index
+        $result: str-insert($result, $replace, $index);
+      }
+    }
+  }
+
+	@return $result;
+}

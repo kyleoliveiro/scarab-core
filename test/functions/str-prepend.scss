@@ -1,0 +1,17 @@
+@include describe('str-prepend [func]') {
+
+  @include it('Prepends to a string') {
+    @include assert-equal(
+      str-prepend('world', 'hello'),
+      'helloworld',
+      'Single string'
+    );
+
+    @include assert-equal(
+      str-prepend('bar', 'foo', 'world', 'hello'),
+      'helloworldfoobar',
+      'Multiple strings'
+    );
+  }
+
+}

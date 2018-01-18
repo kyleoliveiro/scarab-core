@@ -1,0 +1,34 @@
+@include describe('map-stringify-keys-deep [func]') {
+
+  @include it('Converts keys of nested maps') {
+    @include assert-equal(
+      map-stringify-keys-deep((
+        #000000: (
+          red: (
+            1: 1,
+            2: (
+              blue: 1
+            )
+          ),
+          2: 2,
+          a: 3
+        ),
+        white: 2
+      )),
+      (
+        '#000000': (
+          'red': (
+            '1': 1,
+            '2': (
+              'blue': 1
+            )
+          ),
+          '2': 2,
+          'a': 3
+        ),
+        'white': 2
+      )
+    );
+  }
+
+}

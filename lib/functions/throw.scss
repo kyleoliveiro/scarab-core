@@ -1,0 +1,26 @@
+/// Throws an error.
+///
+/// @group 5_functions
+///
+/// @param {String} $exception - Exception type
+/// @param {String} $message - Message to return
+/// @param {Boolean} $throw [option(throw-errors)] - Whether to throw or return the error as a string
+///
+/// @return {String}
+/// @throws `[$exception] $message`
+
+@function throw($exception, $message, $throw: option(throw-errors)) {
+  $result: '[#{$exception}] #{$message}';
+
+  @if $throw {
+    @error $result;
+  }
+
+  @return $result
+}
+
+
+
+@mixin throw($args...) {
+  $_: throw($args...);
+}

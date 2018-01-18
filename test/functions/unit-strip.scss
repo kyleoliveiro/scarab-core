@@ -1,0 +1,59 @@
+@include describe('unit-strip [func]') {
+
+  @include it('Strips units from a number') {
+    @include assert-equal(
+      unit-strip(1rem),
+      1,
+      'rem'
+    );
+
+    @include assert-equal(
+      unit-strip(2em),
+      2,
+      'em'
+    );
+
+    @include assert-equal(
+      unit-strip(3px),
+      3,
+      'px'
+    );
+
+    @include assert-equal(
+      unit-strip(4s),
+      4,
+      's'
+    );
+
+    @include assert-equal(
+      unit-strip(5ms),
+      5,
+      'ms'
+    );
+
+    @include assert-equal(
+      unit-strip(6deg),
+      6,
+      'deg'
+    );
+
+    @include assert-equal(
+      unit-strip(-20px),
+      -20,
+      'Negative number'
+    );
+
+    @include assert-equal(
+      unit-strip(3.142px),
+      3.142,
+      'Positive float'
+    );
+
+    @include assert-equal(
+      unit-strip(-3.142px),
+      -3.142,
+      'Negative float'
+    );
+  }
+
+}

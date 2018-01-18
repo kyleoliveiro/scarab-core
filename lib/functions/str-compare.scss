@@ -1,0 +1,39 @@
+/// Compares two strings or numbers to determine which comes first.
+///
+/// @group 5_functions
+///
+/// @requires {function} const
+/// @requires {function} to-string
+/// 
+/// @param {String|Number} $a - First string
+/// @param {String|Number} $b - Second string
+/// @param {List} $order [const(CHARSPACE, SORT_ORDER)] - Sort order
+/// 
+/// @return {Bool} - Whether $a comes before $b in the given $order
+///
+/// @example
+///   str-compare('a', 'b')
+///   // => true
+///   
+///   str-compare(2, 1)
+///   // => false
+
+@function str-compare($a, $b, $order: const(CHARSPACE, SORT_ORDER)) {
+  @if type-of($a) == "number" and type-of($b) == "number" {
+    @return $a < $b;
+  }
+
+  $a : to-lower-case(to-string($a));
+  $b : to-lower-case(to-string($b));
+
+  @for $i from 1 through min(str-length($a), str-length($b)) {
+    $char-a: str-slice($a, $i, $i);
+    $char-b: str-slice($b, $i, $i);
+
+    @if $char-a and $char-b and index($order, $char-a) != index($order, $char-b) {
+      @return index($order, $char-a) < index($order, $char-b);
+    }
+  }
+
+  @return str-length($a) < str-length($b);
+}

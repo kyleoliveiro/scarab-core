@@ -1,0 +1,14 @@
+/// Returns a random color.
+///
+/// @group 5_functions
+///
+/// @return {Color} - Random color
+///
+/// @example
+///   type-of(random-color())
+///   // => 'color'
+
+@function random-color() {
+  $result: rgb(random(255), random(255), random(255));
+	@return $result;
+}

@@ -1,0 +1,43 @@
+@include describe('easing [func]') {
+
+  @include it('Returns a `easing` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'easing': (
+          '0': linear,
+          'out': ease-out,
+          'in': ease-in,
+          'out-quart': cubic-bezier(0.165, 0.84, 0.44, 1)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      easing(out-quart),
+      cubic-bezier(0.165, 0.84, 0.44, 1)
+    );
+  }
+
+}
+
+@include describe('ease [func]') {
+
+  @include it('Returns a `easing` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'easing': (
+          '0': linear,
+          'out': ease-out,
+          'in': ease-in,
+          'out-quart': cubic-bezier(0.165, 0.84, 0.44, 1)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      ease(out-quart),
+      cubic-bezier(0.165, 0.84, 0.44, 1)
+    );
+  }
+
+}

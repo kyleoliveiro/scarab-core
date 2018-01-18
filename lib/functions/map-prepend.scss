@@ -1,0 +1,18 @@
+/// Adds a single key-value pair onto the start of a map.
+///
+/// @group 5_functions
+///
+/// @param {Map} $map - Map to prepend to
+/// @param {*} $key - Key to be prepended
+/// @param {*} $value - Value to be prepended
+/// 
+/// @return {Map} - New map prepended with key-value pair
+/// 
+/// @example
+///   map-prepend((a: 1, b: 2), c, 3)
+///   // => (c: 3, a: 1, b: 2)
+
+@function map-prepend($map, $key, $value) {
+  $result: map-merge(($key: $value), $map);
+  @return $result;
+}

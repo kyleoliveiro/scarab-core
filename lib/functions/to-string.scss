@@ -1,0 +1,23 @@
+/// Converts a value to a string.
+///
+/// @group 5_functions
+///
+/// @param {*} $value - Value to convert
+/// 
+/// @return {String} - Stringified value
+///
+/// @example
+///   to-string(2.1)
+///   // => '2.1'
+///   
+///   type-of(to-string(red))
+///   // => 'string'
+
+@function to-string($value) {
+  @if type-of($value) == 'string' {
+    $value: unquote($value);
+  }
+
+  $result: inspect($value);
+  @return $result;
+}

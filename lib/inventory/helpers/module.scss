@@ -1,0 +1,13 @@
+/// Returns a `module` value from the stylesheet inventory.
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function module($path...) {
+  $result: get(module, $path...);
+  @return $result;
+}

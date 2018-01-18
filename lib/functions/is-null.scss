@@ -1,0 +1,25 @@
+/// Checks if the specified value is `null`.
+///
+/// @group 5_functions
+///
+/// @param {*} $value - Value to evaluate
+/// 
+/// @return {Boolean} - Whether `$value` is `null`
+/// 
+/// @example
+///   is-null(null)
+///   // => true
+///   
+///   is-null(false)
+///   // => false
+///   
+///   is-null('')
+///   // => false
+///   
+///   is-null(0)
+///   // => false
+
+@function is-null($value) {
+  $result: if(type-of($value) == 'null', true, false);
+  @return $result;
+}

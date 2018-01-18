@@ -1,0 +1,25 @@
+/// Removes `selector-format` placeholders from a string.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} const
+/// @requires {function} str-remove
+///
+/// @param {String} $class-name - Class name to sanitize
+/// 
+/// @return {String} - Sanitized, unescaped class name
+///
+/// @example
+///   class-sanitize('{{b}}{{bp}}{{s}}{{sp}}{{rp}}opacity{{rs}}{{vp}}{{v}}--75{{ms}}{{ss}}{{bs}}')
+///   // => 'opacity--75'
+
+@function class-sanitize($class-name) {
+  $result: $class-name;
+
+  $illegal-strings: const(SCARAB, SELECTOR_FORMAT_PLACEHOLDERS);
+  @each $string in $illegal-strings {
+    $result: str-remove($result, $string);
+  }
+
+  @return $result;
+}

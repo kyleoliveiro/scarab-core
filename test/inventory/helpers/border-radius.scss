@@ -1,0 +1,41 @@
+@include describe('border-radius [func]') {
+
+  @include it('Returns a `border-radius` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'border-radius': (
+          '0': linear,
+          'pill': 9999px,
+          'round': 100%
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      border-radius(pill),
+      9999px
+    );
+  }
+
+}
+
+@include describe('radius [func]') {
+
+  @include it('Returns a `border-radius` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'border-radius': (
+          '0': linear,
+          'pill': 9999px,
+          'round': 100%
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      radius(pill),
+      9999px
+    );
+  }
+
+}

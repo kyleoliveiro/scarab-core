@@ -1,0 +1,35 @@
+/// Returns a `font-family` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function ff()`
+/// - `@function typeface()`
+/// 
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function font-family($path...) {
+  $result: get(font-family, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias font-family
+
+@function ff($args...) {
+  @return font-family($args...);
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias font-family
+
+@function typeface($args...) {
+  @return font-family($args...);
+}

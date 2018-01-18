@@ -1,0 +1,94 @@
+@include describe('define [func]') {
+
+  @include it('Defines a new constant') {
+    $__SCARAB: (
+      'CONSTANTS': ()
+    ) !global;
+
+    @include define(custom, 100);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'CONSTANTS': (
+          'custom': 100
+        )
+      ))
+    );
+
+
+
+    $__SCARAB: (
+      'CONSTANTS': ()
+    ) !global;
+
+    @include define(custom2, a, blue, 1);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'CONSTANTS': (
+          'custom2': (
+            'a': (
+              'blue': 1
+            )
+          )
+        )
+      )),
+      'Defines a nested constant'
+    );
+
+
+
+    $__SCARAB: (
+      'CONSTANTS': (
+        'pi': 3.1415926535897932384626433832795028841971693993751
+      )
+    ) !global;
+
+    @include define(pi, apple);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'CONSTANTS': (
+          'pi': 3.1415926535897932384626433832795028841971693993751
+        )
+      )),
+      'Fails to define a constant that already exists'
+    );
+
+
+
+    $__SCARAB: (
+      'CONSTANTS': (
+        'custom': (
+          'a': (
+            '1': 1,
+            '2': 2,
+            '3': 3
+          )
+        )
+      )
+    ) !global;
+
+    @include define(custom, a, 2, two);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'CONSTANTS': (
+          'custom': (
+            'a': (
+              '1': 1,
+              '2': 2,
+              '3': 3
+            )
+          )
+        )
+      )),
+      'Fails to define a nested constant that already exists'
+    );
+  }
+
+}

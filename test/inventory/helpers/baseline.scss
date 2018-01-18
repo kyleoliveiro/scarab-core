@@ -1,0 +1,98 @@
+@include describe('baseline [func]') {
+
+  @include it('Returns a multiple of `get(baseline)`') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 20px
+      )
+    ) !global;
+
+    @include assert-equal(
+      baseline(3),
+      60px,
+      'Positive integer'
+    );
+
+    @include assert-equal(
+      baseline(1.5),
+      30px,
+      'Positive float'
+    );
+
+    @include assert-equal(
+      baseline(-2),
+      -40px,
+      'Negative integer'
+    );
+
+    @include assert-equal(
+      baseline(-0.468),
+      -9.36px,
+      'Negative float'
+    );
+  }
+
+  @include it('Defaults to the baseline value if no $multiplier is defined') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem
+      )
+    ) !global;
+
+    @include assert-equal(
+      baseline(),
+      1rem
+    );
+  }
+
+}
+
+@include describe('bl [func]') {
+
+  @include it('Returns a multiple of `get(baseline)`') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 20px
+      )
+    ) !global;
+
+    @include assert-equal(
+      bl(3),
+      60px,
+      'Positive integer'
+    );
+
+    @include assert-equal(
+      bl(1.5),
+      30px,
+      'Positive float'
+    );
+
+    @include assert-equal(
+      bl(-2),
+      -40px,
+      'Negative integer'
+    );
+
+    @include assert-equal(
+      bl(-0.468),
+      -9.36px,
+      'Negative float'
+    );
+  }
+
+  @include it('Defaults to the baseline value if no $multiplier is defined') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'baseline': 1rem
+      )
+    ) !global;
+
+    @include assert-equal(
+      bl(),
+      1rem
+    );
+  }
+
+}
+

@@ -1,0 +1,10 @@
+@include describe('map-unique [func]') {
+
+  @include it('Removes key-value pairs from a map which contain duplicate values') {
+    @include assert-equal(
+      map-unique((a: 1, b: 2, c: 3, d: 1, e: 1, f: 3)),
+      (a: 1, b: 2, c: 3)
+    );
+  }
+
+}

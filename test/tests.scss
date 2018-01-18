@@ -1,0 +1,14 @@
+// Import the True Sass unit-testing tool
+@import 'sass-true/sass/true';
+
+// Import Scarab
+@import '../lib/_';
+
+// Import tests
+@import 'functions/_';
+@import 'mixins/_';
+@import 'options/_';
+@import 'constants/_';
+@import 'inventory/_';
+
+@include report();

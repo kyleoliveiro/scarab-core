@@ -1,0 +1,10 @@
+@include describe('class-sanitize [func]') {
+
+  @include it('Removes Scarab template placeholders from a string') {
+    @include assert-equal(
+      class-sanitize('{{b}}{{bp}}{{s}}{{sp}}{{rp}}opacity{{rs}}{{vp}}{{v}}--75{{ms}}{{ss}}{{bs}}'),
+      'opacity--75'
+    );
+  }
+
+}

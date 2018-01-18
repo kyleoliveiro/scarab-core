@@ -1,0 +1,29 @@
+@include describe('str-remove [func]') {
+
+  @include it('Removes first occurance of text in a string') {
+    @include assert-equal(
+      str-remove('beetle', 'e'),
+      'betle'
+    );
+  }
+
+  @include it('Removes all occurances of text in a string') {
+    @include assert-equal(
+      str-remove('beetle', 'e', true),
+      'btl'
+    );
+  }
+
+  @include it('Returns original string if no substrings are found') {
+    @include assert-equal(
+      str-remove('beetle', '1'),
+      'beetle'
+    );
+
+    @include assert-equal(
+      str-remove('beetle', '1', true),
+      'beetle'
+    );
+  }
+
+}

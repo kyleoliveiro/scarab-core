@@ -1,0 +1,29 @@
+/// Converts units of a value.
+/// 
+/// Can only convert comparable units.
+///
+/// @group 5_functions
+///
+/// @param  {Number} $value - Value to convert
+/// @param  {String} $unit - Unit to convert to
+/// 
+/// @return {Number} - Converted value
+///
+/// @example
+///   unit-convert(10px, pt)
+///   // => 7.5pt
+///   
+///   unit-convert(180deg, turn)
+///   // => 0.5turn
+
+@function unit-convert($value, $unit) {
+  $valid-units: (
+    px: 0px, pt: 0pt, pc: 0pc, mm: 0mm, cm: 0cm, in: 0in,
+    deg: 0deg, grad: 0grad, rad: 0rad, turn: 0turn,
+    Hz: 0Hz, kHz: 0kHz,
+    ms: 0ms, s: 0s
+  );
+
+  $result: map-get($valid-units, $unit) + $value;
+  @return $result;
+}

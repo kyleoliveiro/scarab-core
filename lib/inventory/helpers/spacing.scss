@@ -1,0 +1,26 @@
+/// Returns a `spacing` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function s()`
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function spacing($path...) {
+  $result: get(spacing, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias spacing
+
+@function s($args...) {
+  @return spacing($args...);
+}
+

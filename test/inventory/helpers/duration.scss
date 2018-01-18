@@ -1,0 +1,43 @@
+@include describe('duration [func]') {
+
+  @include it('Returns a `duration` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'duration': (
+          '0': 0,
+          's': 0.2s,
+          'm': 0.5s,
+          'l': 1s
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      duration(m),
+      0.5s
+    );
+  }
+
+}
+
+@include describe('dur [func]') {
+
+  @include it('Returns a `duration` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'duration': (
+          '0': 0,
+          's': 0.2s,
+          'm': 0.5s,
+          'l': 1s
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      dur(m),
+      0.5s
+    );
+  }
+
+}

@@ -1,0 +1,28 @@
+/// Appends to a string.
+///
+/// @group 5_functions
+///
+/// @requires {function} is-null
+///
+/// @param {String} $string - String to append to
+/// @param {ArgList} $strings - String(s) to be appended
+/// 
+/// @return {String}
+///
+/// @example
+///   str-append('hello', 'world')
+///   // => 'helloworld'
+///   
+///   str-append('hello', ' ', 'world')
+///   // => 'hello world'
+
+@function str-append($string, $strings...) {
+  $result: $string;
+  
+  @each $str in $strings {
+    $str: if(is-null($str), '', $str);
+    $result: $result + $str;
+  }
+
+  @return $result;
+}

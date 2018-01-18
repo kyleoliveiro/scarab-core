@@ -1,0 +1,18 @@
+/// Adds a single key-value pair onto the end of a map.
+///
+/// @group 5_functions
+///
+/// @param {Map} $map - Map to append to
+/// @param {*} $key - Key to be appended
+/// @param {*} $value - Value to be appended
+/// 
+/// @return {Map} - New map appended with key-value pair
+/// 
+/// @example
+///   map-append((a: 1, b: 2), c, 3)
+///   // => (a: 1, b: 2, c: 3)
+
+@function map-append($map, $key, $value) {
+  $result: map-merge($map, ($key: $value));
+  @return $result;
+}

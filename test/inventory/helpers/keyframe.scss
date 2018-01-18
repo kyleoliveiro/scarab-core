@@ -1,0 +1,32 @@
+@include describe('keyframe [func]') {
+
+  @include it('Returns a `keyframe` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'keyframe': (
+          'fade' : (
+            '0%': (
+              opacity: 0
+            ),
+            '100%': (
+              opacity: 1
+            )
+          )
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      keyframe(fade),
+      (
+        '0%': (
+          opacity: 0
+        ),
+        '100%': (
+          opacity: 1
+        )
+      )
+    );
+  }
+
+}

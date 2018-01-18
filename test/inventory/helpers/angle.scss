@@ -1,0 +1,20 @@
+@include describe('angle [func]') {
+
+  @include it('Returns a `angle` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'angle': (
+          '0': 0,
+          'slant': 15deg,
+          'right': 90deg
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      angle(slant),
+      15deg
+    );
+  }
+
+}

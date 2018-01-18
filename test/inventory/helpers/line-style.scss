@@ -1,0 +1,19 @@
+@include describe('line-style [func]') {
+
+  @include it('Returns a `line-style` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'line-style': (
+          '0': none,
+          'dot': dotted
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      line-style(dot),
+      dotted
+    );
+  }
+
+}

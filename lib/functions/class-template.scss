@@ -1,0 +1,118 @@
+/// Returns the result of hydrating the `selector-format` with given values.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} option
+/// @requires {function} module
+/// @requires {function} is-null
+/// @requires {function} str-remove
+/// @requires {function} str-replace
+///
+/// @param {String|Map} $module - Module name, or map containing a `root` key, and optional `prefix` and `suffix` overrides.
+/// @param {String} $variant [''] - Class variant
+/// @param {String} $modifier [''] - Class modifier
+/// 
+/// @return {String} - Templated, unescaped CSS class name
+///
+/// @example
+///   class-template((
+///     root: 'margin'
+///   ), top, 0)
+///   // => 'margin-top:0'
+///   
+///   class-template((
+///     root: 'padding',
+///     variant-prefix: '',
+///     modifier-prefix: '--'
+///   ), top, 0)
+///   // => 'paddingtop--0'
+
+@function class-template($module, $variant: '', $modifier: '') {
+  @if type-of($module) == 'string' {
+    $module: module($module);
+  }
+
+  $variant: to-string($variant);
+  $modifier: to-string($modifier);
+
+  // Get module options
+  $root: map-get($module, 'root');
+
+  $selector-format : if(map-has-key($module, 'selector-format'),
+    map-get($module, 'selector-format'),
+    option(namescheme, selector-format)
+  );
+
+  $root-prefix     : if(map-has-key($module, 'root-prefix'),
+    map-get($module, 'root-prefix'),
+    option(namescheme, root-prefix)
+  );
+
+  $root-suffix     : if(map-has-key($module, 'root-suffix'),
+    map-get($module, 'root-suffix'),
+    option(namescheme, root-suffix)
+  );
+
+  $variant-prefix  : if(map-has-key($module, 'variant-prefix'),
+    map-get($module, 'variant-prefix'),
+    option(namescheme, variant-prefix)
+  );
+
+  $variant-suffix  : if(map-has-key($module, 'variant-suffix'),
+    map-get($module, 'variant-suffix'),
+    option(namescheme, variant-suffix)
+  );
+
+  $modifier-prefix : if(map-has-key($module, 'modifier-prefix'),
+    map-get($module, 'modifier-prefix'),
+    option(namescheme, modifier-prefix)
+  );
+
+  $modifier-suffix : if(map-has-key($module, 'modifier-suffix'),
+    map-get($module, 'modifier-suffix'),
+    option(namescheme, modifier-suffix)
+  );
+
+  $result: $selector-format;
+  $template-schema: (
+    'r': (
+      'value'  : $root,
+      'prefix' : $root-prefix,
+      'suffix' : $root-suffix 
+    ),
+    'v': (
+      'value'  : $variant,
+      'prefix' : $variant-prefix,
+      'suffix' : $variant-suffix 
+    ),
+    'm': (
+      'value'  : $modifier,
+      'prefix' : $modifier-prefix,
+      'suffix' : $modifier-suffix 
+    )
+  );
+
+  // Replace template placeholders with actual values
+  @each $key, $map in $template-schema {
+    $value  : map-get($map, value);
+    $prefix : map-get($map, prefix);
+    $suffix : map-get($map, suffix);
+
+    // Dynamically generate the template placeholders
+    $p:  '{{' + $key + '}}';
+    $pp: '{{' + $key + 'p' + '}}';
+    $ps: '{{' + $key + 's' + '}}';
+
+    @if not is-null($value) and str-length($value) > 0 {
+      $result: str-replace($result, $p, $value);
+      $result: str-replace($result, $pp, $prefix);
+      $result: str-replace($result, $ps, $suffix);
+    } @else {
+      $result: str-remove($result, $p);
+      $result: str-remove($result, $pp);
+      $result: str-remove($result, $ps);
+    }
+  }
+
+  @return $result;
+}

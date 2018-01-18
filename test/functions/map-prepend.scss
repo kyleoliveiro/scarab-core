@@ -1,0 +1,10 @@
+@include describe('map-prepend [func]') {
+
+  @include it('Prepends a single key-value pair onto the start of a map') {
+    @include assert-equal(
+      map-prepend((a: 1, b: 2), c, 3),
+      (c: 3, a: 1, b: 2)
+    );
+  }
+
+}

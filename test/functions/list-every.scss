@@ -1,0 +1,20 @@
+@include describe('list-every [func]') {
+
+  @include it('Checks if every value in a list returns true for a given function') {
+    @include assert-true(
+      list-every(1.2 2.5 3.7, 'unitless')
+    );
+
+    @include assert-false(
+      list-every(1.2 2.5rem 3.7, 'unitless')
+    );
+  }
+
+  @include it('Supports passing args to the called function') {
+    @include assert-equal(
+      true,
+      true
+    );
+  }
+
+}

@@ -1,0 +1,29 @@
+@include describe('list-unqiue [func]') {
+
+  @include it('Removes duplicate values from a list') {
+    @include assert-equal(
+      list-unique((1 a (b: 3) cyan a cyan 1 2 3 red (b: 3))),
+      (1 a (b: 3) cyan 2 3 red),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-unique((1, a, (b: 3), cyan, a, cyan, 1, 2, 3, red, (b: 3))),
+      (1, a, (b: 3), cyan, 2, 3, red),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-unique([1 a (b: 3) cyan a cyan 1 2 3 red (b: 3)]),
+      ([1 a (b: 3) cyan 2 3 red]),
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-unique([1, a, (b: 3), cyan, a, cyan, 1, 2, 3, red, (b: 3)]),
+      ([1, a, (b: 3), cyan, 2, 3, red]),
+      'Supports bracketed comma lists'
+    );
+  }
+
+}

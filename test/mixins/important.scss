@@ -1,0 +1,36 @@
+@include describe('important [mixin]') {
+
+  @include it('Applies `!important` to all property declarations inside it') {
+    
+    @include assert('Single property') {
+      @include output {
+        @include important((
+          margin: 20px
+        ));
+      }
+
+      @include expect {
+        margin: 20px !important;
+      }
+    }
+
+    @include assert('Multiple properties') {
+      @include output {
+        @include important((
+          margin: 20px,
+          color: red,
+          font-weight: bold
+        ));
+      }
+
+      @include expect {
+        margin: 20px !important;
+        color: red !important;
+        font-weight: bold !important;
+      }
+    }
+
+  }
+
+}
+

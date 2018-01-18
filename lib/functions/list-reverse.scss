@@ -1,0 +1,29 @@
+/// Reverses the order of values in a list.
+///
+/// @group 5_functions
+///
+/// @requires {function} to-negative
+///
+/// @param {List} $list - List to reverse
+/// 
+/// @return {List} - New list with reversed order
+/// 
+/// @example
+///   list-reverse(1, a, 3)
+///   // => (3, a, 1)
+
+@function list-reverse($list) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+
+  $result: ();
+
+  @for $i from to-negative(length($list)) through -1 {
+    $result: append($result, nth($list, abs($i)));
+  }
+
+   // Preserve list seperator and brackets
+  $result: join($result, (), $separator, $bracketed);
+
+  @return $result;
+}

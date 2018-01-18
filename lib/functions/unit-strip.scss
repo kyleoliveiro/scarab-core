@@ -1,0 +1,16 @@
+/// Strips units from a value.
+///
+/// @group 5_functions
+///
+/// @param {Number} $value - Value to strip units from
+/// 
+/// @return {Number} - Unitless value
+///
+/// @example
+///   unit-strip(10px)
+///   // => 10
+
+@function unit-strip($value) {
+	$result: $value / ($value * 0 + 1);
+	@return $result;
+}

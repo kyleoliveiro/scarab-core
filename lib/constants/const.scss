@@ -1,0 +1,30 @@
+/// Returns a value from the `CONSTANTS` map.
+///
+/// @group 2_constants
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} to-string
+///
+/// @param {ArgList} $path - Path to the key to retrieve the value from
+/// 
+/// @return {*} - Value from the `CONSTANTS` map
+///
+/// @example
+///   @debug const(MATH, LOG2E);
+///   // => 1.4426950408889634
+///   
+///   @debug const(CSS, MAX_Z_INDEX);
+///   // => 2147483647
+///   
+///   @debug const(INTERVAL, AUGMENTED_FOURTH);
+///   // => 1.414
+
+@function const($path...) {
+  $result: map-get($__SCARAB, 'CONSTANTS');
+
+  @each $key in $path {
+    $result : map-get($result, to-string($key));
+  }
+  
+  @return $result;
+}

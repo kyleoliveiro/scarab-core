@@ -1,0 +1,47 @@
+@include describe('font-size [func]') {
+
+  @include it('Returns a `font-size` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'font-size': (
+          '0': 0,
+          'xs': 10px,
+          's': 13px,
+          'm': 16px,
+          'l': 19px,
+          'xl': 24px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      font-size(l),
+      19px
+    );
+  }
+
+}
+
+@include describe('fz [func]') {
+
+  @include it('Returns a `font-size` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'font-size': (
+          '0': 0,
+          'xs': 10px,
+          's': 13px,
+          'm': 16px,
+          'l': 19px,
+          'xl': 24px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      fz(l),
+      19px
+    );
+  }
+
+}

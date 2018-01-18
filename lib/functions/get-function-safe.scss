@@ -1,0 +1,24 @@
+/// Safely calls native `get-function()`. Intended for use with natice `call()`.
+///
+/// @group 5_functions
+///
+/// @requires {function} to-string 
+///
+/// @param {String} $function-name - Function name to call
+/// 
+/// @return {Function|String} - Depending on Sass version
+/// 
+/// @example
+///   call(get-function-safe('str-length'), 'hello world')
+///   // => 11
+
+@function get-function-safe($function-name) {
+  $function-name: to-string($function-name);
+
+  $result: if(function-exists('get-function'),
+    get-function($function-name),
+    $function-name
+  );
+
+  @return $result;
+}

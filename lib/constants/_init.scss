@@ -1,0 +1,96 @@
+/// Constant values.
+/// 
+/// Constants can be retrieved using `const()`. New constants can be created using `define()`.
+/// 
+/// *During initialization, the `$__SCARAB_CONSTANTS` variable is merged into `$__SCARAB`.
+/// Subsequently, its value is set to `null`.*
+/// 
+/// @access private
+/// @group 0_variables
+///
+/// @type Map
+
+$__SCARAB_CONSTANTS: (
+  'MATH' : (
+    'E'           : 2.71828182845904523536028747135266249775724709369995,
+    'LN10'        : 2.302585092994046,
+    'LN2'         : 0.6931471805599453,
+    'LOG10E'      : 0.4342944819032518,
+    'LOG2E'       : 1.4426950408889634,
+    'PI'          : 3.1415926535897932384626433832795028841971693993751,
+    'PHI'         : 1.6180339887498,
+    'SQRT1_2'     : 0.7071067811865476,
+    'SQRT2'       : 1.4142135623730951
+  ),
+  'INTERVAL' : (
+    'MINOR_SECOND'     : 1.067,
+    'MAJOR_SECOND'     : 1.125,
+    'MINOR_THIRD'      : 1.2,
+    'MAJOR_THIRD'      : 1.25,
+    'PERFECT_FOURTH'   : 1.333,
+    'AUGMENTED_FOURTH' : 1.414,
+    'PERFECT_FIFTH'    : 1.5,
+    'MINOR_SIXTH'      : 1.6,
+    'GOLDEN'           : 1.618, 
+    'MINOR_SEVENTH'    : 1.778,
+    'MAJOR_SEVENTH'    : 1.875,
+    'OCTAVE'           : 2,
+    'MAJOR_TENTH'      : 2.5,
+    'MAJOR_ELEVENTH'   : 2.667,
+    'MAJOR_TWELFTH'    : 3,
+    'DOUBLE_OCTAVE'    : 4
+  ),
+  'CHARSPACE' : (
+    'HEXADECIMAL'  : (
+      "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+      "a", "b", "c", "d", "e", "f"
+    ),
+    'DECIMAL'      : (
+      "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+    ),
+    'ROMAN_LOWER'  : (
+      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+      "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+    ),
+    'ROMAN_UPPER'  : (
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+      "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    ),
+    'ALPHANUMERIC' : (
+      "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+      "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+      "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F",
+      "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+      "U", "V", "W", "X", "Y", "Z"
+    ),
+    'SORT_ORDER'   : (
+      "!", "#", "$", "%", "&", "'", "\"", "(", ")", "*", "+", ",", "-", ".",
+      "/", "[", "\\", "]", "^", "_", "{", "|", "}", "~", "0", "1", "2", "3",
+      "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h",
+      "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+      "w", "x", "y", "z"
+    )
+  ),
+  'SCARAB' : (
+    'SELECTOR_FORMAT_PLACEHOLDERS' : (
+      "{{r}}", "{{rp}}", "{{rs}}",
+      "{{v}}", "{{vp}}", "{{vs}}",
+      "{{m}}", "{{mp}}", "{{ms}}",
+      "{{b}}", "{{bp}}", "{{bs}}",
+      "{{s}}", "{{sp}}", "{{ss}}"
+    )
+  ),
+  'CSS' : (
+    'MIN_Z_INDEX'   : -2147483647,
+    'MAX_Z_INDEX'   : 2147483647,
+    'SPECIAL_CHARS' : (
+      "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", ".",
+      "/", ":", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "`", "{",
+      "|", "}", "~", ";"
+    )
+  )
+);
+
+// Merge into $__SCARAB
+$__SCARAB: map-merge($__SCARAB, ('CONSTANTS': $__SCARAB_CONSTANTS));
+$__SCARAB_CONSTANTS: null;

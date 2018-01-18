@@ -1,0 +1,59 @@
+@include describe('line-height [func]') {
+
+  @include it('Returns a `line-height` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'line-height': (
+          '0': none,
+          '1': 18px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      line-height(1),
+      18px
+    );
+  }
+
+}
+
+@include describe('lh [func]') {
+
+  @include it('Returns a `line-height` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'line-height': (
+          '0': none,
+          '1': 18px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      lh(1),
+      18px
+    );
+  }
+
+}
+
+@include describe('leading [func]') {
+
+  @include it('Returns a `line-height` value from the `INVENTORY` map') {
+    $__SCARAB: (
+      'INVENTORY': (
+        'line-height': (
+          '0': none,
+          '1': 18px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      leading(1),
+      18px
+    );
+  }
+
+}

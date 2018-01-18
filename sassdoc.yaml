@@ -1,8 +1,21 @@
 dest: ./docs
+theme: flippant
+display:
+  alias: false
+  watermark: false
 exclude:
   - node_modules/**/*
   - build/**/*
+  - test/**/*
   - docs/**/*
+groups:
+  0_variables: Variables
+  1_options: Options
+  2_constants: Constants
+  3_inventory: Stylesheet inventory
+  4_inventory-helpers: Inventory helpers
+  5_functions: Pure functions
+  6_mixins: Mixins
 verbose: true
 basePath: https://github.com/watchtowerdigital/scarab/tree/master
 googleAnalytics: UA-106098263-1

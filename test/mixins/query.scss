@@ -1,0 +1,98 @@
+@include describe('query [mixin]') {
+
+  @include it('Wraps styles in a media query block') {
+
+    @include assert('Min-width query') {
+      @include output {
+        @include query(400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+    
+    @include assert('Min-width query') {
+      @include output {
+        @include query(400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Min-width query (`from` syntax)') {
+      @include output {
+        @include query(from 400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Max-width query') {
+      @include output {
+        @include query(until 400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (max-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Min-width and max-width query') {
+      @include output {
+        @include query(400px to 800px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) and (max-width: 800px) {
+          color: red;
+        }
+      }
+    }
+
+  }
+
+  @include it('Can contain a class declaration') {
+    @include assert {
+      @include output {
+        @include query(200px) {
+          .class {
+            color: red;
+          }
+        }
+      }
+
+      @include expect {
+        @media (min-width: 200px) {
+          .class {
+            color: red;
+          }
+        }
+      }
+    } 
+  }
+
+}
+

@@ -1,0 +1,29 @@
+@include describe('unit-convert [func]') {
+
+  @include it('Converts units of a value') {
+    @include assert-equal(
+      unit-convert(10px, pt),
+      7.5pt,
+      'Length'
+    );
+
+    @include assert-equal(
+      unit-convert(42ms, 's'),
+      0.042s,
+      'Time'
+    );
+
+    @include assert-equal(
+      unit-convert(1turn, 'deg'),
+      360deg,
+      'Rotation'
+    );
+
+    @include assert-equal(
+      unit-convert(60Hz, 'kHz'),
+      0.06kHz,
+      'Frequency'
+    );
+  }
+
+}

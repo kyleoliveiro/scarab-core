@@ -1,0 +1,25 @@
+/// Returns a `font-size` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function fz()`
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function font-size($path...) {
+  $result: get(font-size, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias font-size
+
+@function fz($args...) {
+  @return font-size($args...);
+}

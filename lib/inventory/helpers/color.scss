@@ -1,0 +1,35 @@
+/// Returns a `color` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function c()`
+/// - `@function palette()`
+/// 
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function color($path...) {
+  $result: get(color, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias color
+
+@function palette($args...) {
+  @return color($args...);
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias color
+
+@function c($args...) {
+  @return color($args...);
+}

@@ -1,0 +1,14 @@
+/// Returns an `angle` value from the stylesheet inventory.
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// 
+/// @return {*}
+
+@function angle($path...) {
+  $result: get(angle, $path...);
+  @return $result;
+}

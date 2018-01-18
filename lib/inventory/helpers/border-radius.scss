@@ -1,0 +1,25 @@
+/// Returns a `border-radius` value from the stylesheet inventory.
+///
+/// **Aliases**
+/// - `@function radius()`
+///
+/// @group 4_inventory-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the key to retrieve the value from
+/// @return {*}
+
+@function border-radius($path...) {
+  $result: get(border-radius, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_inventory-helpers
+/// @alias border-radius
+
+@function radius($args...) {
+  @return border-radius($args...);
+}
