@@ -5,18 +5,18 @@
 [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab)  
 
 [![npm-beta](https://img.shields.io/npm/v/scarab-scss/beta.svg)](https://www.npmjs.com/package/scarab-scss)
-[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=v7)](https://travis-ci.org/watchtowerdigital/scarab) 
+[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=v7)](https://travis-ci.org/watchtowerdigital/scarab?branch=v7) 
 
 ---
 
 ## Features
 
-- [**🎨 Stylesheet inventory**](#stylesheet-inventory) — Store and retrieve reusable values in your design system
-- [**💎 Pure functions**](#pure-functions) — Functional programming in Sass
-- [**🎈 Responsive helpers**](#responsive-helpers) — Media queries and responsive properties
-- [**📐 Typographic scale**](#typographic-scale) — Vertical rhythm and responsive typography
-- [**📝 CSS ruleset generator**](#css-ruleset-generator) — Generate CSS using values in your stylesheet inventory
-- [**🍃 Scarab ecosystem**](#scarab-ecosystem) — Add-on modules for Scarab
+- [**🎨 Stylesheet inventory**](#stylesheet-inventory) — Store and retrieve reusable values in your design system
+- [**💎 Pure functions**](#pure-functions) — Functional programming in Sass
+- [**🎈 Responsive helpers**](#responsive-helpers) — Media queries and responsive properties
+- [**📐 Typographic scale**](#typographic-scale) — Vertical rhythm and responsive typography
+- [**📝 CSS ruleset generator**](#css-ruleset-generator) — Generate CSS using values in your stylesheet inventory
+- [**🍃 Scarab ecosystem**](#scarab-ecosystem) — Add-on modules for Scarab
 
 ## Installation
 
