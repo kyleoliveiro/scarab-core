@@ -47,7 +47,7 @@ Then, import Scarab at the start of your `main.scss` file:
 ---
 
 ## Stylesheet inventory
-Modern scalable UI's are born from design systems, consisting of pre-defined, reusable values. The stylesheet inventory is an interface for managing reusable values in your project.
+Modern scalable UI's are born from design systems consisting of pre-defined, reusable values. The stylesheet inventory is an interface for managing reusable values in your project.
 
 ### Storing values
 Use the **`set()`** mixin to store a value in the inventory:
@@ -212,8 +212,6 @@ If a certain font-size should not be responsive, set its value to a Number inste
 
 ```scss
 @include set(font-size, (
-  xs: 0.65rem,
-
   xl: (
     _: 2.5rem,
     medium: 4rem,
