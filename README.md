@@ -2,22 +2,23 @@
 **Sass framework for rapid stylesheet development**
 
 [![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) 
-[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
-[![npm-next](https://img.shields.io/npm/v/scarab-scss/beta.svg)](https://www.npmjs.com/package/scarab-scss)
+[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab)  
+
+[![npm-beta](https://img.shields.io/npm/v/scarab-scss/beta.svg)](https://www.npmjs.com/package/scarab-scss)
+[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=v7)](https://travis-ci.org/watchtowerdigital/scarab) 
 
 ---
 
-## ⭐ Features
+## Features
 
+- [**🎨 Stylesheet inventory**](#stylesheet-inventory) — Store and retrieve reusable values in your design system
+- [**💎 Pure functions**](#pure-functions) — Functional programming in Sass
+- [**🎈 Responsive helpers**](#responsive-helpers) — Media queries and responsive properties
+- [**📐 Typographic scale**](#typographic-scale) — Vertical rhythm and responsive typography
+- [**📝 CSS ruleset generator**](#css-ruleset-generator) — Generate CSS using values in your stylesheet inventory
+- [**🍃 Scarab ecosystem**](#scarab-ecosystem) — Add-on modules for Scarab
 
-- [**🎨 Stylesheet inventory**](#stylesheet-inventory) — Store and retrieve reusable values in your design system
-- [**💎 Pure functions**](#pure-functions) — Functional programming in Sass
-- [**🎈 Responsive helpers**](#responsive-helpers) — Media queries and responsive properties
-- [**📐 Typographic scale**](#typographic-scale) — Vertical rhythm and responsive typography
-- [**📝 CSS ruleset generator**](#css-ruleset-generator) — Generate CSS using values in your stylesheet inventory
-- [**🍃 Scarab Ecosystem**](#scarab-ecosystem) — Add-on modules for Scarab
-
-## 💾 Installation
+## Installation
 
 With npm:
 
@@ -31,7 +32,7 @@ With yarn:
 yarn add scarab-scss@beta --dev
 ```
 
-## 🏁 Getting started
+## Getting started
 
 Add your `node_modules` folder to your Sass [`includePaths`](https://github.com/sass/node-sass#includepaths).
 
@@ -43,12 +44,12 @@ Then, import Scarab at the start of your `main.scss` file:
 // Your scss here...
 ```
 
-## 📘 API Documentation
-[**http://scarab.style **](http://scarab.style)
+## API Documentation 
+[**http://scarab.style**](http://scarab.style)
 
 ---
 
-## 🎨 Stylesheet inventory
+## Stylesheet inventory
 Modern scalable UI's are born from design systems, consisting of pre-defined, reusable values. The stylesheet inventory is an interface for managing reusable values in your project.
 
 ### Storing values
@@ -68,8 +69,6 @@ Use the **`set()`** mixin to store a value in the inventory:
   )
 ));
 ```
-
-
 
 **`set()`** is also available as a function. You can invoke it by assigning the function to a dummy variable:
 ```scss
@@ -110,12 +109,19 @@ To apply a value in your stylesheet, use the **`get()`** function:
 
 ### Default values
 
-## 💎 Pure functions
+## Pure functions
 Sass provides many useful functions but sometimes, these aren't enough. Scarab extends Sass with pure functions that abstract away some common Sass operations into a single-purpose function.
+
+For example, the **`map-flatten()`** function takes a single Sass map as input, and outputs a flattened map:
+
+```scss
+map-flatten(('blue': ('_': #0000ff, '1': #3333ff, '2': #ccccff)));
+// => ('blue': #0000ff, 'blue-1': #3333ff, 'blue-2': #ccccff)
+```
 
 The full list of functions, together with examples, is available in the [**API documentation**](http://scarab.style/#5_functions-function).
 
-## 🎈 Responsive helpers
+## Responsive helpers
 Scarab supports a mobile-first approach to UI development.
 
 ### Breakpoints
@@ -165,8 +171,6 @@ The **`query()`** mixin is a convenience method for writing media query blocks:
 ### Responsive properties
 The **`responsive()`** mixin can apply property-value declarations for multiple breakpoints at once. It accepts a property name or list of property names as the first argument, and a map of breakpoints to property values as the second argument.
 
-
-
 ```scss
 .hero {
   @include responsive(text-align, (
@@ -191,7 +195,7 @@ The **`responsive()`** mixin can apply property-value declarations for multiple 
 }
 ```
 
-## 📐 Typographic scale
+## Typographic scale
 Scarab lays the groundwork for establishing vertical rhythm on your webpages using a responsive type scale. 
 
 ### Vertical rhythm
@@ -274,10 +278,78 @@ p {
 }
 ```
 
-## 📝 CSS ruleset generator
-`Documentation for this section is a WIP`
+## CSS ruleset generator
 
-## 🍃 Scarab Ecosystem
+### Scarab modules
+You can define **`modules`** in Scarab which can then be used to programmatically generate CSS rulesets. Modules must contain a `root`, and optionally: `values`, `breakpoints`, and `states`.
+
+Here's an simple example using Scarab modules with the **`css-ruleset`** mixin which outputs responsive, stateful classes for a utility class that turns an element's `color` to `red`.
+
+
+```scss
+// Define a module
+@include set(module, 'color-red', (
+  root: 'red',
+  breakpoints: (s, m),
+  states: (hover, focus)
+));
+
+// Generate the ruleset
+@include css-ruleset(module(color-red)) {
+  color: red;
+}
+
+/*
+  Output: (Scarab escapes special characters in generated CSS class names)
+
+  .red { color: red; }
+  .hv\(red\):hover { color: red; }
+  .fc\(red\):focus { color: red; }
+
+  @media (min-width: 100px) {
+    .s\(red\) { color: red; }
+    .s\(hv\(red\)\):hover { color: red; }
+    .s\(fc\(red\)\):focus { color: red; }
+  }
+
+  @media (min-width: 200px) {
+    .m\(red\) { color: red; }
+    .m\(hv\(red\)\):hover { color: red; }
+    .m\(fc\(red\)\):focus { color: red; }
+  }
+*/
+```
+
+You can also set module `values` and then loop over the values, generating a ruleset for each one:
+
+```scss
+// Define a module
+@include set(module, 'color-utils', (
+  root: 'color',
+  values: (
+    red:   #ff0000,
+    green: #00ff00,
+    blue:  #0000ff
+  ),
+  breakpoints: (s, m),
+  states: (hover, focus)
+));
+
+// Loop over each value and generate a ruleset
+@each $key, $value in module(color-utils, values) {
+  @include css-ruleset(
+    $module: color-utils,
+    $modifier: $key
+  ) {
+    color: $value;
+  }
+}
+```
+
+### Custom naming convention
+To use a custom naming convention with Scarab, configure the `namescheme` global option. Refer to the [documentation](http://scarab.style/#variable-__SCARAB_OPTIONS) for details.
+
+## Scarab ecosystem
 * [**Carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Scarab modules for generating functional CSS classes from your stylesheet inventory
 * [**Scarab CLI**](https://github.com/watchtowerdigital/scarab-cli.git) — Command-Line Interface for the Scarab ecosystem
 * [**Scarab Styleguide**](https://github.com/watchtowerdigital/scarab-styleguide.git) — Automatically generate styleguides from your Scarab stylesheet inventory
