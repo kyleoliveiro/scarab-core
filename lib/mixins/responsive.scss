@@ -18,6 +18,11 @@
 				#{$property}: $value;
 			}
 		} @else {
+			// If $breakpoint is a string, get the breakpoint value
+			@if type-of($breakpoint) == 'string' {
+				$breakpoint: get(breakpoint, $breakpoint);
+			}
+
 			@include query($breakpoint) {
 				@each $property in $properties {
 					#{$property}: $value;

@@ -2,6 +2,7 @@
 ///
 /// @group 6_mixins
 /// 
+/// @requires {function} get
 /// @requires {function} option
 /// @requires {function} class-template
 /// @requires {function} class-sanitize
@@ -28,6 +29,30 @@
   $breakpoints : map-get($module, 'breakpoints');
   $states      : map-get($module, 'states');
 
+  // Allow $breakpoints to accept a list
+  @if type-of($breakpoints) == 'list' {
+    $_breakpoints: ();
+
+    @each $name in $breakpoints {
+      $_breakpoints: map-append($_breakpoints, to-string($name), get(breakpoint, $name));
+    }
+
+    $breakpoints: $_breakpoints;
+  }
+
+  // Allow $states to accept a list
+  @if type-of($states) == 'list' {
+    $_states: ();
+
+    @each $state in $states {
+      $state-key: nth(map-get-key(option(namescheme, states), $state), 1);
+      $_states: map-append($_states, $state-key, $state);
+    }
+
+    $states: $_states;
+  }
+
+  // Allow $module to overwrite global prefix/suffix options
   $breakpoint-prefix : if(is-null(map-get($module, 'breakpoint-prefix')),
     option(namescheme, breakpoint-prefix),
     map-get($module, 'breakpoint-prefix')

@@ -22,7 +22,7 @@
       $_result: ();
       @each $k, $v in $val {
         @if $k == option(namescheme, default-key) {
-          $_result: map-append($_result, #{$key}, $v);
+          $_result: map-append($_result, $key, $v);
         } @else {
           $_result: map-append($_result, #{$key}#{$separator}#{$k}, $v);
         }

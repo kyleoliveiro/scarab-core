@@ -1,0 +1,25 @@
+@include describe('to-number [func]') {
+
+  @include it('Converts a value to a number') {
+    @include assert-equal(
+      to-number('10'),
+      10
+    );
+
+    @include assert-equal(
+      to-number('4px'),
+      4px
+    );
+
+    @include assert-equal(
+      to-number('1em'),
+      1em
+    );
+
+    @include assert-equal(
+      to-number('1xxx'),
+      1
+    );
+  }
+
+}

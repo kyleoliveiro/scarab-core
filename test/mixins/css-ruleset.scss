@@ -13,7 +13,7 @@
     @include assert('Minimal module (Non-responsive, Stateless)') {
       @include output {
         @include css-ruleset(
-          $module   : $module-minimal
+          $module : $module-minimal
         ) {
           color: value;
         }
@@ -311,6 +311,72 @@
 
         .mini-e\3A b {
           color: blue;
+        }
+      }
+    }
+
+    @include assert('Accepts lists for $breakpoints and $states') {
+      @include output {
+        $_: set(breakpoint, (s: 100px, m: 200px, l: 300px));
+
+        $module-lists: (
+          'root'   : 'lists',
+          'values' : (
+            'r' : red
+          ),
+          'breakpoints': (s, l),
+          'states': (hover, focus)
+        );
+
+        @each $key, $val in map-get($module-lists, values) {
+          @include css-ruleset(
+            $module   : $module-lists,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .lists\3A r {
+          color: red;
+        }
+
+        .hv\(lists\3A r\):hover {
+          color: red;
+        }
+
+        .fc\(lists\3A r\):focus {
+          color: red;
+        }
+
+        @media (min-width: 100px) {
+          .s\(lists\3A r\) {
+            color: red;
+          }
+
+          .s\(hv\(lists\3A r\)\):hover {
+            color: red;
+          }
+
+          .s\(fc\(lists\3A r\)\):focus {
+            color: red;
+          }
+        }
+
+        @media (min-width: 300px) {
+          .l\(lists\3A r\) {
+            color: red;
+          }
+
+          .l\(hv\(lists\3A r\)\):hover {
+            color: red;
+          }
+
+          .l\(fc\(lists\3A r\)\):focus {
+            color: red;
+          }
         }
       }
     }

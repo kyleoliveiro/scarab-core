@@ -1,0 +1,13 @@
+@include describe('to-length [func]') {
+
+  @include it('Adds a unit to a value') {
+    
+    @include assert-equal(
+      to-length(10, '%'),
+      10%
+    );
+
+  }
+
+}
+

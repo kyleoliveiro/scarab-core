@@ -1,0 +1,16 @@
+/// Extends multiple classes
+///
+/// @group 6_mixins
+/// 
+/// @requires {function} to-string
+/// @requires {function} class-escape
+///
+/// @param {Arglist} $classes - Arglist of classes to extend
+/// 
+/// @output Multiple Sass `@extend` directives
+
+@mixin extends($classes...) {
+  @each $class in $classes {
+    @extend .#{class-escape(to-string($class))};
+  }
+}

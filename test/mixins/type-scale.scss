@@ -27,16 +27,21 @@
 
     @include assert('Responsive sizes') {
       @include output {
+        $_: set(breakpoint, (
+          s: 200px,
+          m: 444px
+        ));
+
         $_: set(font-size, m, (
           _ : 16px,
-          200px : 20px,
-          444px : 55px
+          s : 20px,
+          m : 55px
         ));
 
         $_: set(line-height, m, (
           _ : 20px,
-          200px : 25px,
-          444px : 64px
+          s : 25px,
+          m : 64px
         ));
 
         @include type-scale(m);
