@@ -1,5 +1,5 @@
 {
   "name": "scarab-scss",
-  "description": "Sass utility framework for rapid stylesheet development",
+  "description": "Sass framework for rapid stylesheet development",
   "tags": ["framework", "utilities", "helpers", "responsive", "functions", "mixins", "variables"]
 }
