@@ -1,8 +1,5 @@
 # Scarab
-**Sass framework for rapid stylesheet development**
-
-[![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) 
-[![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab)  
+**Sass framework for rapid stylesheet development**  
 
 [![npm-beta](https://img.shields.io/npm/v/scarab-scss/beta.svg)](https://www.npmjs.com/package/scarab-scss)
 [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=v7)](https://travis-ci.org/watchtowerdigital/scarab?branch=v7) 
@@ -107,10 +104,8 @@ To apply a value in your stylesheet, use the **`get()`** function:
 }
 ```
 
-### Default values
-
 ## Pure functions
-Sass provides many useful functions but sometimes, these aren't enough. Scarab extends Sass with pure functions that abstract away some common Sass operations into a single-purpose function.
+Sass provides many useful functions but sometimes, these aren't enough. Scarab extends Sass with pure functions that abstract away common Sass operations into a small, single-purpose functions.
 
 For example, the **`map-flatten()`** function takes a single Sass map as input, and outputs a flattened map:
 
@@ -146,21 +141,21 @@ Configure breakpoints in the stylesheet inventory. You should pick a naming conv
 The **`query()`** mixin is a convenience method for writing media query blocks:
 
 ```scss
-@include query(bp(small)) {
+@include query(small) {
 /*
   Equivalent to:
   @media (min-width: 500px)
 */
 }
 
-@include query(until bp(medium)) {
+@include query(until medium) {
 /*
   Equivalent to:
   @media (max-width: 850px)
 */
 }
 
-@include query(bp(medium) to bp(large)) {
+@include query(medium to large) {
 /*
   Equivalent to:
   @media (min-width: 850px) and (max-width: 1100px)
