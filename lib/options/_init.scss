@@ -16,6 +16,7 @@
 /// @prop {Bool} output.placeholders [true] - Whether Scarab should ouput Sass placeholders
 /// @prop {Bool} ouput.reset [true] - Whether Scarab should ouput CSS reset rules
 /// @prop {Bool} ouput.normalize [true] - Whether Scarab should ouput CSS normalize rules
+/// @prop {Bool} important [true] - Whether to append !important to generated modules
 /// @prop {Map} namescheme - Contains options for the naming scheme
 /// @prop {String} namescheme.default-key ['_'] - Key name to use for the "default" value in a map
 /// @prop {Map} namescheme.directions - Map of directional shorthands to values
@@ -33,12 +34,13 @@
 /// @prop {String} namescheme.state-suffix [')'] - State suffix
 
 $__SCARAB_OPTIONS: (
-  'throw-errors' : true,
+  'throw-errors'      : true,
   'output' : (
     'classes'      : true,
     'placeholders' : true,
     'reset'        : true,
-    'normalize'    : true
+    'normalize'    : true,
+    'important'    : true
   ),
   'namescheme' : (
     'default-key' : '_',
