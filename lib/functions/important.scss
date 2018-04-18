@@ -1,0 +1,16 @@
+/// Returns `!important` or an empty string.
+///
+/// @group 5_functions
+/// 
+/// @param {Bool} $output - Whether to output `!important`
+///
+/// @return {String}
+///
+/// @example
+///   important()
+///   // => !important
+
+@function important($output: option(output, important)) {
+  $result: if($output, '!important', '');
+  @return $result;
+}

@@ -1,0 +1,21 @@
+@include describe('important [func]') {
+
+  @include it('Returns returns `!important` the output.important option is true') {
+    $_: set-option(output, important, true);
+
+    @include assert-equal(
+      important(),
+      '!important'
+    );
+  }
+
+  @include it('Returns returns an empty string the output.important option is false') {
+    $_: set-option(output, important, false);
+
+    @include assert-equal(
+      important(),
+      ''
+    );
+  }
+
+}
