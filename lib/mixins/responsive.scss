@@ -8,14 +8,15 @@
 ///
 /// @param {String|List} $properties - Properties to declare
 /// @param {Map} $breakpoint-map - Map of breakpoint values to property values
+/// @param {Null|Boolean} $important [null] - Whether to ouput !important rules
 /// 
 /// @output Responsive properties
 
-@mixin responsive($properties, $breakpoint-map) {
+@mixin responsive($properties, $breakpoint-map, $important: null) {
 	@each $breakpoint, $value in $breakpoint-map {
 		@if $breakpoint == option(namescheme, default-key) {
 			@each $property in $properties {
-				#{$property}: $value;
+				#{$property}: $value important($important);
 			}
 		} @else {
 			// If $breakpoint is a string, get the breakpoint value
@@ -25,7 +26,7 @@
 
 			@include query($breakpoint) {
 				@each $property in $properties {
-					#{$property}: $value;
+					#{$property}: $value important($important);
 				}
 			}
 		}

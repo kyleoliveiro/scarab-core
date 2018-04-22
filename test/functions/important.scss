@@ -1,6 +1,28 @@
 @include describe('important [func]') {
 
-  @include it('Returns returns `!important` the output.important option is true') {
+
+  @include it('Returns returns null when $output is null') {
+    @include assert-equal(
+      important(null),
+      null
+    );
+  }
+
+  @include it('Returns returns null when $output is false') {
+    @include assert-equal(
+      important(false),
+      null
+    );
+  }
+
+  @include it('Returns returns `!important` when $output is true') {
+    @include assert-equal(
+      important(true),
+      '!important'
+    );
+  }
+
+  @include it('Returns returns `!important` when output.important option is true') {
     $_: set-option(output, important, true);
 
     @include assert-equal(
@@ -9,12 +31,12 @@
     );
   }
 
-  @include it('Returns returns an empty string the output.important option is false') {
+  @include it('Returns returns null when output.important option is false') {
     $_: set-option(output, important, false);
 
     @include assert-equal(
       important(),
-      ''
+      null
     );
   }
 
