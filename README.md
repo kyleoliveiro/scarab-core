@@ -1,21 +1,24 @@
-# Scarab
-**Sass framework for rapid stylesheet development.**  
+<div style="text-align:center;">
+<img src="./scarab-logo.svg" width="128">
+<h1>Scarab</h1>
+<strong>Sass library for rapid stylesheet development</strong>
+
+Design token management · Helper functions · Responsive mixins
 
 [![npm-beta](https://img.shields.io/npm/v/scarab-scss/beta.svg)](https://www.npmjs.com/package/scarab-scss)
 [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=v7)](https://travis-ci.org/watchtowerdigital/scarab?branch=v7) 
 
-- [💿 Installation](#installation)
-- [📚 Documentation](#documentation)
-- [⭐️ Features](#features)
-- [🍃 Ecosystem](#ecosystem)
-- [🎉 Motivation](#motivation) 
-- [❤️ Contributing](#contributing)
-- [📃️ License](#license)
+---
+
+[💿 Installation](#installation)&ensp;·&ensp;[📚 Documentation](#documentation)&ensp;·&ensp;[⭐️ Features](#features)&ensp;·&ensp;[🍃 Ecosystem](#ecosystem)
+<br>
+[🎉 Motivation](#motivation)&ensp;·&ensp;[❤️ Contributing](#contributing)&ensp;·&ensp;[📃️ License](#license)
+</div>
 
 ---
 
 ## 💿 Installation
-**Add Scarab as a dev-dependency in your project:**
+Install Scarab as a dev-dependency:
 
 ```bash
 # With yarn
@@ -25,7 +28,7 @@ $ yarn add scarab-scss -D
 $ npm install scarab-scss --save-dev
 ```
 
-**Import the Scarab library before your other stylesheets:**
+Import the Scarab library before all other stylesheets:
 
 ```sass
 @import 'scarab-scss/scarab';
@@ -35,13 +38,15 @@ $ npm install scarab-scss --save-dev
 
 
 ## 📚 Documentation
-**API Documentation and guides:**<br>
+Read the API documentation and guides:<br>
 [**https://scarab.style/docs/**](https://scarab.style/docs)
 
 ## ⭐️ Features
 
 ### 🎨 Design token management
-Design systems consist of reusable key-value pairs called "tokens". Constructing user interfaces using only values defined by design tokens ensures visual consistency. Scarab provides a simple interface for managing design tokens.
+***Design systems consist of reusable “tokens”.*** Each token has a name and a value associated with it. Constructing digital interfaces using only the values of tokens that are defined in a design system ensures visual consistency.
+
+Scarab provides a simple interface for managing design tokens.
 
 **Set and get design tokens**:
 
@@ -59,12 +64,12 @@ Design systems consist of reusable key-value pairs called "tokens". Constructing
 // Use tokens in other stylesheets
 .my-component {
   margin-top: spacing(s); // 0.5rem
-  marbin-bottom: s(xs);   // 0.25rem (Shorthand helper function)
+  margin-bottom: s(xs);   // 0.25rem (Shorthand helper function)
 }
 ```
 
 <details>
-<summary><strong>Design token reference</strong></summary>
+<summary>Design token helpers</summary>
 | Token | Helper | Shorthand |
 | :-- | :-- | :-- |
 | [Baseline](https://scarab.style/docs/tokens/baseline) | `baseline()` | `bl()` |
@@ -94,11 +99,12 @@ Design systems consist of reusable key-value pairs called "tokens". Constructing
 | [Aspect ratios](https://scarab.style/docs/tokens/aspect-ratios) | `ratio()` | — |
 | [Angles](https://scarab.style/docs/tokens/angles) | `angle()` | — |
 | [Animations](https://scarab.style/docs/tokens/animations) | `keyframe()` | — |
-</details><br/>
+</details>
 
-You can also define custom tokens if needed. Custom tokens can be retrieved with the `get()` function:
+<details>
+<summary>Defining custom tokens</summary>
+Custom tokens can also be defined if needed. They can be retrieved with the `get()` function:
 
-**Defining custom tokens:**
 ```sass
 @include set(custom-token, (
   token-1: 'value-1'
@@ -112,32 +118,36 @@ You can also define custom tokens if needed. Custom tokens can be retrieved with
   }
 }
 ```
+</details>
 
 ### 💎 Helper functions
 Scarab provides a library of helper functions in addition to the inventory helpers mentioned above. These helpers provide additional syntactic sugar on top of the [default Sass functions](http://sass-lang.com/documentation/Sass/Script/Functions.html).
 
 <details>
-<summary><strong>Unit / type helpers</strong></summary>
-<br>
-
+<summary>Type helpers</summary>
 | Name | Description |
 | :--  | :-- |
-| `em()` | Converts `px` to `em`. |
-| `rem()` | Converts `px` to `rem`. |
 | `is-null()` | Checks if the specified value is null. |
 | `to-length()` | Adds a unit to a value. ??? |
 | `to-negative()` | Converts a number, list, or map of values to negative value(s). |
 | `to-number()` | Converts a value to a number. |
 | `to-string()` | Converts a value to a string. |
 | `type-check()` | Performs type checks on values. |
+
+</details>
+
+<details>
+<summary>Unit helpers</summary>
+| Name | Description |
+| :--  | :-- |
+| `em()` | Converts `px` to `em`. |
+| `rem()` | Converts `px` to `rem`. |
 | `unit-convert()` | Converts units of a value. ??? |
 | `unit-strip()` | Strips units from a value. ??? |
 </details>
 
 <details>
-<summary><strong>String helpers</strong></summary>
-<br>
-
+<summary>String helpers</summary>
 | Name | Description |
 | :--  | :-- |
 | `str-append()` | Appends to a string. |
@@ -150,9 +160,7 @@ Scarab provides a library of helper functions in addition to the inventory helpe
 </details>
 
 <details>
-<summary><strong>List helpers</strong></summary>
-<br>
-
+<summary>List helpers</summary>
 | Name | Description |
 | :--  | :-- |
 | `list-append()` | Adds values to the end of a list. |
@@ -168,9 +176,7 @@ Scarab provides a library of helper functions in addition to the inventory helpe
 </details>
 
 <details>
-<summary><strong>Map helpers</strong></summary>
-<br>
-
+<summary>Map helpers</summary>
 | Name | Description |
 | :--  | :-- |
 | `map-append()` | Adds a single key-value pair onto the end of a map. |
@@ -185,9 +191,7 @@ Scarab provides a library of helper functions in addition to the inventory helpe
 </details>
 
 <details>
-<summary><strong>CSS class helpers</strong></summary>
-<br>
-
+<summary>CSS class helpers</summary>
 | Name | Description |
 | :--  | :-- |
 | `class-espace()` | Escapes a string for use as a CSS class name. |
@@ -196,9 +200,7 @@ Scarab provides a library of helper functions in addition to the inventory helpe
 </details>
 
 <details>
-<summary><strong>Utilities</strong></summary>
-<br>
-
+<summary>Utilities</summary>
 | Name | Description |
 | :--  | :-- |
 | `get-function-safe()` | Safely calls native get-function(). Intended for use with natice call(). |
@@ -207,10 +209,10 @@ Scarab provides a library of helper functions in addition to the inventory helpe
 </details>
 
 ### 🎈 Responsive mixins
-Media queries and responsive properties.
+These helper mixins simplify working with breakpoints and media queries.
 
 <details>
-<summary><strong>Media queries</strong></summary>
+<summary>Media queries</summary>
 
 The **`query()`** mixin defines styles within a media query block:
 
@@ -259,7 +261,7 @@ The **`query()`** mixin defines styles within a media query block:
 </details>
 
 <details>
-<summary><strong>Responsive properties</strong></summary>
+<summary>Responsive properties</summary>
 The **`responsive()`** mixin lets you define values of proprties at specific breakpoints:
 
 ```sass
@@ -283,7 +285,7 @@ The **`responsive()`** mixin lets you define values of proprties at specific bre
 </details>
 
 <details>
-<summary><strong>Responsive typographic scale</strong></summary>
+<summary>Responsive typographic scale</summary>
 The `type-scale()` mixin generates font size and line height declarations within its parent block.
 
 ```sass
@@ -329,42 +331,40 @@ The `type-scale()` mixin generates font size and line height declarations within
 ```
 </details>
 
-### 🍃 Ecosystem
+## 🍃 Ecosystem
 
 In addition to the core library, the following packages are available in the Scarab ecosystem:
 
 | Package | Description |
 | :-- | :-- |
 | [**Carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) | Automatically generate CSS utility classes from design tokens. |
-| [**Scarab snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) | Snippets for your favourite text editors and IDE's. |
 | [**Scarab CLI**](https://github.com/watchtowerdigital/scarab-cli.git) | Command-line tools for the Scarab ecosystem. |
+| [**Scarab snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) | Snippets for your favourite text editors and IDE's. |
 
-### 🎉 Motivation
-Scarab is a byproduct of years of web development work. It's designed and built as a library to manage design tokens and to provide an additional layer of CSS syntactic sugar.
+## 🎉 Motivation
 
-**Why use Scarab?**
+### Why another Sass library?
+Scarab is the resulting by-product of years of web development work. It's designed and built as a library to manage design tokens and to provide additional syntactic sugar for writing stylesheets.
 
-- Design token framework plus optional debugging
+### Why use Scarab?
+
+- Define design tokens in Sass (ideal since it's a styling language)
+- Use tokens in Sass with Scarab, and in HTML with Carapace
 - Ability to export design tokens from Sass to JSON
-- Written in Sass, no additional dependencies required
+- Written in Sass; No additional dependencies
 - Well tested with 100+ unit tests
 - Ecosystem of related packages
 
+### Alternative libraries
 Other options are available, and you should pick one that caters to your project's requirements.
 
-<details>
-<summary><strong>Alternative libraries</strong></summary>
-
-| Library | Description |
-| :-- | :-- |
-| Tailwind | ... |
-| Tachyons | ... |
-| BassCSS | ... |
-| Vue DS | ... |
-</details>
+- [Tailwind](https://tailwindcss.com/) – Generates CSS utility classes with short compile time. Requires PostCSS or Tailwind CLI.
+- [Tachyons](https://tachyons.io/) – Good for smaller sites that use native CSS variables (a.k.a. custom properties).
+- [BassCSS](http://basscss.com/) — Alternative to Tachyons. Also uses CSS variables.
+- [Vue DS](https://vueds.com) — Full-featured design system framework for Vue.
 
 ### ❤️ Contributing
-Issues and feature/pull requests are welcome!
+Issues and feature requests and PR's are welcome!
 
 ### 📃️ License
 Lincesed under MIT. Copyright &copy; Kyle Oliveiro 2018.
