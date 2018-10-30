@@ -1,6 +1,6 @@
 {
   "name": "@scarab/core",
-  "version": "7.0.0-rc.0",
+  "version": "7.0.0-rc.1",
   "description": "Sass library for rapid stylesheet development",
   "keywords": [
     "sass",
