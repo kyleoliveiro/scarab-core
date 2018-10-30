@@ -1,5 +1,5 @@
-<div align="center">
-<img src="./scarab-logo.svg" width="128">
+<div align="center" style="text-align:center;">
+<img src="https://raw.githubusercontent.com/kyleoliveiro/scarab-core/v7/scarab-logo.svg?sanitize=true" width="128">
 <h1>Scarab Core</h1>
 <strong>Sass library for rapid stylesheet development</strong>
 
