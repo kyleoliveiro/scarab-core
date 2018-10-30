@@ -5,7 +5,7 @@
 
 Design token management · Responsive mixins · Helper functions
 
-[![npm-beta](https://img.shields.io/npm/v/@scarab/core/master.svg)](https://www.npmjs.com/package/@scarab/core)
+[![npm-beta](https://img.shields.io/npm/v/@scarab/core.svg)](https://www.npmjs.com/package/@scarab/core)
 [![Build Status](https://travis-ci.org/kyleoliveiro/scarab-core.svg)](ttps://travis-ci.org/kyleoliveiro/scarab-core.svg) 
 
 ---
