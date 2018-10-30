@@ -1,4 +1,4 @@
-<div style="text-align:center;">
+<div align="center">
 <img src="./scarab-logo.svg" width="128">
 <h1>Scarab Core</h1>
 <strong>Sass library for rapid stylesheet development</strong>
