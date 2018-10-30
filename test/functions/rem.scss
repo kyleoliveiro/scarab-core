@@ -1,0 +1,17 @@
+@include describe('rem [func]') {
+
+  @include it('Converts px to rem') {
+    @include assert-equal(
+      rem(32),
+      2rem,
+      'Default base font size'
+    );
+
+    @include assert-equal(
+      rem(32, 10),
+      3.2rem,
+      'Custom base font size'
+    );
+  }
+
+}

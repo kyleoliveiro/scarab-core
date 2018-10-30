@@ -1,0 +1,55 @@
+@include describe('list-replace [func]') {
+
+  @include it('Replaces the first occurance of a value in a list') {
+    @include assert-equal(
+      list-replace(1 2 2 2 3, 2, 4),
+      1 4 2 2 3,
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-replace((1, 2, 2, 2, 3), 2, 4),
+      (1, 4, 2, 2, 3),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-replace([1 2 2 2 3], 2, 4),
+      [1 4 2 2 3],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-replace([1, 2, 2, 2, 3], 2, 4),
+      [1, 4, 2, 2, 3],
+      'Supports bracketed comma lists'
+    );
+  }
+
+  @include it('Replaces all occurances of a value in a list') {
+    @include assert-equal(
+      list-replace(1 2 3 1 1 1 2 2 2 3 3 3, 2, 4, true),
+      1 4 3 1 1 1 4 4 4 3 3 3,
+      'Support space lists'
+    );
+
+    @include assert-equal(
+      list-replace((1, 2, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3), 2, 4, true),
+      (1, 4, 3, 1, 1, 1, 4, 4, 4, 3, 3, 3),
+      'Support comma lists'
+    );
+
+    @include assert-equal(
+      list-replace([1 2 3 1 1 1 2 2 2 3 3 3], 2, 4, true),
+      [1 4 3 1 1 1 4 4 4 3 3 3],
+      'Support bracketed lists'
+    );
+
+    @include assert-equal(
+      list-replace([1, 2, 3, 1, 1, 1, 2, 2, 2, 3, 3, 3], 2, 4, true),
+      [1, 4, 3, 1, 1, 1, 4, 4, 4, 3, 3, 3],
+      'Support bracketed comma lists'
+    );
+  }
+
+}

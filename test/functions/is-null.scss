@@ -1,0 +1,31 @@
+@include describe('is-null [func]') {
+
+  @include it('Returns whether the specified value is `null`') {
+    @include assert-true(
+      is-null(null),
+      'Null is null'
+    );
+
+    @include assert-false(
+      is-null(false),
+      'false is not null'
+    );
+
+    @include assert-false(
+      is-null(0),
+      '0 is not null'
+    );
+
+    @include assert-false(
+      is-null(''),
+      'Empty string is not null'
+    );
+    
+    $list: [];
+    @include assert-false(
+      is-null($list),
+      'Empty list is not null'
+    );
+  }
+
+}

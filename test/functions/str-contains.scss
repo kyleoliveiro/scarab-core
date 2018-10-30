@@ -1,0 +1,15 @@
+@include describe('str-contains [func]') {
+
+  @include it('Checks if a string contains a substring') {
+    @include assert-true(
+      str-contains('hello world', 'hello'),
+      '`hello world` contains `hello`'
+    );
+
+    @include assert-false(
+      str-contains('team', 'i'),
+      '`team` does not contain `i`'
+    );
+  }
+  
+}

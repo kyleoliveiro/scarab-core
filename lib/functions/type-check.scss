@@ -1,0 +1,29 @@
+/// Performs type checks on values.
+/// 
+/// Returns `true` if all checks pass. Throws an error otherwise.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} throw
+///
+/// @param {String} $called-from - Name of the calling function or mixin
+/// @param {List} $checks - Map of checks to perform
+/// @param {Boolean} $throw - Whether to throw or return the error as a string
+/// 
+/// @return {Boolean|String} - `true` if all checks pass
+/// @throws [TypeError] `$called-from` expected `$valid-types`, was: `$value` {`$value-type`}
+
+@function type-check($called-from, $checks, $throw) {
+  // Perform type checks on each variable
+  @each $check in $checks {
+    $value: nth(nth($check, 1), 1);
+    $value-type: type-of($value);
+    $valid-types: nth(nth($check, 1), 2);
+
+    @if not index($valid-types, $value-type) {
+      @return throw('TypeError', '#{$called-from} expected {#{$valid-types}}, was: #{$value} {#{$value-type}}', $throw)
+    }
+  }
+
+  @return true;
+}

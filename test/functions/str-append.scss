@@ -1,0 +1,24 @@
+@include describe('str-append [func]') {
+
+  @include it('Appends to a string') {
+    @include assert-equal(
+      str-append('hello', 'world'),
+      'helloworld',
+      'Single string'
+    );
+
+    @include assert-equal(
+      str-append('hello', 'world', 'foo', 'bar'),
+      'helloworldfoobar',
+      'Multiple strings'
+    );
+  }
+
+  @include it('Treats null as empty string') {
+    @include assert-equal(
+      str-append('hello', null, 'world'),
+      'helloworld'
+    )
+  }
+  
+}

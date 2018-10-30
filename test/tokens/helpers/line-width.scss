@@ -1,0 +1,43 @@
+@include describe('line-width [func]') {
+
+  @include it('Returns a `line-width` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'line-width': (
+          '0': none,
+          's': 1px,
+          'm': 3px,
+          'l': 5px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      line-width(m),
+      3px
+    );
+  }
+
+}
+
+@include describe('lnw [func]') {
+
+  @include it('Returns a `line-width` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'line-width': (
+          '0': none,
+          's': 1px,
+          'm': 3px,
+          'l': 5px
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      lnw(m),
+      3px
+    );
+  }
+
+}

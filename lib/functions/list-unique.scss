@@ -1,0 +1,30 @@
+/// Removes duplicate values from a list.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to remove duplicates from
+/// 
+/// @return {List} - List with duplicates items removed
+///
+/// @example
+///   list-unique((a, b, c, a, a, c))
+///   // => (a, b, c);
+
+@function list-unique($list) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+
+  $result: ();
+
+  @each $item in $list {
+    @if not index($result, $item) {
+      $result: append($result, $item);
+    }
+  }
+
+  // Preserve list seperator and brackets
+  $result: join($result, (), $separator, $bracketed);
+
+  @return $result;
+}
+

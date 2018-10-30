@@ -1,0 +1,25 @@
+/// Returns the value of an easing token.
+///
+/// **Aliases**
+/// - `@function ease()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function easing($path...) {
+  $result: get(easing, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias easing
+
+@function ease($args...) {
+  @return easing($args...);
+}

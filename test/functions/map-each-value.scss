@@ -1,0 +1,33 @@
+@include describe('map-each-value [func]') {
+
+  @include it('Calls a function on each value in a map') {
+    @include assert-equal(
+      map-each-value((
+        1    : 1.1,
+        'a'  : 2.5,
+        blue : 3.7
+      ), 'round'),
+      (
+        1    : 1,
+        'a'  : 3,
+        blue : 4
+      )
+    );
+  }
+
+  @include it('Supports passing args to the called function') {
+    @include assert-equal(
+      map-each-value((
+        a : 'apple',
+        b : 'orange',
+        c : 'banana'
+      ), 'str-replace', ('a', '4', true)),
+      (
+        a : '4pple',
+        b : 'or4nge',
+        c : 'b4n4n4'
+      )
+    );
+  }
+
+}

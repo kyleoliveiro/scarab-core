@@ -1,0 +1,28 @@
+/// Checks if the result of calling a given function on every item in a list is true.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} get-function-safe
+///
+/// @param {List} $list - List to operate on
+/// @param {String} $function-name - Name of the function to call
+/// @param {List} $args [()] - List of args to pass to the function
+/// 
+/// @return {Bool} - Whether the result of every item returned `true`
+///
+/// @example
+///   list-every((1, 2, 3), 'unitless')
+///   // => true
+///   
+///   list-every((1, 2px, 3), 'unitless')
+///   // => false
+
+@function list-every($list, $function-name, $args: ()) {
+  @each $item in $list {
+    @if not call(get-function-safe($function-name), $item, $args...) {
+      @return false;
+    }
+  }
+
+  @return true;
+}

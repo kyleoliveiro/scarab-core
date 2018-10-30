@@ -1,5 +1,5 @@
 {
-  "name": "scarab-scss",
-  "description": "Sass utility framework for rapid stylesheet development",
-  "tags": ["framework", "utilities", "helpers", "responsive", "functions", "mixins", "variables"]
+  "name": "@scarab/core",
+  "description": "Sass library for rapid stylesheet development",
+  "tags": ["design tokens", "design system", "library", "framework", "utilities", "helpers", "responsive", "functions", "mixins", "variables"]
 }

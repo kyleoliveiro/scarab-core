@@ -1,0 +1,26 @@
+/// Returns the value of a line width token.
+///
+/// **Aliases**
+/// - `@function lnw()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function line-width($path...) {
+  $result: get(line-width, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias line-width
+
+@function lnw($args...) {
+  @return line-width($args...);
+}
+

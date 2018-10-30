@@ -1,0 +1,62 @@
+@include describe('letter-spacing [func]') {
+
+  @include it('Returns a `letter-spacing` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'letter-spacing': (
+          '0': 0,
+          'loose-1': 0.2em,
+          'tight-1': -0.2em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      letter-spacing(loose-1),
+      0.2em
+    );
+  }
+
+}
+
+@include describe('ls [func]') {
+
+  @include it('Returns a `letter-spacing` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'letter-spacing': (
+          '0': 0,
+          'loose-1': 0.2em,
+          'tight-1': -0.2em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      ls(loose-1),
+      0.2em
+    );
+  }
+
+}
+
+@include describe('tracking [func]') {
+
+  @include it('Returns a `letter-spacing` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'letter-spacing': (
+          '0': 0,
+          'loose-1': 0.2em,
+          'tight-1': -0.2em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      tracking(loose-1),
+      0.2em
+    );
+  }
+
+}

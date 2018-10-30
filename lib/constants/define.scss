@@ -1,0 +1,99 @@
+/// Defines a new constant.
+/// 
+/// Constants that already exist may not be re-defined.
+///
+/// @group 2_constants
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} to-string
+/// @requires {function} map-stringify-keys-deep
+///
+/// @param {ArgList} $definition - Definition of the new constant
+/// 
+/// @return {ArgList} - Definition of the new constant
+///
+/// @example
+///   $_: define(COMPANY, NAME, 'Acme Inc');
+///   
+///   @debug const(COMPANY, NAME);
+///   // => 'Acme Inc'
+
+@function define($definition...) {
+  // Get a copy of the current $CONSTANTS state
+  $CONSTANTS: map-get($__SCARAB, 'CONSTANTS');
+
+  $result: (); // key-value pair that will be merged with $CONSTANTS 
+  
+  // If there are only 2 args, we can easily determine the result
+  @if length($definition) == 2 {
+    $key       : nth($definition, 1);
+    $new-value : nth($definition, 2);
+
+    // Check that the constant does not already exist
+    @if not map-has-key($CONSTANTS, to-string($key)) {
+      $result: ($key: $new-value);
+    }
+  }
+
+  // For more than 2 args, we have to build the result backwards
+  @if length($definition) > 2 {
+
+    // The new value is the last arg in $definition
+    $new-value: nth($definition, -1);
+
+    // Build a list of maps preceding the new one
+    $maps: ($CONSTANTS,);
+
+    @for $i from 1 through length($definition) - 2 {
+      $current-key   : nth($definition, $i);
+      $current-map   : nth($maps, -1);
+      $current-value : map-get($current-map, to-string($current-key)) or ();
+
+      $maps: append($maps, $current-value);
+    }
+
+    @for $i from length($maps) through 1 {
+      $current-map   : nth($maps, $i);
+      $current-key   : nth($definition, $i);
+      $current-value : map-get($current-map, to-string($current-key));
+
+      @if $i == length($maps) {
+        // Check that the constant does not already exist
+        @if not map-has-key($current-map, to-string($current-key)) {
+          $current-value: $new-value;
+        }
+      } @else {
+        $current-value: $result;
+      }
+
+      $result: map-merge($current-map, (to-string($current-key): $current-value));
+    }
+  }
+
+  // Update the local $CONSTANTS map
+  $CONSTANTS: map-merge($CONSTANTS, map-stringify-keys-deep($result));
+
+  // Merge the updated $CONSTANTS map back into $__SCARAB
+  $__SCARAB: map-merge($__SCARAB, ('CONSTANTS': $CONSTANTS)) !global;
+  @return $definition;
+}
+
+
+
+/// Calls `@function define()`.
+/// 
+/// @group 2_constants
+/// 
+/// @requires {function} define
+/// 
+/// @param {ArgList} $args - Args for `define`
+/// 
+/// @example
+///   @include define(COMPANY, NAME, 'Acme Inc');
+///   
+///   @debug const(COMPANY, NAME);
+///   // => 'Acme Inc'
+
+@mixin define($definition...) {
+  $_: define($definition...);
+}

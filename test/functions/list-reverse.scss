@@ -1,0 +1,29 @@
+@include describe('list-reverse [func]') {
+
+  @include it('Reverses items in a list') {
+    @include assert-equal(
+      list-reverse(b c a d),
+       d a c b,
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-reverse((b, c, a, d)),
+      (d, a, c, b),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-reverse([b c a d]),
+      [d a c b],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-reverse([b, c, a, d]),
+      [d, a, c, b],
+      'Supports bracketed comma lists'
+    );
+  }
+
+}

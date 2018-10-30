@@ -1,0 +1,35 @@
+/// Returns the value of a line height token.
+///
+/// **Aliases**
+/// - `@function lh()`
+/// - `@function leading()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function line-height($path...) {
+  $result: get(line-height, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias line-height
+
+@function lh($args...) {
+  @return line-height($args...);
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias line-height
+
+@function leading($args...) {
+  @return line-height($args...);
+}

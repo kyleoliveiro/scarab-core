@@ -1,0 +1,31 @@
+/// Returns the value of a color token.
+///
+/// **Aliases**
+/// - `@function c()`
+/// - `@function palette()`
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function color($path...) {
+  $result: get(color, $path...);
+
+  @if type-of($result) == 'map' {
+    $result: map-get($result, option(namescheme, default-key));
+  }
+
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias color
+
+@function c($args...) {
+  @return color($args...);
+}

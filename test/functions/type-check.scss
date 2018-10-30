@@ -1,0 +1,47 @@
+@include describe('type-check [func]') {
+
+  @include it('Returns true if all checks pass') {
+    $arg1: 'a';
+    $arg2: 2;
+    $arg3: red;
+
+    @include assert-true(
+      type-check('func', [
+        ($arg1: string)
+      ], false)
+    );
+
+    @include assert-true(
+      type-check('func', [
+        ($arg1: string),
+        ($arg2: number),
+        ($arg3: color)
+      ], false)
+    );
+
+  }
+
+  @include it('Returns error string if one or more checks fail') {
+    $arg1: 'a';
+    $arg2: 2;
+    $arg3: red;
+
+    @include assert-equal(
+      type-check('my-function', [
+        ($arg1: number)
+      ], false),
+      '[TypeError] my-function expected {number}, was: #{$arg1} {#{type-of($arg1)}}'
+    );
+
+    @include assert-equal(
+      type-check('my-function', [
+        ($arg1: string),
+        ($arg2: number),
+        ($arg3: number)
+      ], false),
+      '[TypeError] my-function expected {number}, was: #{$arg3} {#{type-of($arg3)}}'
+    );
+
+  }
+
+}

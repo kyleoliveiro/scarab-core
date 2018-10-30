@@ -1,0 +1,47 @@
+/// Sorts items in a list.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} const
+/// @requires {function} str-compare
+///
+/// @param {List} $list - List to sort
+/// @param {List} $order [const(CHARSPACE, SORT_ORDER)] - Sort order
+/// 
+/// @return {List} - New list with sorted items
+/// 
+/// @example
+///   list-sort(b c a)
+///   // => (a b c)
+///   
+///   list-sort(b c a, (c, b, a))
+///   // => (c b a)
+
+@function list-sort($list, $order: const(CHARSPACE, SORT_ORDER)) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+  $less      : ();
+  $equal     : ();
+  $large     : ();
+
+  $result: join($list, (), 'comma', false);
+
+  @if length($list) > 1 {
+    $seed: nth($list, ceil(length($list) / 2));
+
+    @each $item in $list {
+      @if $item == $seed {
+        $equal: append($equal, $item);
+      } @else if str-compare($item, $seed, $order) {
+        $less: append($less, $item);
+      } @else if not str-compare($item, $seed, $order) {
+        $large: append($large, $item);
+      }
+    }
+
+    $result: join(join(list-sort($less, $order), $equal), list-sort($large, $order));
+  }
+
+  $result: join($result, (), $separator, $bracketed);
+  @return $result;
+}

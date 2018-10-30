@@ -1,0 +1,125 @@
+/// Generates CSS ruleset(s) from a Scarab module.
+///
+/// @group 6_mixins
+/// 
+/// @requires {function} get
+/// @requires {function} option
+/// @requires {function} class-template
+/// @requires {function} class-sanitize
+/// @requires {function} class-escape
+/// @requires {function} str-replace
+/// @requires {function} is-null
+/// 
+/// @param {Map} $module - Contains `root`, `breakpoints`, `states`, and `prefix/suffix` overrides
+/// @param {String} $variant - Selector variant
+/// @param {String} $modifier - Selector modifier
+/// 
+/// @output CSS ruleset(s)
+
+@mixin css-ruleset($module, $variant: '', $modifier: '') {
+  @if type-of($module) == 'string' {
+    $module: module($module);
+  }
+
+  $variant: to-string($variant);
+  $modifier: to-string($modifier);
+  
+  // Get module options
+  $root        : map-get($module, 'root');
+  $breakpoints : map-get($module, 'breakpoints');
+  $states      : map-get($module, 'states');
+
+  // Allow $breakpoints to accept a list
+  @if type-of($breakpoints) == 'list' {
+    $_breakpoints: ();
+
+    @each $name in $breakpoints {
+      $_breakpoints: map-append($_breakpoints, to-string($name), get(breakpoint, $name));
+    }
+
+    $breakpoints: $_breakpoints;
+  }
+
+  // Allow $states to accept a list
+  @if type-of($states) == 'list' {
+    $_states: ();
+
+    @each $state in $states {
+      $state-key: nth(map-get-key(option(namescheme, states), $state), 1);
+      $_states: map-append($_states, $state-key, $state);
+    }
+
+    $states: $_states;
+  }
+
+  // Allow $module to overwrite global prefix/suffix options
+  $breakpoint-prefix : if(is-null(map-get($module, 'breakpoint-prefix')),
+    option(namescheme, breakpoint-prefix),
+    map-get($module, 'breakpoint-prefix')
+  );
+
+  $breakpoint-suffix : if(is-null(map-get($module, 'breakpoint-suffix')),
+    option(namescheme, breakpoint-suffix),
+    map-get($module, 'breakpoint-suffix')
+  );
+
+  $state-prefix : if(is-null(map-get($module, 'state-prefix')),
+    option(namescheme, state-prefix),
+    map-get($module, 'state-prefix')
+  );
+
+  $state-suffix : if(is-null(map-get($module, 'state-suffix')),
+    option(namescheme, state-suffix),
+    map-get($module, 'state-suffix')
+  );
+
+  // Build the selector
+  $class-template: class-template($module, $variant, $modifier);
+
+  // Output base class
+  .#{class-escape(class-sanitize($class-template))} {
+    @content;
+  }
+
+  // Output stateful classes
+  @if not is-null($states) {
+    @each $state-name, $state-value in $states {
+      $state-selector: str-replace($class-template, '{{s}}', $state-name);
+      $state-selector: str-replace($state-selector, '{{sp}}', $state-prefix);
+      $state-selector: str-replace($state-selector, '{{ss}}', $state-suffix);
+
+      .#{class-escape(class-sanitize($state-selector))}:#{$state-value} {
+        @content;
+      }
+    }
+  }
+  
+  @if not is-null($breakpoints) {
+    // Output responsive classes
+    @each $bp-name, $bp-value in $breakpoints {
+      $bp-selector: str-replace($class-template, '{{b}}', $bp-name);
+      $bp-selector: str-replace($bp-selector, '{{bp}}', $breakpoint-prefix);
+      $bp-selector: str-replace($bp-selector, '{{bs}}', $breakpoint-suffix);
+
+      @include query($bp-value) {
+        // Output base responsive class
+        .#{class-escape(class-sanitize($bp-selector))} {
+          @content;
+        }
+
+        // Output responsive, stateful classes
+        @if not is-null($states) {
+          @each $state-name, $state-value in $states {
+            $rs-selector: str-replace($bp-selector, '{{s}}', $state-name);
+            $rs-selector: str-replace($rs-selector, '{{sp}}', $state-prefix);
+            $rs-selector: str-replace($rs-selector, '{{ss}}', $state-suffix);
+
+            .#{class-escape(class-sanitize($rs-selector))}:#{$state-value} {
+              @content;
+            }
+          }
+        }
+      }
+    }
+  }
+}

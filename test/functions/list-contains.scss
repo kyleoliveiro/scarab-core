@@ -1,0 +1,47 @@
+@include describe('list-contains [func]') {
+
+  @include it('Returns true if a list contains a value') {
+    @include assert-true(
+      list-contains(1 2 3, 2),
+      'Supports space lists'
+    );
+
+    @include assert-true(
+      list-contains((1, 2, 3), 2),
+      'Supports comma lists'
+    );
+
+    @include assert-true(
+      list-contains([1 2 3], 2),
+      'Supports bracketed space lists'
+    );
+
+    @include assert-true(
+      list-contains([1, 2, 3], 2),
+      'Supports bracketed comma lists'
+    );
+  }
+
+  @include it('Returns false if a list does not contain a value') {
+    @include assert-false(
+      list-contains(1 2 3, 4),
+      'Supports space lists'
+    );
+
+    @include assert-false(
+      list-contains((1, 2, 3), 4),
+      'Supports comma lists'
+    );
+
+    @include assert-false(
+      list-contains([1 2 3], 4),
+      'Supports bracketed space lists'
+    );
+
+    @include assert-false(
+      list-contains([1, 2, 3], 4),
+      'Supports bracketed comma lists'
+    );
+  }
+
+}

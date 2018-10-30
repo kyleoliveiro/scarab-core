@@ -1,0 +1,39 @@
+@include describe('gradient [func]') {
+
+  @include it('Returns a `gradient` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'gradient': (
+          '0': none,
+          'hz-white-black': linear-gradient(to right, white 0%, black 100%)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      gradient(hz-white-black),
+      linear-gradient(to right, white 0%, black 100%)
+    );
+  }
+
+}
+
+@include describe('g [func]') {
+
+  @include it('Returns a `gradient` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'gradient': (
+          '0': none,
+          'hz-white-black': linear-gradient(to right, white 0%, black 100%)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      g(hz-white-black),
+      linear-gradient(to right, white 0%, black 100%)
+    );
+  }
+
+}

@@ -1,0 +1,23 @@
+@include describe('str-escape [func]') {
+
+  @include it('Escapes special characters in a string') {
+    @include assert-equal(
+      str-escape('a@d#5!^g:g5&#f%)_3+='),
+      'a\\@d\\#5\\!\\^g\\:g5\\&\\#f\\%\\)_3\\+\\=',
+      'Escapes CSS special characters'
+    );
+
+    @include assert-equal(
+      str-escape('look---_,_some_underscores_!'),
+      'look---_\\,_some_underscores_\\!',
+      'Does not escape underscores'
+    );
+
+    @include assert-equal(
+      str-escape('😮 emoji\'s and weird stuff ♥ go unnoticed! 😀©'),
+      '😮 emoji\\\'s and weird stuff ♥ go unnoticed\\! 😀©',
+      'Does not escape characters with no special meaning in CSS'
+    )
+  }
+
+}

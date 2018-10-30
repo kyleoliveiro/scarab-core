@@ -1,0 +1,36 @@
+/// Escapes CSS special characters within a string. 
+///
+/// @group 5_functions
+/// 
+/// @requires {function} const
+/// @requires {function} str-replace
+/// @requires {function} list-contains
+/// 
+/// @link https://mathiasbynens.be/notes/css-escapes Notes on CSS escapes
+///
+/// @param  {String} $string - String to escape
+/// 
+/// @return {String}
+///
+/// @example
+///   str-escape('_a:b!😀(b)c-d@')
+///   // => '_a\3A b\!😀\(b\)c\-d\@'
+
+@function str-escape($string) {
+  $result: $string;
+  $count: 0;
+
+  @for $i from 1 through str-length($string) {
+    $char: str-slice($string, $i, $i);
+
+    // Escape special characters with a backslash.
+    // Although recommended, we do not escape colon `:` as `\3A `,
+    // because this causes problems when using Webpack.
+    @if list-contains(const(CSS, SPECIAL_CHARS), $char) {
+      $result: str-insert($result, '\\', ($i + $count));
+      $count: $count + 1;
+    }
+  }
+
+  @return $result;
+}

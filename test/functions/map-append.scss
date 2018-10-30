@@ -1,0 +1,10 @@
+@include describe('map-append [func]') {
+
+  @include it('Appends a single key-value pair onto the end of a map') {
+    @include assert-equal(
+      map-append((a: 1, b: 2), c, 3),
+      (a: 1, b: 2, c: 3)
+    );
+  }
+
+}

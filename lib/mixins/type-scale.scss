@@ -1,0 +1,28 @@
+/// Generates `font-size` and `line-height` property declaration(s).
+///
+/// @group 6_mixins
+///
+/// @requires {function} get
+/// @requires {mixin} responsive
+///
+/// @param {String} $size - Name of size in `get(font-sizes)` and `get(line-heights)`
+/// @param {Null|Boolean} $important [null] - Whether to ouput !important rules
+/// 
+/// @output Property declarations for `font-size` and `line-height`
+
+@mixin type-scale($size, $important: null) {
+  $font-size: get(font-size, $size);
+  $line-height: get(line-height, $size);
+
+  @if type-of($font-size) == 'map' {
+    @include responsive(font-size, get(font-size, $size), $important);
+  } @else {
+    font-size: $font-size important($important);
+  }
+
+  @if type-of($line-height) == 'map' {
+    @include responsive(line-height, get(line-height, $size), $important);
+  } @else {
+    line-height: $line-height important($important);
+  }
+}

@@ -1,19 +1,7 @@
-/// The `$SCARAB` configuration map where all Scarab configuration is stored.
-///
-/// Never modify this variable directly.
-/// Instead, use the `set()` mixin to set or update a value in `$SCARAB`.
-///
-/// To retrieve a value, use the `get()` function.
-///
-/// @access public
-/// @group configuration
-///
-/// @type Map
+@import '_init';
 
-$SCARAB: ();
-
-// Import files
-@import 'getters/_';
-@import 'converters/_';
-@import 'helpers/_';
-@import 'utilities/_';
+@import 'functions/_';
+@import 'mixins/_';
+@import 'options/_';
+@import 'constants/_';
+@import 'tokens/_';

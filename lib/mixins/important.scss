@@ -1,0 +1,13 @@
+/// Generates `!important` property declaration(s).
+///
+/// @group 6_mixins
+///
+/// @param {Map} $property-map - Map of properties to values
+/// 
+/// @output !important property declaration(s)
+
+@mixin important($property-map) {
+  @each $property, $value in $property-map {
+    #{$property}: #{$value} !important;
+  }
+}

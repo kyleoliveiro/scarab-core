@@ -1,0 +1,46 @@
+/// The global stylesheet tokens.
+/// 
+/// Token values can be configured using `set()`.
+/// They can be retrieved using `get()`, or any of the tokens helper functions like `font-size()`, `fz()`, etc.
+/// 
+/// *During initialization, the `$__SCARAB_TOKENS` variable is merged into `$__SCARAB`.
+/// Subsequently, its value is set to `null`.*
+/// 
+/// @access private
+/// @group 0_variables
+///
+/// @type Map
+
+$__SCARAB_TOKENS : (
+  'baseline'         : 1rem,
+  'breakpoint'       : (),
+  'color'            : (),
+  'gradient'         : (),
+  'opacity'          : (),
+  'background-image' : (),
+  'letter-spacing'   : (),
+  'line-height'      : (),
+  'font-family'      : (),
+  'font-size'        : (),
+  'font-weight'      : (),
+  'line-style'       : (),
+  'line-width'       : (),
+  'text-measure'     : (),
+  'wrapper-width'    : (),
+  'spacing'          : (),
+  'coordinate'       : (),
+  'flex-grid'        : (),
+  'ratio'            : (),
+  'angle'            : (),
+  'duration'         : (),
+  'easing'           : (),
+  'border-radius'    : (),
+  'box-shadow'       : (),
+  'text-shadow'      : (),
+  'keyframe'         : (),
+  'module'           : ()
+);
+
+// Merge into $__SCARAB
+$__SCARAB: map-merge($__SCARAB, ('TOKENS': $__SCARAB_TOKENS));
+$__SCARAB_TOKENS: null;

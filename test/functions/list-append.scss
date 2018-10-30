@@ -1,0 +1,55 @@
+@include describe('list-append [func]') {
+
+  @include it('Appends a single value to the end of a list') {
+    @include assert-equal(
+      list-append(1 2, 3),
+      (1 2 3),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-append((1, 2), 3),
+      (1, 2, 3),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-append([1 2], 3),
+      [1 2 3],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-append([1, 2], 3),
+      [1, 2, 3],
+      'Supports bracketed comma lists'
+    );
+  }
+
+  @include it('Appends multiple values to the end of a list') {
+    @include assert-equal(
+      list-append(1 2, 3, 4, 5 6),
+      (1 2 3 4 (5 6)),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-append((1, 2), 3, 4, (5, 6)),
+      (1, 2, 3, 4, (5, 6)),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-append([1 2], 3, 4, [5 6]),
+      [1 2 3 4 [5 6]],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-append([1, 2], 3, 4, [5, 6]),
+      [1, 2, 3, 4, [5, 6]],
+      'Supports bracketed comma lists'
+    );
+  }
+
+}

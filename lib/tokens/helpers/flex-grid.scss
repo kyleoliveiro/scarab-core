@@ -1,0 +1,13 @@
+/// Returns the value of a flex-grid token.
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function flex-grid($path...) {
+  $result: get(flex-grid, $path...);
+  @return $result;
+}

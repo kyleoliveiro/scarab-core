@@ -1,0 +1,20 @@
+/// Checks if a list contains the specified value.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to search
+/// @param {*} $value - Value to search for
+/// 
+/// @return {Bool} - Whether `$list` contains `$value`
+///
+/// @example
+///   list-contains((1, 2, 3), 2)
+///   // => true
+///   
+///   list-contains((1, 2, 3), 4)
+///   // => false
+
+@function list-contains($list, $value) {
+  $result: if(index($list, $value), true, false);
+  @return $result;
+}

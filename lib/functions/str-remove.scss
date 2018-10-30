@@ -1,0 +1,29 @@
+/// Removes a substring within a string.
+///
+/// @group 5_functions
+///
+/// @requires {function} str-replace
+///
+/// @param {String} $string - String to search in
+/// @param {String} $search - Substring to search for
+/// @param {Boolean} $all [false] - Whether to remove all occurances
+/// 
+/// @return {String}
+///
+/// @example
+///   str-remove('Beetle', 'e')
+///   // => Betle
+///
+///   str-remove('Beetle', 'e', true)
+///   // => Btl
+
+@function str-remove($string, $search, $all: false) {
+  $result: $string; 
+  $index: str-index($string, $search);
+
+  @if $index {
+    $result: str-replace($string, $search, '', $all);
+  }
+
+  @return $result;
+}

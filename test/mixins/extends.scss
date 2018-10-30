@@ -1,0 +1,27 @@
+@include describe('extends [mixin]') {
+
+  @include it('Extends a class') {
+    
+    @include assert {
+      @include output(false) {
+        .bold {
+          font-weight: bold;
+        }
+
+        .component {
+          @include extends('bold');
+        }
+      }
+
+      @include expect(false) {
+        .bold,
+        .component {
+          font-weight: bold;
+        }
+      }
+    }
+
+  }
+
+}
+

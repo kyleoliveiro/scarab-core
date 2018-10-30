@@ -1,0 +1,24 @@
+@include describe('to-negative [func]') {
+
+  @include it('Converts a value to a negative value') {
+    @include assert-equal(
+      to-negative(1),
+      -1
+    );
+  }
+
+  @include it('Converts a list containing numbers to negative values') {
+    @include assert-equal(
+      to-negative((a, 1, -2, 3.142)),
+      (a, -1, -2, -3.142)
+    );
+  }
+
+  @include it('Converts a map containing numbers to a negative value') {
+    @include assert-equal(
+      to-negative((a: 1, b: -2, c: (1: 5))),
+      (a: -1, b: -2, c: (1: -5))
+    );
+  }
+
+}

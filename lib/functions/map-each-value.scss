@@ -1,0 +1,29 @@
+/// Calls a function on each value in a map.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} get-function-safe
+///
+/// @param {Map} $map - Map to operate on
+/// @param {String} $function-name - Name of the function to call
+/// @param {List} $args [()] - List of args to pass to the function
+/// 
+/// @return {Map} - New map with modified values
+///
+/// @example
+///   map-each-value((a: 1.1, b: 2.5, c: 3.6), 'round')
+///   // => (a: 1, b: 3, c: 4)
+///   
+///   map-each-value((a: 'apple', b: 'orange'), 'str-replace', ('a', '4'))
+///   // => (a: '4pple', b: 'or4nge')
+
+@function map-each-value($map, $function-name, $args: ()) {
+  $result: ();
+
+  @each $key, $value in $map {
+    $value: call(get-function-safe($function-name), $value, $args...);
+    $result: map-merge($result, ($key: $value));
+  }
+
+  @return $result;
+}

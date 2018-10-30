@@ -1,0 +1,95 @@
+/// Sets or updates a value of a key in the `OPTIONS` map
+///
+/// @group 1_options
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} to-string
+/// @requires {function} map-stringify-keys-deep
+/// 
+/// @see {function} option
+///
+/// @param {ArgList} $definition - Definition of the new value
+/// 
+/// @return {ArgList} - Definition of the new value
+///
+/// @example
+///   $_: set-option(throw-errors, false);
+///
+///   option(throw-errors);
+///   // => false
+
+@function set-option($definition...) {
+	
+	// Get a copy of the current $OPTIONS state
+	$OPTIONS: map-get($__SCARAB, 'OPTIONS');
+
+	$result: (); // key-value pair that will be merged with $OPTIONS 
+
+	// If there are only 2 args, we can easily determine the result
+	@if length($definition) == 2 {
+		$key       : nth($definition, 1);
+		$new-value : nth($definition, 2);
+
+		$result: ($key: $new-value);
+	}
+
+	// For more than 2 args, we have to build the result backwards
+	@if length($definition) > 2 {
+
+		// The new value is the last arg in $definition
+		$new-value: nth($definition, -1);
+
+		// Build a list of maps preceding the new one
+		$maps: ($OPTIONS,);
+
+		@for $i from 1 through length($definition) - 2 {
+			$current-map   : nth($maps, -1);
+			$current-key   : nth($definition, $i);
+			$current-value : map-get($current-map, to-string($current-key)) or ();
+
+			$maps: append($maps, $current-value);
+		}
+
+		@for $i from length($maps) through 1 {
+			$current-map   : nth($maps, $i);
+			$current-key   : nth($definition, $i);
+			$current-value : ();
+
+			@if $i == length($maps) {
+				$current-value: $new-value;
+			} @else {
+				$current-value: $result;
+			}
+
+			$result: map-merge($current-map, (to-string($current-key): $current-value));
+		}
+	}
+
+	// Update the local $OPTIONS map
+	$OPTIONS: map-merge($OPTIONS, map-stringify-keys-deep($result));
+
+	// Merge the updated $OPTIONS map back into $__SCARAB
+	$__SCARAB: map-merge($__SCARAB, ('OPTIONS': $OPTIONS)) !global;
+	@return $definition;
+
+}
+
+
+
+/// Calls `set-option`
+/// 
+/// @group 1_options
+/// 
+/// @requires {function} set-option
+/// 
+/// @param {ArgList} $args - Args for `set-option`
+/// 
+/// @example
+///   @include set-option(throw-errors, false);
+///
+///   option(throw-errors);
+///   // => false
+
+@mixin set-option($args...) {
+	$_: set-option($args...);
+}

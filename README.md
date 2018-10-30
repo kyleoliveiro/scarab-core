@@ -1,122 +1,99 @@
-# <img src="scarab-logo.png" width="275" height="96" alt="Scarab">
+<div align="center" style="text-align:center;">
+<img src="https://raw.githubusercontent.com/kyleoliveiro/scarab-core/v7/scarab-logo.svg?sanitize=true" width="128">
+<h1>Scarab Core</h1>
+<strong>Sass library for rapid stylesheet development</strong>
 
-[![npm](https://img.shields.io/npm/v/scarab-scss.svg)](https://www.npmjs.com/package/scarab-scss) [![Build Status](https://travis-ci.org/watchtowerdigital/scarab.svg?branch=master)](https://travis-ci.org/watchtowerdigital/scarab) 
+Design token management · Responsive mixins · Helper functions
 
-**Sass utility framework for rapid stylesheet development**
-- No style declarations
-- Stylesheet configuration
-- Responsive property declarations
-- Helper mixins
-- Development utilities
+[![npm-beta](https://img.shields.io/npm/v/@scarab/core.svg)](https://www.npmjs.com/package/@scarab/core)
+[![Build Status](https://travis-ci.org/kyleoliveiro/scarab-core.svg)](https://travis-ci.org/kyleoliveiro/scarab-core) 
 
-## [Documentation](https://watchtowerdigital.github.io/scarab)
+---
 
-Documentation source is available in the [`docs/`](docs/) folder.
+[💿 Installation](#installation)&ensp;·&ensp;[📚 Documentation](#documentation)&ensp;·&ensp;[⭐️ Features](#features)&ensp;·&ensp;[🍃 Ecosystem](#ecosystem)
+<br>
+[🎉 Motivation](#motivation)&ensp;·&ensp;[❤️ Contributing](#contributing)&ensp;·&ensp;[📃️ License](#license)
+</div>
 
-## Installation
-To get started, add Scarab as a dev-dependency in your project via npm:
+---
+
+## 💿 Installation
+1. Install Scarab Core as a dev-dependency:
+
+```bash
+# With yarn
+$ yarn add @scarab/core -D
+
+# Or with npm
+$ npm install @scarab/core --save-dev
 ```
-npm install scarab-scss --save-dev
-```
 
-Import `scarab-scss` at the beginning of your stylesheet:
-```scss
-@import 'path/to/node_modules/scarab-scss/scarab';
-```
+2. Add `node_modules/` to your Sass [`includePaths`](https://github.com/sass/node-sass#includepaths).
 
-## Features
-
-### No style declarations
-Scarab is a utility framework, not a UI library. Importing `scarab-scss` outputs zero CSS.
-
-### Stylesheet configuration
-Importing `scarab.scss` creates a new global variable, `$SCARAB` in your Sass project. This is where your stylesheet configuration is stored.
-
-**To configure variables in your stylesheet, use the [`set()`](lib/helpers/set.scss) mixin:**
+3. Import the Scarab Core library before all other stylesheets:
 
 ```scss
-/// Set a new value for a key in $SCARAB
-///
-/// @access public
-/// @group helpers
-///
-/// @require {variable} SCARAB
-///
-/// @param {arglist} $definition - Definition of the new value
+// Import the Scarab Library
+@import '@scarab/core';
 
-/**
- *
- * set() takes an arglist, $definition as its parameters.
- * The last argument in $definition should be the value that you want to set.
- * Preceding that is a chain of keys in the $SCARAB variable where the value should be set.
- *
- */
-
-// Example:
-// Configure stylesheet breakpoints
-@include set(breakpoints, (
-    small:  600px,
-    medium: 900px,
-    large:  1300px
-));
-
-// Replace the existing value of the 'medium' breakpoint
-@include set(breakpoints, medium, 1024px);
-
-// Define a new breakpoint, 'huge', and set its value to 1600px
-@include set(breakpoints, huge, 1600px);
+// Write your Sass here...
 ```
 
-For more examples of configuration, have a look at the [`#configuration`](https://watchtowerdigital.github.io/scarab/#configuration) section in the docs.
 
-### Responsive property declarations
-Declare responsive properties with the [`responsive()`](lib/helpers/responsive.scss) mixin. This allows you to easily manage the appearance of responsive components, and reduce media query clutter in your stylesheet.
+## 📚 Documentation
+API documentation and guides:<br>
+[**https://scarab.style/core**](https://scarab.style/core)
 
-```scss
-// Example
+## ⭐️ Features
 
-.button {
-    @include responsive((padding-left, padding-right), (
-        base:   14px,
-        medium: 18px,
-        large:  22px
-    ));
-}
-```
+### Design token management
 
-```scss
-// Output
+Design systems consist of reusable “tokens”. Each token has a name and a value associated with it. Constructing digital interfaces using only the values of tokens that are defined in a design system ensures visual consistency. Scarab provides a simple interface for managing design tokens.
 
-.button {
-    padding-left: 14px;
-    padding-right: 14px;
-}
+### Helper functions
+Provides additional syntactic sugar on top of the default Sass functions.
 
-// 'medium' breakpoint
-@media (min-width: 1024px) {
-    .button {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-}
 
-// 'large' breakpoint
-@media (min-width: 1300px) {
-    .button {
-        padding-left: 22px;
-        padding-right: 22px;
-    }
-}
-```
+### Responsive mixins
+Simplifies working with breakpoints and media queries.
 
-### Helper mixins
-Scarab provides a bunch of [helper mixins](lib/helpers/) like [`type-scale()`](lib/helpers/type-scale.scss) and [`query()`](lib/helpers/query.scss).
+## 🍃 Ecosystem
 
-### Development utilities
-The [`baseline-grid()`](lib/utilities/baseline-grid.scss) and [`element-overlay()`](lib/utilities/element-overlay.scss) mixins overlay visual guides over the DOM. These help when debugging layout and trying to achieve a consistent vertical rythmn.
+In addition to the core library, the following packages are available in the Scarab ecosystem:
 
-## Resources
-* [**scarab-carapace**](https://github.com/watchtowerdigital/scarab-carapace.git) — Highly configurable framework for generating functional CSS classes
-* [**scarab-styleguide**](https://github.com/watchtowerdigital/scarab-styleguide.git) — Generate automatic styleguides from scarab-carapace configuration
-* [**scarab-cli**](https://github.com/watchtowerdigital/scarab-cli.git) — Command-Line Interface for the Scarab Sass ecosystem
-* [**scarab-snippets**](https://github.com/watchtowerdigital/scarab-snippets.git) — Sublime Text snippets for the Scarab Sass utility framework
+| Package name | Description |
+| :-- | :-- |
+| [**Carapace**](https://github.com/kyleoliveiro/scarab-carapace.git) | Automatically generate CSS utility classes from design tokens. |
+| [**Scarab CLI**](https://github.com/kyleoliveiro/scarab-cli.git) | Command-line tools for the Scarab ecosystem. |
+| [**Scarab snippets**](https://github.com/kyleoliveiro/scarab-snippets.git) | Scarab snippets for your favorite text editors and IDE's. |
+
+## 🎉 Motivation
+
+### Why another Sass library?
+Scarab is the resulting by-product of years of web development work. It's designed and built as a library to manage design tokens and to provide additional syntactic sugar for writing stylesheets.
+
+### Why use Scarab?
+
+- Define design tokens in Sass (ideal since it's a styling language)
+- Use tokens in Sass with Scarab, and in HTML with Carapace
+- Ability to export design tokens from Sass to JSON
+- Written in Sass; No additional dependencies
+- Well tested with 100+ unit tests
+- Ecosystem of related packages
+
+### Why not just use Sass variables?
+Using Sass variables to manage design tokens can be a viable solution for small projects. However, this approach has its limitations. For instance, in Sass, it's not possible to dynamically reference a variable by name. However, this becomes possible if tokens are stored in a Sass map instead of a variable. This opens up many possibilities, and is main impetus behind the Scarab library.
+
+### Alternative libraries
+Other options are available, and you should pick one that caters to your project's requirements.
+
+- [Tailwind](https://tailwindcss.com/) — Generates CSS utility classes with short compile time. Requires PostCSS or Tailwind CLI.
+- [Tachyons](https://tachyons.io/) — Good for smaller sites that use native CSS variables (a.k.a. custom properties).
+- [BassCSS](http://basscss.com/) — Alternative to Tachyons. Also uses CSS variables.
+- [Vue DS](https://vueds.com) — Full-featured design system framework for Vue.
+
+### ❤️ Contributing
+Issues and feature requests and PR's are welcome!
+
+### 📃️ License
+Licensed under MIT. Copyright &copy; Kyle Oliveiro 2018.

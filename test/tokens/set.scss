@@ -1,0 +1,243 @@
+@include describe('set [func]') {
+
+  @include it('Sets a new value in the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    $_: set(baseline, 2rem);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'baseline': 2rem
+        )
+      )),
+      'Register value for new key'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    $_: set(breakpoints, custom, 777px);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'breakpoints': (
+            'custom': 777px
+          )
+        )
+      )),
+      'Register value for new nested key'
+    );
+
+
+
+
+    $__SCARAB: (
+      'TOKENS': (
+        'baseline': 2rem
+      )
+    ) !global;
+
+    $_: set(baseline, 0.5rem);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'baseline': 0.5rem
+        )
+      )),
+      'Update value for existing key'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    $_: set(palettes, (
+      blue: (
+        light: skyblue,
+        base: blue,
+        dark: darkblue
+      )
+    ));
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'base': blue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Set a map-based value'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    $_: set(palettes, blue, (
+      light: skyblue,
+      base: blue,
+      dark: darkblue
+    ));
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'base': blue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Set a nested map-based value'
+    );
+  }
+
+}
+
+
+
+@include describe('set [mixin]') {
+
+  @include it('Sets a new value in the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    @include set(baseline, 2rem);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'baseline': 2rem
+        )
+      )),
+      'Register value for new key'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    @include set(breakpoints, custom, 777px);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'breakpoints': (
+            'custom': 777px
+          )
+        )
+      )),
+      'Register value for new nested key'
+    );
+
+
+
+
+    $__SCARAB: (
+      'TOKENS': (
+        'baseline': 2rem
+      )
+    ) !global;
+
+    @include set(baseline, 0.5rem);
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'baseline': 0.5rem
+        )
+      )),
+      'Update value for existing key'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    @include set(palettes, (
+      blue: (
+        light: skyblue,
+        base: blue,
+        dark: darkblue
+      )
+    ));
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'base': blue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Set a map-based value'
+    );
+
+
+
+    $__SCARAB: (
+      'TOKENS': ()
+    ) !global;
+
+    @include set(palettes, blue, (
+      light: skyblue,
+      base: blue,
+      dark: darkblue
+    ));
+
+    @include assert-equal(
+      inspect($__SCARAB),
+      inspect((
+        'TOKENS': (
+          'palettes': (
+            'blue': (
+              'light': skyblue,
+              'base': blue,
+              'dark': darkblue
+            )
+          )
+        )
+      )),
+      'Set a nested map-based value'
+    );
+  }
+
+}

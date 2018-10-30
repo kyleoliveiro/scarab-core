@@ -1,0 +1,43 @@
+@include describe('text-measure [func]') {
+
+  @include it('Returns a `measure` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'text-measure': (
+          '0': none,
+          's': 12em,
+          'm': 20em,
+          'l': 30em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      text-measure(m),
+      20em
+    );
+  }
+
+}
+
+@include describe('measure [func]') {
+
+  @include it('Returns a `measure` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'text-measure': (
+          '0': none,
+          's': 12em,
+          'm': 20em,
+          'l': 30em
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      measure(m),
+      20em
+    );
+  }
+
+}

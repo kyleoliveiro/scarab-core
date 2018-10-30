@@ -1,0 +1,25 @@
+/// Returns the value of a wrapper width token.
+///
+/// **Aliases**
+/// - `@function wrap()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function wrapper-width($path...) {
+  $result: get(wrapper-width, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias wrapper-width
+
+@function wrap($args...) {
+  @return wrapper-width($args...);
+}

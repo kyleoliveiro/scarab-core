@@ -1,0 +1,34 @@
+/// Returns the value of a border-radius token.
+///
+/// **Aliases**
+/// - `@function radius()`
+/// - `@function bdr()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function border-radius($path...) {
+  $result: get(border-radius, $path...);
+  @return $result;
+}
+
+
+/// @group 4_token-helpers
+/// @alias border-radius
+
+@function bdr($args...) {
+  @return border-radius($args...);
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias border-radius
+
+@function radius($args...) {
+  @return border-radius($args...);
+}

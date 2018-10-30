@@ -1,0 +1,30 @@
+/// Adds values to the start of a list.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to prepend to
+/// @param {ArgList} $values - Value(s) to be prepended
+/// 
+/// @return {List} - New list prepended with `$values`
+/// 
+/// @example
+///   list-prepend((1 2), 3)
+///   // => 3 1 2
+///   
+///   list-prepend((1 2), 3, 4, 5)
+///   // => 3 4 5 1 2
+
+@function list-prepend($list, $values...) {
+  $separator : list-separator($list);
+  $bracketed : is-bracketed($list);
+
+  $result: $list;
+
+  @each $value in $values {
+    $result: join(($value,), $result);
+  }
+
+  // Preserve list seperator and brackets
+  $result: join((), $result, $separator, $bracketed); 
+  @return $result;
+}

@@ -1,0 +1,19 @@
+@include describe('flex-grid [func]') {
+
+  @include it('Returns a `flex-grid` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'flex-grid': (
+          'standard': 12,
+          'mini': 5
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      flex-grid(standard),
+      12
+    );
+  }
+
+}

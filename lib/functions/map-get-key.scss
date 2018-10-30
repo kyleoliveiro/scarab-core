@@ -1,0 +1,33 @@
+/// Returns the key(s) in a map associated with a given value.
+///
+/// @group 5_functions
+///
+/// @param {Map} $map - Map to operate on
+/// @param {*} $search - Value to search for
+/// 
+/// @return {List} - List containing keys with values that match $search
+/// 
+/// @example
+///   map-get-key((a: 1, b: 2, c: 3), 2)
+///   // => (b)
+///   
+///   map-get-key((a: 1, b: 2, c: 2), 2)
+///   // => (b, c)
+
+@function map-get-key($map, $search) {
+  $result: ();
+
+  $keys: map-keys($map);
+  $values: map-values($map);
+
+  @for $i from 1 through length($values) {
+    @if nth($values, $i) == $search {
+      $result: list-append($result, nth($keys, $i));
+    }
+  }
+
+  // Convert result to comma list
+  $result: join($result, (), 'comma');
+
+  @return $result;
+}

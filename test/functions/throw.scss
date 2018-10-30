@@ -1,0 +1,12 @@
+@include describe('throw [func]') {
+
+  @include it('Throws an error') {
+
+    @include assert-equal(
+      throw('exception', 'message', false),
+      '[exception] message'
+    );
+
+  }
+
+}

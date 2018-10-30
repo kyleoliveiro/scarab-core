@@ -1,0 +1,47 @@
+@include describe('class-template [func]') {
+
+  @include it('Returns a class template with breakpoint and state placeholders') {
+    
+    @include assert-equal(
+      class-template(('root': 'm')),
+      '{{b}}{{bp}}{{s}}{{sp}}m{{ss}}{{bs}}',
+      'No variant, no modifier'
+    );
+
+    @include assert-equal(
+      class-template(('root': 'm'), 'l'),
+      '{{b}}{{bp}}{{s}}{{sp}}m-l{{ss}}{{bs}}',
+      'With variant, no modifier'
+    );
+
+    @include assert-equal(
+      class-template(('root': 'm'), 'l', '0'),
+      '{{b}}{{bp}}{{s}}{{sp}}m-l:0{{ss}}{{bs}}',
+      'With variant, with modifier'
+    );
+
+    @include assert-equal(
+      class-template(('root': 'm', 'variant-prefix': '**'), 'l', '0'),
+      '{{b}}{{bp}}{{s}}{{sp}}m**l:0{{ss}}{{bs}}',
+      'With variant, with modifier, with custom prefix'
+    );
+
+    @include assert-equal(
+      class-template((
+        'root'            : 'm',
+        'root-prefix'     : '__',
+        'root-suffix'     : '_!',
+        'variant-prefix'  : '**',
+        'variant-suffix'  : ')(',
+        'modifier-prefix' : '199',
+        'modifier-suffix' : '-+=',
+        'selector-format' : '{{b}}{{bp}}{{s}}{{sp}}{{v}}{{vp}}{{vs}}{{rp}}{{r}}{{rs}}{{mp}}{{m}}{{ms}}{{ss}}{{bs}}'
+      ), 'l', '0'),
+      '{{b}}{{bp}}{{s}}{{sp}}l**)(__m_!1990-+={{ss}}{{bs}}',
+      'With variant, with modifier, with custom prefixes and format'
+    );
+
+  }
+
+}
+

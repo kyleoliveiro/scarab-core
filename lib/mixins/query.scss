@@ -1,0 +1,76 @@
+/// Wraps declarations inside an `@media` block.
+///
+/// @group 6_mixins
+/// 
+/// @requires {function} get
+/// @requires {function} class-template
+///
+/// @param {Number|String|List} $query
+/// 
+/// @output Style declarations inside an `@media` block
+/// 
+/// @todo Add support for other types of media queries (besides width)
+
+@mixin query($query) {
+  $condition:   ();
+  $breakpoint:  ();
+  $media-query: ();
+
+  // Min-width mode
+  @if length($query) == 1 {
+    $breakpoint: $query;
+
+    @if type-of($breakpoint) == 'string' {
+      $breakpoint: get(breakpoint, $breakpoint);
+    }
+
+    $media-query: '(min-width: #{$breakpoint})';
+  }
+  
+  // Min/max-width mode
+  @else if length($query) == 2 {
+    $condition:  nth($query, 1);
+    $breakpoint: nth($query, 2);
+
+    @if type-of($breakpoint) == 'string' {
+      $breakpoint: get(breakpoint, $breakpoint);
+    }
+
+    // e.g. query(until bp(m))
+    @if $condition == 'until' {
+      $media-query: '(max-width: #{$breakpoint})';
+    }
+    // e.g. query(from bp(l))   => @media min-width(small) {}
+    @else if $condition == 'from' {
+      $media-query: '(min-width: #{$breakpoint})';
+    }
+  }
+
+  // Min-width and max-width mode
+  @else if length($query) == 3 {
+    $bp1: nth($query, 1);
+    $bp2: nth($query, 3);
+
+    @if type-of($bp1) == 'string' {
+      $bp1: get(breakpoint, $bp1);
+    }
+
+    @if type-of($bp2) == 'string' {
+      $bp2: get(breakpoint, $bp2);
+    }
+
+    $min-query: $bp1;
+    $max-query: $bp2;
+
+    @if $bp1 > $bp2 {
+      $min-query: $bp2;
+      $max-query: $bp1;
+    }
+
+    $media-query: '(min-width: #{$min-query}) and (max-width: #{$max-query})';
+  }
+
+  @media #{$media-query} {
+    @content;
+  }
+}

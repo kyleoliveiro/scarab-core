@@ -1,0 +1,35 @@
+/// Returns the value of a font family token.
+///
+/// **Aliases**
+/// - `@function ff()`
+/// - `@function typeface()`
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function font-family($path...) {
+  $result: get(font-family, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias font-family
+
+@function ff($args...) {
+  @return font-family($args...);
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias font-family
+
+@function typeface($args...) {
+  @return font-family($args...);
+}

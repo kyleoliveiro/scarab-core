@@ -1,0 +1,53 @@
+@include describe('get [func]') {
+
+  @include it('Returns a value from the `OPTIONS` map') {
+    $__SCARAB: (
+      'OPTIONS': (
+        'throw-errors': true,
+        'namescheme' : (
+          'selector-format'   : '{{b}}{{bp}}{{s}}{{sp}}{{rp}}{{r}}{{rs}}{{vp}}{{v}}{{vs}}{{mp}}{{m}}{{ms}}{{ss}}{{bs}}',
+          'default-key'       : '_',
+          'root-prefix'       : '',
+          'root-suffix'       : '',
+          'variant-prefix'    : '-',
+          'variant-suffix'    : '',
+          'modifier-prefix'   : ':',
+          'modifier-suffix'   : '',
+          'breakpoint-prefix' : '(',
+          'breakpoint-suffix' : ')',
+          'state-prefix'      : '(',
+          'state-suffix'      : ')',
+          'states' : (
+            'hover'  : 'hv',
+            'focus'  : 'fc',
+            'active' : 'ac'
+          ),
+          'directions' : (
+            'horizontal' : 'x',
+            'vertical'   : 'y',
+            'top'        : 't',
+            'right'      : 'r',
+            'bottom'     : 'b',
+            'left'       : 'l'
+          )
+        )
+      )
+    ) !global;
+
+
+    @include assert-equal(
+      option(throw-errors),
+      true
+    );
+
+    @include assert-equal(
+      option(namescheme, states),
+      (
+        'hover'  : 'hv',
+        'focus'  : 'fc',
+        'active' : 'ac'
+      )
+    );
+  }
+
+}

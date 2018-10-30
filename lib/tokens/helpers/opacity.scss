@@ -1,0 +1,26 @@
+/// Returns the value of an opacity token.
+///
+///
+/// **Aliases**
+/// - `@function o()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function opacity($path...) {
+  $result: get(opacity, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias opacity
+
+@function o($args...) {
+  @return opacity($args...);
+}

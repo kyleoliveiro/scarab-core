@@ -1,0 +1,67 @@
+@include describe('map-stringify-keys [func]') {
+
+  @include it('Converts direct keys of a map to strings') {
+    @include assert-equal(
+      map-stringify-keys((
+        1: 1,
+        a: 2,
+        red: 3,
+      )),
+      (
+        '1': 1,
+        'a': 2,
+        'red': 3
+      )
+    );
+
+    @include assert-equal(
+      map-stringify-keys((
+        #000000: 1,
+        white: 2
+      )),
+      (
+        '#000000': 1,
+        'white': 2
+      ),
+      'Converts colors'
+    );
+
+    @include assert-equal(
+      map-stringify-keys((
+        1: 1,
+        20px: 2,
+        300rem: 3,
+        4s: 4
+      )),
+      (
+        '1': 1,
+        '20px': 2,
+        '300rem': 3,
+        '4s': 4
+      ),
+      'Converts numbers'
+    );
+  }
+
+  @include it('Does not convert keys of nested maps') {
+    @include assert-equal(
+      map-stringify-keys((
+        #000000: (
+          red: 1,
+          2: 2,
+          a: 3
+        ),
+        white: 2,
+      )),
+      (
+        '#000000': (
+          red: 1,
+          2: 2,
+          a: 3
+        ),
+        'white': 2
+      )
+    );
+  }
+
+}

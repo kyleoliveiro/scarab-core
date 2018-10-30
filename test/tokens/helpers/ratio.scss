@@ -1,0 +1,21 @@
+@include describe('ratio [func]') {
+
+  @include it('Returns a `ratio` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'ratio': (
+          '0': 0,
+          '1by2': (1/2)*100%,
+          '3by4': (3/4)*100%,
+          '16by9': (16/9)*100%
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      ratio(16by9),
+      (16/9)*100%
+    );
+  }
+
+}

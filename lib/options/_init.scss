@@ -1,0 +1,87 @@
+/// Options for the Scarab framework.
+/// 
+/// Scarab options can be configured using `set-option()`.
+/// Refer to the table below for a description of each option.
+/// 
+/// *During initialization, the `$__SCARAB_OPTIONS` variable is merged into `$__SCARAB`.
+/// Subsequently, its value is set to `null`.*
+/// 
+/// @access private
+/// @group 0_variables
+/// 
+/// @type Map
+/// @prop {Bool} throw-errors [true] - Whether to throw or return errors as strings
+/// @prop {Map} output - Contains options for the CSS output
+/// @prop {Bool} output.classes [true] - Whether Scarab should ouput CSS classes
+/// @prop {Bool} output.placeholders [true] - Whether Scarab should ouput Sass placeholders
+/// @prop {Bool} ouput.reset [true] - Whether Scarab should ouput CSS reset rules
+/// @prop {Bool} ouput.normalize [true] - Whether Scarab should ouput CSS normalize rules
+/// @prop {Bool} important [true] - Whether to append !important to generated modules
+/// @prop {Map} namescheme - Contains options for the naming scheme
+/// @prop {String} namescheme.default-key ['_'] - Key name to use for the "default" value in a map
+/// @prop {Map} namescheme.directions - Map of directional shorthands to values
+/// @prop {Map} namescheme.states - Map of state shorthands to values
+/// @prop {String} namescheme.selector-format - Format for programmatically generated CSS selectors
+/// @prop {String} namescheme.root-prefix [''] - Root prefix
+/// @prop {String} namescheme.root-suffix [''] - Root suffix
+/// @prop {String} namescheme.variant-prefix ['-'] - Variant prefix
+/// @prop {String} namescheme.variant-suffix [''] - Variant suffix
+/// @prop {String} namescheme.modifier-prefix [':'] - Modifier prefix
+/// @prop {String} namescheme.modifier-suffix [''] - Modifier suffix
+/// @prop {String} namescheme.breakpoint-prefix ['('] - Breakpoint prefix
+/// @prop {String} namescheme.breakpoint-suffix [')'] - Breakpoint suffix
+/// @prop {String} namescheme.state-prefix ['('] - State prefix
+/// @prop {String} namescheme.state-suffix [')'] - State suffix
+
+$__SCARAB_OPTIONS: (
+  'throw-errors' : true,
+  'output' : (
+    'classes'      : true,
+    'placeholders' : true,
+    'reset'        : true,
+    'normalize'    : true,
+    'important'    : true
+  ),
+  'namescheme' : (
+    'default-key' : '_',
+    'directions' : (
+      'x' : horizontal,
+      'y' : vertical,
+      't' : top,
+      'r' : right,
+      'b' : bottom,
+      'l' : left
+    ),
+    'anchors' : (
+      't'  : top,
+      'b'  : bottom,
+      'l'  : left,
+      'r'  : right,
+      'c'  : center,
+      'tr' : top right,
+      'tl' : top left,
+      'br' : bottom right,
+      'bl' : bottom left
+    ),
+    'states' : (
+      'hv': hover,
+      'fc': focus,
+      'ac': active
+    ),
+    'selector-format'   : '{{b}}{{bp}}{{s}}{{sp}}{{rp}}{{r}}{{rs}}{{vp}}{{v}}{{vs}}{{mp}}{{m}}{{ms}}{{ss}}{{bs}}',
+    'root-prefix'       : '',
+    'root-suffix'       : '',
+    'variant-prefix'    : '-',
+    'variant-suffix'    : '',
+    'modifier-prefix'   : ':',
+    'modifier-suffix'   : '',
+    'breakpoint-prefix' : '(',
+    'breakpoint-suffix' : ')',
+    'state-prefix'      : '(',
+    'state-suffix'      : ')'
+  )
+);
+
+// Merge into $__SCARAB
+$__SCARAB: map-merge($__SCARAB, ('OPTIONS': $__SCARAB_OPTIONS));
+$__SCARAB_OPTIONS: null;

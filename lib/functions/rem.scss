@@ -1,0 +1,19 @@
+/// Converts `px` to `rem`.
+///
+/// @group 5_functions
+/// 
+/// @requires {function} unit-strip
+///
+/// @param {Number} $value - Value (in px) to convert
+/// @param {Number} $base-font-size [16] - Value of the base font size (in px)
+/// 
+/// @return {Number} - `$value` in `rem` units
+///
+/// @example
+///   rem(32)
+///   // => 2rem
+
+@function rem($value, $base-font-size: 16) {
+  $result: $value / unit-strip($base-font-size) * 1rem;
+  @return $result;
+}

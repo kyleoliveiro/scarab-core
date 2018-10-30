@@ -1,0 +1,17 @@
+@include describe('map-get-key [func]') {
+
+  @include it('Returns the key(s) in a map associated with a given value.') {
+    @include assert-equal(
+      map-get-key((a: 1, b: 2, c: 3), 2),
+      (b,),
+      'Single matching key'
+    );
+
+    @include assert-equal(
+      map-get-key((a: 1, b: 2, c: 2), 2),
+      (b, c),
+      'Multiple matching keys'
+    );
+  }
+
+}

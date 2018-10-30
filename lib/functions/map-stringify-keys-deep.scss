@@ -1,0 +1,63 @@
+/// Converts all keys in a map to strings, including keys of nested maps.
+///
+/// @group 5_functions
+///
+/// @requires {function} map-stringify-keys
+/// 
+/// @param {Map} $map - Map to stringify
+/// 
+/// @return {Map} - New map with all keys converted to strings
+///
+/// @example
+///   $map: (
+///     1:     1,
+///     hello: 2,
+///     red:   3,
+///     map:   (
+///       1:    1,
+///       blue: 2 
+///     )
+///   );
+///   
+///   @each $key, $val in $map {
+///     @debug type-of($key);
+///     
+///     @if type-of($val) == 'map' {
+///       @each $k, $v in $val {
+///         @debug type-of($v);
+///       }
+///     }
+///   }
+///   
+///   // DEBUG: number
+///   // DEBUG: string
+///   // DEBUG: color
+///   // DEBUG: string
+///   // DEBUG: number
+///   // DEBUG: color
+///   
+///   $stringified-map: stringify-keys($map);
+///   
+///   @each $key, $val in $stringified-map {
+///       @debug type-of($key);
+///   }
+///   
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+///   // DEBUG: string
+
+@function map-stringify-keys-deep($map) {
+  $result: map-stringify-keys($map);
+
+  @each $key, $val in $map {
+    @if type-of($val) == 'map' {
+      $val: map-stringify-keys-deep($val);
+      $result: map-merge($result, map-stringify-keys(($key: $val)));
+    }
+  }
+
+  @return $result;
+}

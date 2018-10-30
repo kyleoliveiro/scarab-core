@@ -1,0 +1,100 @@
+/// Sets a default value for a key in the stylesheet tokens.
+///
+/// @group 3_tokens
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} set
+/// @requires {function} to-string
+///
+/// @param {ArgList} $definition - Definition of the default value
+/// 
+/// @return {ArgList} - Definition of the default value
+///
+/// @example
+///   // Sets a default value
+///   $_: set-default(baseline, 1rem); 
+///   
+///   get(baseline)
+///   // => 1rem
+///   
+///   // Updates the value
+///   $_: set(baseline, 1.25rem);
+///   
+///   get(baseline)
+///   // => 1.25rem
+///   
+///   // Doesn't update the value since it already exists
+///   $_: set-default(baseline, 1rem);
+///   
+///   get(baseline)
+///   // => 1.25rem
+
+@function set-default($definition...) {
+
+	// Get a copy of the current $TOKENS state
+	$TOKENS: map-get($__SCARAB, 'TOKENS');
+
+	// Check if the key exists to determine whether to set the new value
+	$key-exists: true;
+	
+	@if length($definition) == 2 {
+		$key: nth($definition, 1);
+
+		@if not map-has-key($TOKENS, to-string($key)) {
+			$key-exists: false;
+		}
+	}
+
+	@else if length($definition) > 2 {
+		$current-map: $TOKENS;
+
+		@for $i from 1 through length($definition) - 1 {
+			$current-key: nth($definition, $i);
+
+			@if not map-has-key($current-map, to-string($current-key)) {
+				$key-exists: false;
+			} @else {
+				$current-map: map-get($current-map, to-string($current-key));
+			}
+		}
+	}
+
+	@if not $key-exists {
+		$_: set($definition...);
+	}
+
+	@return $definition;
+	
+}
+
+
+/// Calls `set-default`
+/// 
+/// @group 3_tokens
+/// 
+/// @requires {function} set-default
+/// 
+/// @param {ArgList} $args - Args for `set-default`
+/// 
+/// @example
+///   // Sets a default value
+///   @include set-default(baseline, 1rem); 
+///   
+///   get(baseline)
+///   // => 1rem
+///   
+///   // Updates the value
+///   @include set(baseline, 1.25rem);
+///   
+///   get(baseline)
+///   // => 1.25rem
+///   
+///   // Doesn't update the value since it already exists
+///   @include set-default(baseline, 1rem);
+///   
+///   get(baseline)
+///   // => 1.25rem
+
+@mixin set-default($args...) {
+	$_: set-default($args...);
+}

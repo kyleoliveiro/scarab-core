@@ -1,0 +1,75 @@
+@include describe('type-scale [mixin]') {
+
+  @include it('Generates font-size and line-height property declarations') {
+    
+    @include assert('Non-responsive sizes') {
+      @include output {
+        $_: set(font-size, (
+          's': 11px,
+          'm': 17px,
+          'l': 24px
+        ));
+
+        $_: set(line-height, (
+          's': 16px,
+          'm': 25px,
+          'l': 36px
+        ));
+
+        @include type-scale(s);
+      }
+
+      @include expect {
+        font-size: 11px;
+        line-height: 16px;
+      }
+    }
+
+    @include assert('Responsive sizes') {
+      @include output {
+        $_: set(breakpoint, (
+          s: 200px,
+          m: 444px
+        ));
+
+        $_: set(font-size, m, (
+          _ : 16px,
+          s : 20px,
+          m : 55px
+        ));
+
+        $_: set(line-height, m, (
+          _ : 20px,
+          s : 25px,
+          m : 64px
+        ));
+
+        @include type-scale(m);
+      }
+
+      @include expect {
+        font-size: 16px;
+        line-height: 20px;
+
+        @media (min-width: 200px) {
+          font-size: 20px;
+        }
+
+        @media (min-width: 444px) {
+          font-size: 55px;
+        }
+
+        @media (min-width: 200px) {
+          line-height: 25px;
+        }
+
+        @media (min-width: 444px) {
+          line-height: 64px;
+        }
+      }
+    }
+
+  }
+
+}
+

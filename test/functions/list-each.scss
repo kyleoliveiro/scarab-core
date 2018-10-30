@@ -1,0 +1,36 @@
+@include describe('list-each [func]') {
+
+  @include it('Calls a function on each item in a list') {
+    @include assert-equal(
+      list-each(1.2 2.5 3.7, 'round'),
+      (1 3 4),
+      'Supports space lists'
+    );
+
+    @include assert-equal(
+      list-each((1.2, 2.5, 3.7), 'round'),
+      (1, 3, 4),
+      'Supports comma lists'
+    );
+
+    @include assert-equal(
+      list-each([1.2 2.5 3.7], 'round'),
+      [1 3 4],
+      'Supports bracketed space lists'
+    );
+
+    @include assert-equal(
+      list-each([1.2, 2.5, 3.7], 'round'),
+      [1, 3, 4],
+      'Supports bracketed comma lists'
+    );
+  }
+
+  @include it('Supports passing args to the called function') {
+    @include assert-equal(
+      list-each(('hello', 'world'), 'str-insert', ('123', 1)),
+      ('123hello', '123world')
+    );
+  }
+
+}

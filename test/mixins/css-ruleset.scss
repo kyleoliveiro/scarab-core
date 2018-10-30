@@ -1,0 +1,385 @@
+@include describe('css-ruleset [mixin]') {
+
+  @include it('Generates a CSS ruleset from a Scarab module') {
+    $module-minimal: (
+      'root'   : 'mini',
+      'values' : (
+        'r' : red,
+        'g' : green,
+        'b' : blue
+      )
+    );
+
+    @include assert('Minimal module (Non-responsive, Stateless)') {
+      @include output {
+        @include css-ruleset(
+          $module : $module-minimal
+        ) {
+          color: value;
+        }
+      }
+
+      @include expect {
+        .mini {
+          color: value;
+        }
+      }
+    }
+
+    @include assert('Module + Modifier (Non-responsive, Stateless)') {
+      @include output {
+        @each $key, $val in map-get($module-minimal, values) {
+          @include css-ruleset(
+            $module   : $module-minimal,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .mini\:r {
+          color: red;
+        }
+
+        .mini\:g {
+          color: green;
+        }
+
+        .mini\:b {
+          color: blue;
+        }
+      }
+    }
+
+    @include assert('Module + Modifier (Responsive, Stateless)') {
+      $module-responsive: (
+        'root'   : 'resp',
+        'breakpoints': (
+          's': 100px,
+          'm': 300px,
+          'l': 444px
+        ),
+        'values' : (
+          'r' : red,
+          'g' : green
+        )
+      );
+
+      @include output {
+        @each $key, $val in map-get($module-responsive, values) {
+          @include css-ruleset(
+            $module   : $module-responsive,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .resp\:r {
+          color: red;
+        }
+
+        @media (min-width: 100px) {
+          .s\(resp\:r\) {
+            color: red;
+          }
+        }
+
+        @media (min-width: 300px) {
+          .m\(resp\:r\) {
+            color: red;
+          }
+        }
+
+        @media (min-width: 444px) {
+          .l\(resp\:r\) {
+            color: red;
+          }
+        }
+
+        .resp\:g {
+          color: green;
+        }
+
+        @media (min-width: 100px) {
+          .s\(resp\:g\) {
+            color: green;
+          }
+        }
+
+        @media (min-width: 300px) {
+          .m\(resp\:g\) {
+            color: green;
+          }
+        }
+
+        @media (min-width: 444px) {
+          .l\(resp\:g\) {
+            color: green;
+          }
+        }
+      }
+    }
+
+    @include assert('Module + Modifier (Non-responsive, Stateful)') {
+      $module-stateful: (
+        'root'   : 'statef',
+        'states': (
+          'fc' : focus,
+          'ac' : active
+        ),
+        'values' : (
+          'r' : red,
+          'g' : green
+        )
+      );
+
+      @include output {
+        @each $key, $val in map-get($module-stateful, values) {
+          @include css-ruleset(
+            $module   : $module-stateful,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .statef\:r {
+          color: red;
+        }
+
+        .fc\(statef\:r\):focus {
+          color: red;
+        }
+
+        .ac\(statef\:r\):active {
+          color: red;
+        }
+
+        .statef\:g {
+          color: green;
+        }
+
+        .fc\(statef\:g\):focus {
+          color: green;
+        }
+
+        .ac\(statef\:g\):active {
+          color: green;
+        }
+      }
+    }
+
+    @include assert('Module + Modifier (Responsive, Stateful)') {
+      $module-stateful: (
+        'root'   : 'statef',
+        'breakpoints': (
+          's' : 111px,
+          'm' : 232px
+        ),
+        'states': (
+          'fc' : focus,
+          'ac' : active
+        ),
+        'values' : (
+          'r' : red,
+          'g' : green
+        )
+      );
+
+      @include output {
+        @each $key, $val in map-get($module-stateful, values) {
+          @include css-ruleset(
+            $module   : $module-stateful,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .statef\:r {
+          color: red;
+        }
+
+        .fc\(statef\:r\):focus {
+          color: red;
+        }
+
+        .ac\(statef\:r\):active {
+          color: red;
+        }
+
+        @media (min-width: 111px) {
+          .s\(statef\:r\) {
+            color: red;
+          }
+
+          .s\(fc\(statef\:r\)\):focus {
+            color: red;
+          }
+
+          .s\(ac\(statef\:r\)\):active {
+            color: red;
+          }
+        }
+
+        @media (min-width: 232px) {
+          .m\(statef\:r\) {
+            color: red;
+          }
+
+          .m\(fc\(statef\:r\)\):focus {
+            color: red;
+          }
+
+          .m\(ac\(statef\:r\)\):active {
+            color: red;
+          }
+        }
+
+        .statef\:g {
+          color: green;
+        }
+
+        .fc\(statef\:g\):focus {
+          color: green;
+        }
+
+        .ac\(statef\:g\):active {
+          color: green;
+        }
+
+        @media (min-width: 111px) {
+          .s\(statef\:g\) {
+            color: green;
+          }
+
+          .s\(fc\(statef\:g\)\):focus {
+            color: green;
+          }
+
+          .s\(ac\(statef\:g\)\):active {
+            color: green;
+          }
+        }
+
+        @media (min-width: 232px) {
+          .m\(statef\:g\) {
+            color: green;
+          }
+
+          .m\(fc\(statef\:g\)\):focus {
+            color: green;
+          }
+
+          .m\(ac\(statef\:g\)\):active {
+            color: green;
+          }
+        }
+      }
+    }
+
+    @include assert('Module + Variant + Modifier (Non-responsive, Stateless)') {
+      @include output {
+        @each $key, $val in map-get($module-minimal, values) {
+          @include css-ruleset(
+            $module   : $module-minimal,
+            $variant  : str-slice(to-string($val), -1), // last letter of value
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .mini-d\:r {
+          color: red;
+        }
+
+        .mini-n\:g {
+          color: green;
+        }
+
+        .mini-e\:b {
+          color: blue;
+        }
+      }
+    }
+
+    @include assert('Accepts lists for $breakpoints and $states') {
+      @include output {
+        $_: set(breakpoint, (s: 100px, m: 200px, l: 300px));
+
+        $module-lists: (
+          'root'   : 'lists',
+          'values' : (
+            'r' : red
+          ),
+          'breakpoints': (s, l),
+          'states': (hover, focus)
+        );
+
+        @each $key, $val in map-get($module-lists, values) {
+          @include css-ruleset(
+            $module   : $module-lists,
+            $modifier : $key
+          ) {
+            color: $val;
+          }
+        }
+      }
+
+      @include expect {
+        .lists\:r {
+          color: red;
+        }
+
+        .hv\(lists\:r\):hover {
+          color: red;
+        }
+
+        .fc\(lists\:r\):focus {
+          color: red;
+        }
+
+        @media (min-width: 100px) {
+          .s\(lists\:r\) {
+            color: red;
+          }
+
+          .s\(hv\(lists\:r\)\):hover {
+            color: red;
+          }
+
+          .s\(fc\(lists\:r\)\):focus {
+            color: red;
+          }
+        }
+
+        @media (min-width: 300px) {
+          .l\(lists\:r\) {
+            color: red;
+          }
+
+          .l\(hv\(lists\:r\)\):hover {
+            color: red;
+          }
+
+          .l\(fc\(lists\:r\)\):focus {
+            color: red;
+          }
+        }
+      }
+    }
+  }
+
+}

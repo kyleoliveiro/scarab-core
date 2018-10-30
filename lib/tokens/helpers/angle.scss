@@ -1,0 +1,14 @@
+/// Returns the value of an angle token.
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// 
+/// @return {*}
+
+@function angle($path...) {
+  $result: get(angle, $path...);
+  @return $result;
+}

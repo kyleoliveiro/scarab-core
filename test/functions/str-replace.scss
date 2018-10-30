@@ -1,0 +1,79 @@
+@include describe('str-replace [func]') {
+
+  @include it('Replaces first occurance of text in a string') {
+    @include assert-equal(
+      str-replace('beetle', 'e', '3'),
+      'b3etle',
+      'Replaces text'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'e', 'ee'),
+      'beeetlee',
+      'Replaces text where $replace contains $search'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'ee', 'ee'),
+      'beetlee',
+      'Replaces text where $replace == $search'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'ee', 'e'),
+      'betlee',
+      'Replaces text where $search contains $replace'
+    );
+
+    @include assert-equal(
+      str-replace('beetle', 'e'),
+      'betle',
+      'Removes text if no $replacement is defined'
+    );
+  }
+
+  @include it('Replaces all occurances of text in a string') {
+    @include assert-equal(
+      str-replace('beetle', 'e', '3', true),
+      'b33tl3',
+      'Replaces text'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'e', 'ee', true),
+      'beeeetleeee',
+      'Replaces text where $replace contains $search'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'ee', 'ee', true),
+      'beetlee',
+      'Replaces text where $replace == $search'
+    );
+
+    @include assert-equal(
+      str-replace('beetlee', 'ee', 'e', true),
+      'betle',
+      'Replaces text where $search contains $replace'
+    );
+
+    @include assert-equal(
+      str-replace('beetle', 'e', '', true),
+      'btl',
+      'Removes text if no $replacement is defined'
+    );
+  }
+
+  @include it('Returns original string if no substrings are found') {
+    @include assert-equal(
+      str-replace('beetle', '1', '3'),
+      'beetle'
+    );
+
+    @include assert-equal(
+      str-replace('beetle', '1', '3', true),
+      'beetle'
+    );
+  }
+
+}

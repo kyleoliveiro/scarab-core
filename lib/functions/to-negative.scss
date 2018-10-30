@@ -1,0 +1,51 @@
+/// Converts a number, list, or map of values to negative value(s).
+///
+/// @group 5_functions
+/// 
+/// @requires {function} list-each
+/// @requires {function} map-append
+///
+/// @param {Number|List|Map} $value - Number, list, or map to convert
+/// 
+/// @return {Number|List|Map} - Converted value
+///
+/// @example
+///   to-negative(10px)
+///   // => -10px;
+///
+///   to-negative((1, -2rem, 30px))
+///   // => (-1, -2rem, -30px);
+///
+///   to-negative((a: 1, b: (1, -2rem, 30px)))
+///   // => (a: -1, b: (-1, -2rem, -30px));
+
+@function to-negative($value) {
+  $result: $value;
+
+  @if type-of($value) == 'number' {
+    $result: abs($value) * -1;
+  }
+
+  @else if type-of($value) == 'list' {
+    $result: list-each($value, 'to-negative');
+  }
+
+  @else if type-of($value) == 'map' {
+    $result: ();
+
+    $map    : $value;
+    $keys   : map-keys($map);
+    $values : map-values($map);
+
+    $index: 0;
+    @each $val in $values {
+      $index : $index + 1;
+      $key   : nth($keys, $index);
+      $val   : to-negative($val);
+      
+      $result: map-append($result, $key, $val);
+    }
+  }
+
+  @return $result;
+}

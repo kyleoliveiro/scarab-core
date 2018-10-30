@@ -1,0 +1,134 @@
+@include describe('query [mixin]') {
+
+  @include it('Wraps styles in a media query block') {
+
+    @include assert('Min-width query') {
+      @include output {
+        @include query(400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+    
+    @include assert('Min-width query') {
+      @include output {
+        @include query(400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Min-width query (`from` syntax)') {
+      @include output {
+        @include query(from 400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Max-width query') {
+      @include output {
+        @include query(until 400px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (max-width: 400px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Min-width and max-width query') {
+      @include output {
+        @include query(400px to 800px) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) and (max-width: 800px) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('Using breakpoint names instead of values') {
+      @include output {
+        $_: set(breakpoint, (
+          s: 400px,
+          m: 600px,
+          l: 800px
+        ));
+
+        @include query(s) {
+          color: red;
+        }
+
+        @include query(until m) {
+          color: red;
+        }
+
+        @include query(m to l) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 400px) {
+          color: red;
+        }
+
+        @media (max-width: 600px) {
+          color: red;
+        }
+
+        @media (min-width: 600px) and (max-width: 800px) {
+          color: red;
+        }
+      }
+    }
+
+  }
+
+  @include it('Can contain a class declaration') {
+    @include assert {
+      @include output {
+        @include query(200px) {
+          .class {
+            color: red;
+          }
+        }
+      }
+
+      @include expect {
+        @media (min-width: 200px) {
+          .class {
+            color: red;
+          }
+        }
+      }
+    } 
+  }
+
+}
+

@@ -1,0 +1,25 @@
+/// Adds values to the end of a list.
+///
+/// @group 5_functions
+///
+/// @param {List} $list - List to append to
+/// @param {ArgList} $values - Value(s) to be appended
+/// 
+/// @return {List} - New list appended with `$values`
+/// 
+/// @example
+///   list-append((1 2), 3)
+///   // => 1 2 3
+///   
+///   list-append((1 2), 3, 4, 5)
+///   // => 1 2 3 4 5
+
+@function list-append($list, $values...) {
+  $result: $list;
+
+  @each $value in $values {
+    $result: append($result, $value);
+  }
+  
+  @return $result;
+}

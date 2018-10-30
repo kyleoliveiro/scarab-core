@@ -1,0 +1,25 @@
+/// Returns the value of a breakpoint token.
+///
+/// **Aliases**
+/// - `@function bp()`
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function breakpoint($path...) {
+  $result: get(breakpoint, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias breakpoint
+
+@function bp($args...) {
+  @return breakpoint($args...);
+}

@@ -1,0 +1,35 @@
+@include describe('class-escape [func]') {
+
+  @include it('Escapes a class name') {
+    @include assert-equal(
+      class-escape('blue'),
+      'blue',
+      'Returns valid class name as-is'
+    );
+
+    @include assert-equal(
+      class-escape('$cl@ss:*(1)'),
+      '\\$cl\\@ss\\:\\*\\(1\\)',
+      'Escapes special characters'
+    );
+
+    @include assert-equal(
+      class-escape('13lue'),
+      '\\31 3lue',
+      'Escapes class names beginning with a number'
+    );
+
+    @include assert-equal(
+      class-escape('13l++ue!'),
+      '\\31 3l\\+\\+ue\\!',
+      'Escapes special characters and class names beginning with a number'
+    );
+
+    @include assert-equal(
+      class-escape('bl_ u e !'),
+      'bl_ue\\!',
+      'Removes whitespace in class names'
+    );
+  }
+
+}
