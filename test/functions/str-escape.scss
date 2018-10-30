@@ -2,15 +2,9 @@
 
   @include it('Escapes special characters in a string') {
     @include assert-equal(
-      str-escape('a@d#5!^gg5&#f%)_3+='),
-      'a\\@d\\#5\\!\\^gg5\\&\\#f\\%\\)_3\\+\\=',
+      str-escape('a@d#5!^g:g5&#f%)_3+='),
+      'a\\@d\\#5\\!\\^g\\:g5\\&\\#f\\%\\)_3\\+\\=',
       'Escapes CSS special characters'
-    );
-
-    @include assert-equal(
-      str-escape('hello:wor:ld!'),
-      'hello\\3A wor\\3A ld\\!',
-      'Escapes `:` as `\\3A ` (for IE<8)'
     );
 
     @include assert-equal(

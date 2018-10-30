@@ -1,0 +1,43 @@
+@include describe('wrapper-width [func]') {
+
+  @include it('Returns a `wrap` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'wrapper-width': (
+          '0': none,
+          's': 15rem,
+          'm': 22.5rem,
+          'l': 35rem
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      wrapper-width(l),
+      35rem
+    );
+  }
+
+}
+
+@include describe('wrap [func]') {
+
+  @include it('Returns a `wrap` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'wrapper-width': (
+          '0': none,
+          's': 15rem,
+          'm': 22.5rem,
+          'l': 35rem
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      wrap(l),
+      35rem
+    );
+  }
+
+}

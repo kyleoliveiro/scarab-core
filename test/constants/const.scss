@@ -2,7 +2,7 @@
 
   @include it('Returns a value from the `CONSTANTS` map') {
     $__SCARAB: (
-      'INVENTORY': (),
+      'TOKENS': (),
       'CONSTANTS': (
         'c'           : 299792458,
         'g'           : 9.80665,

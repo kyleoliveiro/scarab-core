@@ -1,0 +1,92 @@
+/// Removes a key-value pair from the stylesheet tokens.
+///
+/// @group 3_tokens
+///
+/// @requires {variable} __SCARAB
+/// @requires {function} set
+/// @requires {function} list-each
+/// @requires {function} list-remove
+///
+/// @param {ArgList} $path - Path to the key to remove
+/// 
+/// @return {ArgList} - Path to the key to remove
+///
+/// @example
+///   $_: set(breakpoint, (
+///     small  : 600px,
+///     medium : 1024px,
+///     large  : 1300px,
+///     huge   : 1600px
+///   ) );
+///
+///   $_: unset(breakpoint, medium);
+///   
+///   @debug get(breakpoint);
+///   // => (
+///   //      small : 600px,
+///   //      large : 1300px,
+///   //      huge  : 1600px
+///   //    )
+
+@function unset($path...) {
+
+  // Get a copy of the current $TOKENS state
+  $TOKENS: map-get($__SCARAB, 'TOKENS');
+
+  @if length($path) == 1 {
+    $key: nth($path, 1);
+    
+    $TOKENS: map-remove($TOKENS, to-string($key));
+    $__SCARAB: map-merge($__SCARAB, ('TOKENS': $TOKENS)) !global;
+  }
+
+  @else if length($path) > 1 {
+    $path        : list-each($path, to-string);
+    $last-key    : nth($path, -1);
+    $key-address : list-remove($path, $last-key);
+    $last-map    : map-remove(get($key-address...), $last-key);
+    $definition  : ();
+
+    @each $key in $key-address {
+      $definition: append($definition, $key);
+    }
+
+    $definition: append($definition, $last-map);
+
+    $_: set($definition...);
+  }
+
+  @return $path;
+  
+}
+
+
+ 
+/// Calls `unset`
+/// 
+/// @group 3_tokens
+/// 
+/// @requires {function} unset
+/// 
+/// @param {ArgList} $args - Args for `unset`
+/// 
+/// @example
+///   @include set(breakpoint, (
+///     small  : 600px,
+///     medium : 1024px,
+///     large  : 1300px,
+///     huge   : 1600px
+///   ) );
+///
+///   @include unset(breakpoint, medium);
+///   
+///   @debug get(breakpoint);
+///   // (
+///   //     small  : 600px,
+///   //     large  : 1300px,
+///   //     huge   : 1600px
+///   // )
+ 
+@mixin unset($args...) {
+  $_: unset($args...);
+}

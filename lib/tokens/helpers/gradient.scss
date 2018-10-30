@@ -1,0 +1,25 @@
+/// Returns the value of a gradient token.
+///
+/// **Aliases**
+/// - `@function g()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function gradient($path...) {
+  $result: get(gradient, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias gradient
+
+@function g($args...) {
+  @return gradient($args...);
+}

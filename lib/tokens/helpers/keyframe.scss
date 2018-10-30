@@ -1,0 +1,13 @@
+/// Returns the value of a keyframe token.
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function keyframe($path...) {
+  $result: get(keyframe, $path...);
+  @return $result;
+}

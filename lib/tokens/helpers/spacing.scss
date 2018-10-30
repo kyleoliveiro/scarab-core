@@ -1,0 +1,26 @@
+/// Returns the value of a spacing token.
+///
+/// **Aliases**
+/// - `@function s()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function spacing($path...) {
+  $result: get(spacing, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias spacing
+
+@function s($args...) {
+  @return spacing($args...);
+}
+

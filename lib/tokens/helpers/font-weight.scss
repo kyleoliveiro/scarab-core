@@ -1,0 +1,25 @@
+/// Returns the value of a font weight token.
+///
+/// **Aliases**
+/// - `@function fw()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function font-weight($path...) {
+  $result: get(font-weight, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias font-weight
+
+@function fw($args...) {
+  @return font-weight($args...);
+}

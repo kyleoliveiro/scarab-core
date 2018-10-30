@@ -1,0 +1,26 @@
+/// Returns the value of a coordinate token.
+///
+/// **Aliases**
+/// - `@function coord()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function coordinate($path...) {
+  $result: get(coordinate, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias coordinate
+
+@function coord($args...) {
+  @return coordinate($args...);
+}
+

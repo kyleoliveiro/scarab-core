@@ -1,0 +1,25 @@
+/// Returns the value of a font size token.
+///
+/// **Aliases**
+/// - `@function fz()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function font-size($path...) {
+  $result: get(font-size, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias font-size
+
+@function fz($args...) {
+  @return font-size($args...);
+}

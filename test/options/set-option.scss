@@ -40,7 +40,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': (
+      'TOKENS': (
         'baseline': 2rem
       )
     ) !global;
@@ -50,7 +50,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'baseline': 0.5rem
         )
       )),
@@ -60,7 +60,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     $_: set(palettes, (
@@ -74,7 +74,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'palettes': (
             'blue': (
               'light': skyblue,
@@ -90,7 +90,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     $_: set(palettes, blue, (
@@ -102,7 +102,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'palettes': (
             'blue': (
               'light': skyblue,
@@ -122,9 +122,9 @@
 
 @include describe('set [mixin]') {
 
-  @include it('Sets a new value in the `INVENTORY` map') {
+  @include it('Sets a new value in the `TOKENS` map') {
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     @include set(baseline, 2rem);
@@ -132,7 +132,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'baseline': 2rem
         )
       )),
@@ -142,7 +142,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     @include set(breakpoints, custom, 777px);
@@ -150,7 +150,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'breakpoints': (
             'custom': 777px
           )
@@ -162,7 +162,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': (
+      'TOKENS': (
         'baseline': 2rem
       )
     ) !global;
@@ -172,7 +172,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'baseline': 0.5rem
         )
       )),
@@ -182,7 +182,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     @include set(palettes, (
@@ -196,7 +196,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'palettes': (
             'blue': (
               'light': skyblue,
@@ -212,7 +212,7 @@
 
 
     $__SCARAB: (
-      'INVENTORY': ()
+      'TOKENS': ()
     ) !global;
 
     @include set(palettes, blue, (
@@ -224,7 +224,7 @@
     @include assert-equal(
       inspect($__SCARAB),
       inspect((
-        'INVENTORY': (
+        'TOKENS': (
           'palettes': (
             'blue': (
               'light': skyblue,

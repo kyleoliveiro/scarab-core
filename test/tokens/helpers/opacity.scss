@@ -1,0 +1,39 @@
+@include describe('opacity [func]') {
+
+  @include it('Returns a `opacity` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'opacity': (
+          '0' : 0,
+          '50': 0.5
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      opacity(50),
+      0.5
+    );
+  }
+
+}
+
+@include describe('o [func]') {
+
+  @include it('Returns a `opacity` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'opacity': (
+          '0' : 0,
+          '50': 0.5
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      o(50),
+      0.5
+    );
+  }
+
+}

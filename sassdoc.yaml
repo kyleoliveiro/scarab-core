@@ -1,5 +1,5 @@
-dest: ./docs
-theme: flippant
+dest: ./sassdoc
+theme: vulcan
 display:
   alias: false
   watermark: false
@@ -12,8 +12,8 @@ groups:
   0_variables: Variables
   1_options: Options
   2_constants: Constants
-  3_inventory: Stylesheet inventory
-  4_inventory-helpers: Inventory helpers
+  3_tokens: Stylesheet tokens
+  4_token-helpers: Token helpers
   5_functions: Pure functions
   6_mixins: Mixins
 verbose: true

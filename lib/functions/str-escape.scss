@@ -23,15 +23,14 @@
   @for $i from 1 through str-length($string) {
     $char: str-slice($string, $i, $i);
 
-    // Escape special characters except `:` with a backslash
-    @if list-contains(const(CSS, SPECIAL_CHARS), $char) and $char != ':' {
+    // Escape special characters with a backslash.
+    // Although recommended, we do not escape colon `:` as `\3A `,
+    // because this causes problems when using Webpack.
+    @if list-contains(const(CSS, SPECIAL_CHARS), $char) {
       $result: str-insert($result, '\\', ($i + $count));
       $count: $count + 1;
     }
   }
-
-  // Escape `:` characters as `\3A `
-  $result: str-replace($result, ':', '\\3A ', true);
 
   @return $result;
 }

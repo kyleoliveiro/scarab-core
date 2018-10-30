@@ -3,7 +3,7 @@
 /// Never modify this variable or its children directly. Instead, use:
 /// - `set-option()` / `option()` to manage options
 /// - `define()` / `const()` to manage constants
-/// - `set()` / `get()` to manage the inventory
+/// - `set()` / `get()` to manage the tokens
 ///
 /// @access private
 /// @group 0_variables
@@ -11,10 +11,10 @@
 /// @type Map
 /// @prop {Map} OPTIONS - Contains Scarab options
 /// @prop {Map} CONSTANTS - Contains constant values
-/// @prop {Map} INVENTORY - Contains the stylesheet inventory
+/// @prop {Map} TOKENS - Contains the stylesheet tokens
 
 $__SCARAB: (
   'CONSTANTS' : (),
-  'INVENTORY' : (),
+  'TOKENS' : (),
   'OPTIONS'   : ()
 );

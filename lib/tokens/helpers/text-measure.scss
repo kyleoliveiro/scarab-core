@@ -1,0 +1,25 @@
+/// Returns the value of a text measure token.
+///
+/// **Aliases**
+/// - `@function measure()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function text-measure($path...) {
+  $result: get(text-measure, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias text-measure
+
+@function measure($args...) {
+  @return text-measure($args...);
+}

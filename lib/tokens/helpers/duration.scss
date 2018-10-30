@@ -1,0 +1,25 @@
+/// Returns the value of a duration token.
+///
+/// **Aliases**
+/// - `@function dur()`
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function duration($path...) {
+  $result: get(duration, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias duration
+
+@function dur($args...) {
+  @return duration($args...);
+}

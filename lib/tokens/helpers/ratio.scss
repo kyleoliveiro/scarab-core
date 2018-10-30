@@ -1,0 +1,13 @@
+/// Returns the value of an aspect ratio token.
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function ratio($path...) {
+  $result: get(ratio, $path...);
+  @return $result;
+}

@@ -1,0 +1,13 @@
+/// Returns the value of a module token.
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function module($path...) {
+  $result: get(module, $path...);
+  @return $result;
+}

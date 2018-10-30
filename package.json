@@ -1,10 +1,13 @@
 {
-  "name": "scarab-scss",
-  "version": "7.0.0-beta.7",
-  "description": "Sass utility framework for rapid stylesheet development",
+  "name": "@scarab/core",
+  "version": "7.0.0-rc.0",
+  "description": "Sass library for rapid stylesheet development",
   "keywords": [
     "sass",
     "scss",
+    "design tokens",
+    "library",
+    "helpers",
     "mixins",
     "responsive",
     "front-end"
@@ -15,26 +18,27 @@
     "watch:mocha": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run test",
     "watch:node": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run test:node",
     "watch:ruby": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run test:ruby",
-    "watch:docs": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run build-docs",
+    "watch:sassdoc": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run build-sassdoc",
     "test:node": "clrscr && node-sass --include-path node_modules test/tests.scss || true",
     "test:ruby": "clrscr && sass -I node_modules test/tests.scss || true",
     "test": "mocha",
     "build": "node-sass --include-path node_modules scarab.scss -o build/",
-    "build-docs": "clrscr && sassdoc ./ --config sassdoc.yaml"
+    "build-sassdoc": "clrscr && sassdoc ./ --config sassdoc.yaml"
   },
-  "author": "Kyle Oliveiro <kyle@watchtower.digital>",
+  "author": "Kyle Oliveiro <hello@kyle.sg>",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/watchtowerdigital/scarab"
+    "url": "https://github.com/kyleoliveiro/scarab-core"
   },
   "devDependencies": {
     "clrscr": "^1.0.4",
     "mocha": "^4.1.0",
-    "node-sass": "^4.8.3",
+    "node-sass": "^4.9.4",
     "onchange": "^3.3.0",
     "sass-true": "^3.1.0",
-    "sassdoc": "^2.5.0",
-    "sassdoc-theme-flippant": "^0.1.0"
+    "sassdoc": "^2.5.1",
+    "sassdoc-theme-flippant": "^0.1.0",
+    "sassdoc-theme-vulcan": "^0.2.0"
   }
 }

@@ -2,9 +2,7 @@ language: node_js
 
 node_js:
   - 'node'
-  - '7'
-  - '6'
-  - '5'
+  - 'lts/*'
 
 install:
   - npm install

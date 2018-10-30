@@ -1,0 +1,35 @@
+/// Returns the value of a letter spacing token.
+///
+/// **Aliases**
+/// - `@function ls()`
+/// - `@function tracking()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function letter-spacing($path...) {
+  $result: get(letter-spacing, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias letter-spacing
+
+@function ls($args...) {
+  @return letter-spacing($args...);
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias letter-spacing
+
+@function tracking($args...) {
+  @return letter-spacing($args...);
+}

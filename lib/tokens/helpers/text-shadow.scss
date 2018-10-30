@@ -1,0 +1,25 @@
+/// Returns the value of a text-shadow token.
+///
+/// **Aliases**
+/// - `@function tsh()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function text-shadow($path...) {
+  $result: get(text-shadow, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias text-shadow
+
+@function tsh($args...) {
+  @return text-shadow($args...);
+}

@@ -1,0 +1,31 @@
+@include describe('module [func]') {
+
+  @include it('Returns a `module` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'module': (
+          'margin': (
+            root        : 'm',
+            values      : get(spacing),
+            breakpoints : get(breakpoint)
+          )
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      module(margin),
+      (
+        root        : 'm',
+        values      : get(spacing),
+        breakpoints : get(breakpoint)
+      )
+    );
+
+    @include assert-equal(
+      module(margin, root),
+      'm'
+    );
+  }
+
+}

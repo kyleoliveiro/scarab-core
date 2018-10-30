@@ -1,0 +1,26 @@
+/// Returns the value of a background image token.
+/// 
+/// **Aliases**
+/// - `@function bgi()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// 
+/// @return {*}
+
+@function background-image($path...) {
+  $result: get(background-image, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias background-image
+
+@function bgi($args...) {
+  @return background-image($args...);
+}

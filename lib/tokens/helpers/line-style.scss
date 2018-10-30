@@ -1,0 +1,27 @@
+/// Returns the value of a line style token.
+///
+/// **Aliases**
+/// - `@function c()`
+/// - `@function palette()`
+///
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function line-style($path...) {
+  $result: get(line-style, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias line-style
+
+@function lns($args...) {
+  @return line-style($args...);
+}
+

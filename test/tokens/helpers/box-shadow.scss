@@ -1,0 +1,43 @@
+@include describe('box-shadow [func]') {
+
+  @include it('Returns a `box-shadow` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'box-shadow': (
+          '0': linear,
+          's': 0 2px 4px rgba(0,0,0,0.2),
+          'm': 0 3px 6px rgba(0,0,0,0.2),
+          'l': 0 4px 6px rgba(0,0,0,0.2)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      box-shadow(m),
+      0 3px 6px rgba(0,0,0,0.2)
+    );
+  }
+
+}
+
+@include describe('bsh [func]') {
+
+  @include it('Returns a `box-shadow` value from the `TOKENS` map') {
+    $__SCARAB: (
+      'TOKENS': (
+        'box-shadow': (
+          '0': linear,
+          's': 0 2px 4px rgba(0,0,0,0.2),
+          'm': 0 3px 6px rgba(0,0,0,0.2),
+          'l': 0 4px 6px rgba(0,0,0,0.2)
+        )
+      )
+    ) !global;
+
+    @include assert-equal(
+      bsh(m),
+      0 3px 6px rgba(0,0,0,0.2)
+    );
+  }
+
+}

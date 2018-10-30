@@ -9,7 +9,7 @@
 
     @include assert-equal(
       class-escape('$cl@ss:*(1)'),
-      '\\$cl\\@ss\\3A \\*\\(1\\)',
+      '\\$cl\\@ss\\:\\*\\(1\\)',
       'Escapes special characters'
     );
 

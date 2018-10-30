@@ -1,0 +1,25 @@
+/// Returns the value of a box-shadow token.
+///
+/// **Aliases**
+/// - `@function bsh()`
+/// 
+/// @group 4_token-helpers
+///
+/// @requires {function} get
+///
+/// @param {String} $path - Path to the token
+/// @return {*}
+
+@function box-shadow($path...) {
+  $result: get(box-shadow, $path...);
+  @return $result;
+}
+
+
+
+/// @group 4_token-helpers
+/// @alias box-shadow
+
+@function bsh($args...) {
+  @return box-shadow($args...);
+}
