@@ -34,7 +34,7 @@ $ npm install @scarab/core --save-dev
 
 ```scss
 // Import the Scarab Library
-@import '@scarab/core';
+@import '@scarab/core/_';
 
 // Write your Sass here...
 ```
