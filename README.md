@@ -63,9 +63,9 @@ In addition to the core library, the following packages are available in the Sca
 
 | Package name | Description |
 | :-- | :-- |
-| [**Carapace**](https://github.com/kyleoliveiro/scarab-carapace.git) | Automatically generate CSS utility classes from design tokens. |
-| [**Scarab CLI** (WIP)](https://github.com/kyleoliveiro/scarab-cli.git) | Command-line tools for the Scarab ecosystem. |
-| [**Scarab snippets** (WIP)](https://github.com/kyleoliveiro/scarab-snippets.git) | Scarab snippets for your favorite text editors and IDE's. |
+| [**Carapace**](https://github.com/kyleoliveiro/scarab-carapace.git) | CSS utility class generator |
+| [**Scarab CLI** (WIP)](https://github.com/kyleoliveiro/scarab-cli.git) | Command-line tools for the Scarab ecosystem |
+| [**Scarab snippets** (WIP)](https://github.com/kyleoliveiro/scarab-snippets.git) | Scarab snippets for your favorite text editors and IDE's |
 
 ## 🎉 Motivation
 
@@ -96,4 +96,4 @@ Other options are available, and you should pick one that caters to your project
 Issues and feature requests and PR's are welcome!
 
 ### 📃️ License
-Licensed under MIT. Copyright &copy; Kyle Oliveiro 2018.
+Licensed under BSD 3-Clause. Copyright &copy; Kyle Oliveiro 2018.
