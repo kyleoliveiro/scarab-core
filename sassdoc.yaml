@@ -1,5 +1,4 @@
 dest: ./sassdoc
-theme: vulcan
 display:
   alias: false
   watermark: false
@@ -17,5 +16,5 @@ groups:
   5_functions: Pure functions
   6_mixins: Mixins
 verbose: true
-basePath: https://github.com/watchtowerdigital/scarab/tree/master
+basePath: https://github.com/kyleoliveiro/scarab-core/tree/master
 googleAnalytics: UA-106098263-1
