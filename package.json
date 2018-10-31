@@ -12,7 +12,7 @@
     "responsive",
     "front-end"
   ],
-  "main": "scarab.scss",
+  "main": "_.scss",
   "scripts": {
     "start": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm test || true",
     "watch:mocha": "onchange \"lib/**/*\" \"test/**/*\" \"*.scss\" -- npm run test",
