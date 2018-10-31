@@ -64,8 +64,8 @@ In addition to the core library, the following packages are available in the Sca
 | Package name | Description |
 | :-- | :-- |
 | [**Carapace**](https://github.com/kyleoliveiro/scarab-carapace.git) | Automatically generate CSS utility classes from design tokens. |
-| [**Scarab CLI**](https://github.com/kyleoliveiro/scarab-cli.git) | Command-line tools for the Scarab ecosystem. |
-| [**Scarab snippets**](https://github.com/kyleoliveiro/scarab-snippets.git) | Scarab snippets for your favorite text editors and IDE's. |
+| [**Scarab CLI** (WIP)](https://github.com/kyleoliveiro/scarab-cli.git) | Command-line tools for the Scarab ecosystem. |
+| [**Scarab snippets** (WIP)](https://github.com/kyleoliveiro/scarab-snippets.git) | Scarab snippets for your favorite text editors and IDE's. |
 
 ## 🎉 Motivation
 
@@ -82,7 +82,7 @@ Scarab is the resulting by-product of years of web development work. It's design
 - Ecosystem of related packages
 
 ### Why not just use Sass variables?
-Using Sass variables to manage design tokens can be a viable solution for small projects. However, this approach has its limitations. For instance, in Sass, it's not possible to dynamically reference a variable by name. However, this becomes possible if tokens are stored in a Sass map instead of a variable. This opens up many possibilities, and is main impetus behind the Scarab library.
+Using Sass variables to manage design tokens can be a viable solution for small projects. However, this approach has its limitations. For instance, in Sass, it's not possible to dynamically reference a variable by name. On the other hand, this becomes possible if tokens are stored in a Sass map instead of variables. This opens up many possibilities, and is the main impetus behind the Scarab library.
 
 ### Alternative libraries
 Other options are available, and you should pick one that caters to your project's requirements.
