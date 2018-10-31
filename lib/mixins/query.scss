@@ -5,69 +5,98 @@
 /// @requires {function} get
 /// @requires {function} class-template
 ///
-/// @param {Number|String|List} $query
+/// @param {Number|List|Map} $query
 /// 
 /// @output Style declarations inside an `@media` block
 /// 
 /// @todo Add support for other types of media queries (besides width)
 
 @mixin query($query) {
-  $condition:   ();
   $breakpoint:  ();
   $media-query: ();
 
-  // Min-width mode
-  @if length($query) == 1 {
+  // If $query is a number, generate a `min-width: <length>` media query
+  @if type-of($query) == 'number' {
     $breakpoint: $query;
-
-    @if type-of($breakpoint) == 'string' {
-      $breakpoint: get(breakpoint, $breakpoint);
-    }
-
-    $media-query: '(min-width: #{$breakpoint})';
-  }
-  
-  // Min/max-width mode
-  @else if length($query) == 2 {
-    $condition:  nth($query, 1);
-    $breakpoint: nth($query, 2);
-
-    @if type-of($breakpoint) == 'string' {
-      $breakpoint: get(breakpoint, $breakpoint);
-    }
-
-    // e.g. query(until bp(m))
-    @if $condition == 'until' {
-      $media-query: '(max-width: #{$breakpoint})';
-    }
-    // e.g. query(from bp(l))   => @media min-width(small) {}
-    @else if $condition == 'from' {
-      $media-query: '(min-width: #{$breakpoint})';
-    }
+    $media-query: '(min-width: #{$breakpoint})'
   }
 
-  // Min-width and max-width mode
-  @else if length($query) == 3 {
-    $bp1: nth($query, 1);
-    $bp2: nth($query, 3);
+  // If $query is a list, accept the following formats:
+  // - query(from #{$bp})             => @media (min-width: #{$bp})
+  // - query(above #{$bp})            => @media (min-width: #{$bp} + 1px)
+  // - query(until #{$bp})            => @media (max-width: #{$bp})
+  // - query(below #{$bp})            => @media (max-width: #{$bp} - 1px)
+  // - query(from #{$bp1} to #{$bp2}) => @media (min-width: #{$bp1}) and (max-width: #{$bp2})
+  @else if type-of($query) == 'list' {
 
-    @if type-of($bp1) == 'string' {
-      $bp1: get(breakpoint, $bp1);
+    @if (length($query) == 2) {
+      $breakpoint: nth($query, 2);
+
+      @if type-of($breakpoint) == 'number' {
+        // "from #{$bp}" syntax
+        @if nth($query, 1) == 'from' {
+          $media-query: (min-width: #{$breakpoint});
+        }
+
+        // "above #{$bp}" syntax
+        @if nth($query, 1) == 'above' {
+          $original-unit: unit($breakpoint);
+
+          @if (unit($breakpoint) == 'em') or (unit($breakpoint) == 'rem') {
+            $breakpoint: unit-strip((unit-strip($breakpoint) * 16px) + 1px) / 16#{$original-unit};
+          } @else {
+            $breakpoint: unit-convert(unit-convert($breakpoint, 'px') + 1px, $original-unit);
+          }
+
+          $media-query: (min-width: #{$breakpoint});
+        }
+
+        // "until #{$bp}" syntax
+        @if nth($query, 1) == 'until' {
+          $media-query: (max-width: #{$breakpoint});
+        }
+
+        // "below #{$bp}" syntax
+        @if nth($query, 1) == 'below' {
+          $original-unit: unit($breakpoint);
+
+          @if (unit($breakpoint) == 'em') or (unit($breakpoint) == 'rem') {
+            $breakpoint: unit-strip((unit-strip($breakpoint) * 16px) - 1px) / 16#{$original-unit};
+          } @else {
+            $breakpoint: unit-convert(unit-convert($breakpoint, 'px') - 1px, $original-unit);
+          }
+
+          $media-query: (max-width: #{$breakpoint});
+        }
+      }
     }
 
-    @if type-of($bp2) == 'string' {
-      $bp2: get(breakpoint, $bp2);
+    // "from #{$bp1} to #{$bp2}" syntax
+    @if length($query) == 4 {
+      $bp1: nth($query, 2);
+      $bp2: nth($query, 4);
+
+      $media-query: '(min-width: #{$bp1}) and (max-width: #{$bp2})';
     }
 
-    $min-query: $bp1;
-    $max-query: $bp2;
+  }
 
-    @if $bp1 > $bp2 {
-      $min-query: $bp2;
-      $max-query: $bp1;
+  // If $query is a map, expect it to have `type` and `condition` keys
+  @else if type-of($query) == 'map' {
+    $type: if(map-has-key($query, type), map-get($query, type), null);
+    $condition: if(map-has-key($query, condition), map-get($query, condition), null);
+
+    @if ($type) and ($condition) {
+      $media-query: '#{$type} and #{unquote($condition)}';
     }
 
-    $media-query: '(min-width: #{$min-query}) and (max-width: #{$max-query})';
+    @else if $type {
+      $media-query: #{$type};
+    }
+
+    @else if $condition {
+      $media-query: #{$condition};
+    }
   }
 
   @media #{$media-query} {

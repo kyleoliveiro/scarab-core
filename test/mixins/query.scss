@@ -2,107 +2,182 @@
 
   @include it('Wraps styles in a media query block') {
 
-    @include assert('Min-width query') {
+    @include assert('when $query is a number, generates a `min-width` media query') {
       @include output {
-        @include query(400px) {
+        @include query(30em) {
           color: red;
         }
       }
 
       @include expect {
-        @media (min-width: 400px) {
+        @media (min-width: 30em) {
+          color: red;
+        }
+      }
+    }
+
+    @include assert('accepts query as a list with "from $bp" syntax') {
+      @include output {
+        @include query(from 30em) {
+          color: red;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 30em) {
           color: red;
         }
       }
     }
     
-    @include assert('Min-width query') {
+    @include assert('accepts query as a list with "above $bp" syntax') {
       @include output {
-        @include query(400px) {
+        @include query(above 30em) {
+          color: red;
+        }
+
+        @include query(above 100px) {
+          color: green;
+        }
+
+        @include query(above 10in) {
+          color: blue;
+        }
+
+        @include query(above 20pt) {
+          color: yellow;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 30.0625em) {
+          color: red;
+        }
+
+        @media (min-width: 101px) {
+          color: green;
+        }
+
+        @media (min-width: 10.01042in) {
+          color: blue;
+        }
+
+        @media (min-width: 20.75pt) {
+          color: yellow;
+        }
+      }
+    }
+
+    @include assert('accepts query as a list with "until $bp" syntax') {
+      @include output {
+        @include query(until 30em) {
           color: red;
         }
       }
 
       @include expect {
-        @media (min-width: 400px) {
+        @media (max-width: 30em) {
           color: red;
         }
       }
     }
 
-    @include assert('Min-width query (`from` syntax)') {
+    @include assert('accepts query as a list with "below $bp" syntax') {
       @include output {
-        @include query(from 400px) {
+        @include query(below 30em) {
+          color: red;
+        }
+
+        @include query(below 100px) {
+          color: green;
+        }
+
+        @include query(below 10in) {
+          color: blue;
+        }
+
+        @include query(below 20pt) {
+          color: yellow;
+        }
+      }
+
+      @include expect {
+        @media (max-width: 29.9375em) {
+          color: red;
+        }
+
+        @media (max-width: 99px) {
+          color: green;
+        }
+
+        @media (max-width: 9.98958in) {
+          color: blue;
+        }
+
+        @media (max-width: 19.25pt) {
+          color: yellow;
+        }
+      }
+    }
+
+    @include assert('accepts query as a list with "from $bp1 to $bp2" syntax') {
+      @include output {
+        @include query(from 30em to 40em) {
           color: red;
         }
       }
 
       @include expect {
-        @media (min-width: 400px) {
+        @media (min-width: 30em) and (max-width: 40em) {
           color: red;
         }
       }
     }
 
-    @include assert('Max-width query') {
+    @include assert('accepts $query as a map with a `type` key') {
       @include output {
-        @include query(until 400px) {
+        @include query((
+          type: print
+        )) {
           color: red;
         }
       }
 
       @include expect {
-        @media (max-width: 400px) {
+        @media print {
           color: red;
         }
       }
     }
 
-    @include assert('Min-width and max-width query') {
+    @include assert('accepts $query as a map with a `condition` key') {
       @include output {
-        @include query(400px to 800px) {
+        @include query((
+          condition: "(min-width: 30em)"
+        )) {
           color: red;
         }
       }
 
       @include expect {
-        @media (min-width: 400px) and (max-width: 800px) {
+        @media (min-width: 30em) {
           color: red;
         }
       }
     }
 
-    @include assert('Using breakpoint names instead of values') {
+    @include assert('accepts $query as a map with `type` and `condition` keys') {
       @include output {
-        $_: set(breakpoint, (
-          s: 400px,
-          m: 600px,
-          l: 800px
-        ));
-
-        @include query(s) {
-          color: red;
-        }
-
-        @include query(until m) {
-          color: red;
-        }
-
-        @include query(m to l) {
+        @include query((
+          type: print,
+          condition: "(min-width: 30em)"
+        )) {
           color: red;
         }
       }
 
       @include expect {
-        @media (min-width: 400px) {
-          color: red;
-        }
-
-        @media (max-width: 600px) {
-          color: red;
-        }
-
-        @media (min-width: 600px) and (max-width: 800px) {
+        @media print and (min-width: 30em) {
           color: red;
         }
       }
@@ -113,7 +188,7 @@
   @include it('Can contain a class declaration') {
     @include assert {
       @include output {
-        @include query(200px) {
+        @include query(30em) {
           .class {
             color: red;
           }
@@ -121,7 +196,7 @@
       }
 
       @include expect {
-        @media (min-width: 200px) {
+        @media (min-width: 30em) {
           .class {
             color: red;
           }
